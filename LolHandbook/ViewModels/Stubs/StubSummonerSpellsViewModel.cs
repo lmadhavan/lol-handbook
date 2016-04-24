@@ -1,7 +1,7 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
 
-namespace YordleHandbook.ViewModels.Stubs
+namespace LolHandbook.ViewModels.Stubs
 {
     public class StubSummonerSpellsViewModel
     {

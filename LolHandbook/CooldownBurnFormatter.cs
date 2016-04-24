@@ -2,20 +2,13 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace YordleHandbook.Converters
+namespace LolHandbook
 {
-    public class CooldownConverter : IValueConverter
+    class CooldownBurnFormatter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            string cooldown = value as string;
-
-            if (string.IsNullOrEmpty(cooldown))
-            {
-                return null;
-            }
-
-            return $"Cooldown: {cooldown} seconds";
+            return "Cooldown: " + value + " seconds";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

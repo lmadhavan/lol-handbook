@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using YordleHandbook.ViewModels;
+using LolHandbook.ViewModels;
 
-namespace YordleHandbook
+namespace LolHandbook
 {
     public sealed partial class SummonerSpellPage : Page
     {

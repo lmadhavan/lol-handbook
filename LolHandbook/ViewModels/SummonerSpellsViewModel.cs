@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace YordleHandbook.ViewModels
+namespace LolHandbook.ViewModels
 {
     public class SummonerSpellsViewModel : INotifyPropertyChanged
     {

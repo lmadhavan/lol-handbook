@@ -1,22 +1,21 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media.Imaging;
 
-namespace YordleHandbook.Converters
+namespace LolHandbook.Converters
 {
-    public class ImageUriConverter : IValueConverter
+    public class CooldownConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            Uri uri = value as Uri;
+            string cooldown = value as string;
 
-            if (uri == null)
+            if (string.IsNullOrEmpty(cooldown))
             {
                 return null;
             }
 
-            return new BitmapImage(uri);
+            return $"Cooldown: {cooldown} seconds";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

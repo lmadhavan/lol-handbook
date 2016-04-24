@@ -4,7 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace YordleHandbook
+namespace LolHandbook
 {
     public sealed partial class MainFrame: Page
     {

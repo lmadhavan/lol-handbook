@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Yordle Handbook")]
-[assembly: AssemblyDescription("League of Legends encyclopedia")]
+[assembly: AssemblyTitle("LoL Handbook")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Madhavan Lakshminarayanan")]
-[assembly: AssemblyProduct("Yordle Handbook")]
+[assembly: AssemblyProduct("LoL Handbook")]
 [assembly: AssemblyCopyright("Copyright ©  2016 Madhavan Lakshminarayanan")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Data Dragon Client")]
-[assembly: AssemblyDescription("Client library for League of Legends Data Dragon")]
+[assembly: AssemblyDescription("LoL Data Dragon client library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Madhavan Lakshminarayanan")]
 [assembly: AssemblyProduct("Data Dragon Client")]

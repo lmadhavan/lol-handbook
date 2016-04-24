@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="YordleHandbook.MainFrame"
+    x:Class="LolHandbook.MainFrame"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:YordleHandbook"
+    xmlns:local="using:LolHandbook"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -17,7 +17,7 @@
             <Style x:Key="PageTitleTextBlockStyle" TargetType="TextBlock">
                 <Setter Property="Height" Value="48" />
                 <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Padding" Value="12,14,0,0" />
+                <Setter Property="Padding" Value="4,14,0,0" />
             </Style>
 
             <Style x:Key="NavPaneButtonStyle" TargetType="Button" BasedOn="{StaticResource TextBlockButtonStyle}">
@@ -54,7 +54,7 @@
                 <TextBlock Text="&#xE700;" />
             </Button>
 
-            <TextBlock x:Name="PageTitle" Style="{StaticResource PageTitleTextBlockStyle}" Grid.Column="1" />
+            <TextBlock x:Name="PageTitle" Style="{StaticResource PageTitleTextBlockStyle}" Grid.Column="1" Text="PAGE TITLE" />
         </Grid>
 
         <SplitView x:Name="SplitView"  OpenPaneLength="240" CompactPaneLength="0" IsPaneOpen="False" DisplayMode="CompactOverlay" Grid.Row="1">

@@ -1,9 +1,9 @@
 ﻿<Application
-    x:Class="YordleHandbook.App"
+    x:Class="LolHandbook.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:YordleHandbook"
-    xmlns:conv="using:YordleHandbook.Converters">
+    xmlns:local="using:LolHandbook"
+    xmlns:conv="using:LolHandbook.Converters">
     <Application.Resources>
         <ResourceDictionary>
             <conv:CooldownConverter x:Key="CooldownConverter" />
