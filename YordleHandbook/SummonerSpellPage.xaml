@@ -10,10 +10,10 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=stubs:StubSummonerSpellsViewModel, IsDesignTimeCreatable=True}">
 
-    <ListView x:Name="summonerSpellView" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SelectionMode="None" IsItemClickEnabled="False" ItemsSource="{Binding SummonerSpells}">
+    <ListView x:Name="summonerSpellView" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SelectionMode="None" IsItemClickEnabled="False" ItemsSource="{Binding SummonerSpells}" Grid.Row="1">
         <ListView.ItemTemplate>
             <DataTemplate x:DataType="dd:SummonerSpell">
-                <Grid Margin="6">
+                <Grid Margin="4,6,4,6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
