@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="YordleHandbook.SummonerSpellPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YordleHandbook"
+    xmlns:dd="using:DataDragon"
+    xmlns:stubs="using:YordleHandbook.ViewModels.Stubs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=stubs:StubSummonerSpellsViewModel, IsDesignTimeCreatable=True}">
+
+    <ListView x:Name="summonerSpellView" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SelectionMode="None" IsItemClickEnabled="False" ItemsSource="{Binding SummonerSpells}">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="dd:SummonerSpell">
+                <Grid Margin="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="64" Height="64" VerticalAlignment="Top" Margin="0,8,0,0">
+                        <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
+                    </Border>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" />
+                        <TextBlock Text="{x:Bind Description}" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="WrapWholeWords" />
+                        <TextBlock Text="{x:Bind CooldownBurn, Converter={StaticResource CooldownConverter}}" Foreground="{ThemeResource SystemAccentColor}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" />
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</Page>

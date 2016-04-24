@@ -3,6 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:YordleHandbook"
-    RequestedTheme="Light">
-
+    xmlns:conv="using:YordleHandbook.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <conv:CooldownConverter x:Key="CooldownConverter" />
+            <conv:ImageUriConverter x:Key="ImageUriConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

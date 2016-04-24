@@ -1,18 +1,20 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Yordle Handbook")]
-[assembly: AssemblyDescription("League of Legends encyclopedia")]
+[assembly: AssemblyTitle("Data Dragon Client")]
+[assembly: AssemblyDescription("Client library for League of Legends Data Dragon")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Madhavan Lakshminarayanan")]
-[assembly: AssemblyProduct("Yordle Handbook")]
+[assembly: AssemblyProduct("Data Dragon Client")]
 [assembly: AssemblyCopyright("Copyright ©  2016 Madhavan Lakshminarayanan")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: NeutralResourcesLanguage("en")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -26,4 +28,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: ComVisible(false)]
