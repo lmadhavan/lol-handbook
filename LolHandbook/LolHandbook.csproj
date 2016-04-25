@@ -101,12 +101,21 @@
     <Compile Include="MainFrame.xaml.cs">
       <DependentUpon>MainFrame.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SummonerSpellPage.xaml.cs">
-      <DependentUpon>SummonerSpellPage.xaml</DependentUpon>
+    <Compile Include="Pages\ChampionsPage.xaml.cs">
+      <DependentUpon>ChampionsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pages\SummonerSpellsPage.xaml.cs">
+      <DependentUpon>SummonerSpellsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ChampionsViewModel.cs" />
+    <Compile Include="ViewModels\IChampionsViewModel.cs" />
+    <Compile Include="ViewModels\ISummonerSpellsViewModel.cs" />
+    <Compile Include="ViewModels\Stubs\StubChampionsViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubSummonerSpellsViewModel.cs" />
     <Compile Include="ViewModels\SummonerSpellsViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -133,7 +142,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SummonerSpellPage.xaml">
+    <Page Include="Pages\ChampionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SummonerSpellsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,31 +1,29 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Diagnostics;
 
 namespace LolHandbook.ViewModels
 {
-    public class SummonerSpellsViewModel : INotifyPropertyChanged
+    public class SummonerSpellsViewModel : ViewModelBase, ISummonerSpellsViewModel
     {
+        public SummonerSpellsViewModel(DataDragonClient dataDragonClient)
+            : base(dataDragonClient)
+        {
+        }
+
         public IList<SummonerSpell> SummonerSpells
         {
             get;
             private set;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public async void Load()
+        protected override async void LoadData(DataDragonClient dataDragonClient)
         {
-            if (SummonerSpells != null)
-            {
-                return;
-            }
+            Debug.Write("Fetching summoner spells... ");
+            this.SummonerSpells = await dataDragonClient.GetSummonerSpellsAsync();
+            Debug.WriteLine("Done.");
 
-            using (DataDragonClient client = new DataDragonClient())
-            {
-                this.SummonerSpells = await client.GetSummonerSpellsAsync();
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SummonerSpells)));
-            }
+            RaisePropertyChanged(nameof(SummonerSpells));
         }
     }
 }

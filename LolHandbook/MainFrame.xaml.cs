@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LolHandbook.Pages;
+using System;
 using System.Collections.Generic;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -12,23 +14,56 @@ namespace LolHandbook
 
         static MainFrame()
         {
-            PageTitles[typeof(SummonerSpellPage)] = "Summoner Spells";
+            PageTitles[typeof(ChampionsPage)] = "Champions";
+            PageTitles[typeof(SummonerSpellsPage)] = "Summoner Spells";
         }
 
         public MainFrame()
         {
             this.InitializeComponent();
-            ContentFrame.Navigated += ContentFrame_Navigated;
-            ContentFrame.NavigationFailed += ContentFrame_NavigationFailed;
+            ContentFrame.CacheSize = PageTitles.Count;
+            ContentFrame.Navigated += OnNavigated;
+            ContentFrame.NavigationFailed += OnNavigationFailed;
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
         }
 
         private Frame ContentFrame => SplitView.Content as Frame;
+        private Type ContentType => ContentFrame.Content.GetType();
         public bool IsContentLoaded => ContentFrame.Content != null;
 
         public void Navigate(Type type)
         {
             SplitView.IsPaneOpen = false;
+
+            if (IsContentLoaded && ContentType == type)
+            {
+                return;
+            }
+
             ContentFrame.Navigate(type);
+        }
+
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = ContentFrame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+
+            Type type = ContentFrame.Content.GetType();
+            string title = PageTitles[type];
+            PageTitle.Text = title?.ToUpper();
+        }
+
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+        }
+
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (ContentFrame.CanGoBack)
+            {
+                e.Handled = true;
+                ContentFrame.GoBack();
+            }
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -36,21 +71,14 @@ namespace LolHandbook
             SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
         }
 
-        private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
+        private void Nav_Champions_Click(object sender, RoutedEventArgs e)
         {
-            Type type = ContentFrame.Content.GetType();
-            string title = PageTitles[type];
-            PageTitle.Text = title?.ToUpper();
-        }
-
-        private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+            Navigate(typeof(ChampionsPage));
         }
 
         private void Nav_SummonerSpells_Click(object sender, RoutedEventArgs e)
         {
-            Navigate(typeof(SummonerSpellPage));
+            Navigate(typeof(SummonerSpellsPage));
         }
     }
 }

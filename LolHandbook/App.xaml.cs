@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel;
+﻿using LolHandbook.Pages;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 
@@ -55,7 +56,7 @@ namespace LolHandbook
             {
                 if (!rootFrame.IsContentLoaded)
                 {
-                    rootFrame.Navigate(typeof(SummonerSpellPage));
+                    rootFrame.Navigate(typeof(ChampionsPage));
                 }
 
                 // Ensure the current window is active

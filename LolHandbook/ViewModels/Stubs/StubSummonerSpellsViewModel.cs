@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels.Stubs
 {
-    public class StubSummonerSpellsViewModel
+    public class StubSummonerSpellsViewModel : ISummonerSpellsViewModel
     {
         public StubSummonerSpellsViewModel()
         {

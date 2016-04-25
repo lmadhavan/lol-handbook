@@ -60,6 +60,9 @@
         <SplitView x:Name="SplitView"  OpenPaneLength="240" CompactPaneLength="0" IsPaneOpen="False" DisplayMode="CompactOverlay" Grid.Row="1">
             <SplitView.Pane>
                 <StackPanel Orientation="Vertical">
+                    <Button Style="{StaticResource NavPaneButtonStyle}" Click="Nav_Champions_Click">
+                        <TextBlock Text="Champions" />
+                    </Button>
                     <Button Style="{StaticResource NavPaneButtonStyle}" Click="Nav_SummonerSpells_Click">
                         <TextBlock Text="Summoner Spells" />
                     </Button>

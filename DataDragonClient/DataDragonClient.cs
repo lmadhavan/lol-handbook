@@ -24,6 +24,18 @@ namespace DataDragon
             httpClient.Dispose();
         }
 
+        public async Task<IList<ChampionSummary>> GetChampionsAsync()
+        {
+            IList<ChampionSummary> champions = await GetDataAsync<ChampionSummary>("champion.json");
+
+            foreach (ChampionSummary champion in champions)
+            {
+                champion.ImageUri = uriBuilder.GetImageUri(champion.Image);
+            }
+
+            return champions;
+        }
+
         public async Task<IList<SummonerSpell>> GetSummonerSpellsAsync()
         {
             IList<SummonerSpell> summonerSpells = await GetDataAsync<SummonerSpell>("summoner.json");
