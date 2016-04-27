@@ -2,31 +2,13 @@
     x:Class="LolHandbook.Pages.SummonerSpellsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:dd="using:DataDragon"
     xmlns:stubs="using:LolHandbook.ViewModels.Stubs"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=stubs:StubSummonerSpellsViewModel, IsDesignTimeCreatable=True}">
 
-    <ListView Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" IsItemClickEnabled="False" ItemsSource="{Binding SummonerSpells}">
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="dd:SummonerSpell">
-                <Grid Margin="4,8,4,8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="64" Height="64" VerticalAlignment="Top" Margin="0,6,0,0">
-                        <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
-                    </Border>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                        <TextBlock Text="{Binding Name}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap" />
-                        <TextBlock Text="{x:Bind Description}" TextWrapping="WrapWholeWords" />
-                        <TextBlock Text="{x:Bind CooldownBurn, Converter={StaticResource CooldownConverter}}" FontWeight="Medium" TextTrimming="CharacterEllipsis" />
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="20">
+        <ListView SelectionMode="None" IsItemClickEnabled="False" IsHitTestVisible="False" ItemsSource="{Binding SummonerSpells}" ItemTemplate="{StaticResource SpellDataTemplate}" />
+    </ScrollViewer>
 </Page>

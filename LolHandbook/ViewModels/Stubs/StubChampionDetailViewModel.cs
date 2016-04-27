@@ -1,6 +1,5 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace LolHandbook.ViewModels.Stubs
 {
@@ -26,37 +25,35 @@ namespace LolHandbook.ViewModels.Stubs
                 },
 
                 AllyTips = new List<string>(new string[] { "Stay close to him." }),
-                EnemyTips = new List<string>(new string[] { "Stay away from him." }),
-
-                Passive = new ChampionPassive
-                {
-                    Name = "Passive",
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis."
-                },
-
-                Spells = new List<ChampionSpell>(new ChampionSpell[] {
-                    new ChampionSpell
-                    {
-                        Name = "Spell 1",
-                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis.",
-                        CooldownBurn = "5/4/3/2/1",
-                        Resource = "{{ cost }} Mana",
-                        CostBurn = "50"
-                    },
-
-                    new ChampionSpell
-                    {
-                        Name = "Spell 2",
-                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis.",
-                        CooldownBurn = "0.5",
-                        Resource = "{{ e1 }}% of current Health",
-                        EffectBurn = new List<string>(new string[] { null, "20" })
-                    }
-                })
+                EnemyTips = new List<string>(new string[] { "Stay away from him." })
             };
+
+            this.Spells = new List<ISpellViewModel>();
+            Spells.Add(new ChampionPassiveViewModel(new ChampionPassive
+            {
+                Name = "Passive",
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis."
+            }));
+            Spells.Add(new ChampionSpellViewModel(new ChampionSpell
+            {
+                Name = "Spell 1",
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis.",
+                CooldownBurn = "5/4/3/2/1",
+                Resource = "{{ cost }} Mana",
+                CostBurn = "50"
+            }));
+            Spells.Add(new ChampionSpellViewModel(new ChampionSpell
+            {
+                Name = "Spell 2",
+                Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis.",
+                CooldownBurn = "0.5",
+                Resource = "{{ e1 }}% of current Health",
+                EffectBurn = new List<string>(new string[] { null, "20" })
+            }));
         }
 
-        public ChampionDetail ChampionDetail { get; set; }
         public ChampionBase ChampionBase => ChampionDetail;
+        public ChampionDetail ChampionDetail { get; private set; }
+        public IList<ISpellViewModel> Spells { get; private set; }
     }
 }

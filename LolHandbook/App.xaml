@@ -2,11 +2,14 @@
     x:Class="LolHandbook.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:LolHandbook"
+    xmlns:resources="using:LolHandbook.Resources"
     xmlns:conv="using:LolHandbook.Converters">
     <Application.Resources>
         <ResourceDictionary>
-            <conv:CooldownConverter x:Key="CooldownConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <resources:DataTemplates />
+            </ResourceDictionary.MergedDictionaries>
+            
             <conv:HtmlConverter x:Key="HtmlConverter" />
             <conv:ImageUriConverter x:Key="ImageUriConverter" />
             <conv:TagsConverter x:Key="TagsConverter" />

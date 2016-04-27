@@ -1,4 +1,5 @@
 ﻿using DataDragon;
+using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels
 {
@@ -6,5 +7,6 @@ namespace LolHandbook.ViewModels
     {
         ChampionBase ChampionBase { get; }
         ChampionDetail ChampionDetail { get; }
+        IList<ISpellViewModel> Spells { get; }
     }
 }

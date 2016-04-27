@@ -96,7 +96,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\TagsConverter.cs" />
-    <Compile Include="Converters\CooldownConverter.cs" />
     <Compile Include="Converters\HtmlConverter.cs" />
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="CooldownBurnFormatter.cs" />
@@ -113,15 +112,22 @@
     <Compile Include="Pages\SummonerSpellsPage.xaml.cs">
       <DependentUpon>SummonerSpellsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\DataTemplates.xaml.cs">
+      <DependentUpon>DataTemplates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChampionDetailViewModel.cs" />
+    <Compile Include="ViewModels\ChampionPassiveViewModel.cs" />
     <Compile Include="ViewModels\ChampionsViewModel.cs" />
     <Compile Include="ViewModels\IChampionDetailViewModel.cs" />
     <Compile Include="ViewModels\IChampionsViewModel.cs" />
     <Compile Include="ViewModels\ISummonerSpellsViewModel.cs" />
+    <Compile Include="ViewModels\ISpellViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubChampionDetailViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubChampionsViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubSummonerSpellsViewModel.cs" />
     <Compile Include="ViewModels\SummonerSpellsViewModel.cs" />
+    <Compile Include="ViewModels\ChampionSpellViewModel.cs" />
+    <Compile Include="ViewModels\SummonerSpellViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelFactory.cs" />
   </ItemGroup>
@@ -161,6 +167,11 @@
     <Page Include="Pages\SummonerSpellsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
   <ItemGroup>
