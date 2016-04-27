@@ -34,7 +34,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border Style="{StaticResource SpellImageBorderStyle}" Grid.Column="0">
+            <Border Style="{StaticResource SpellImageBorderStyle}" Margin="0,4,0,0" Grid.Column="0">
                 <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
             </Border>
 
@@ -44,7 +44,7 @@
                 <TextBlock Style="{StaticResource SpellDataTextBlockStyle}" Text="{x:Bind Cooldown}" TextTrimming="CharacterEllipsis" />
             </StackPanel>
 
-            <TextBlock Margin="0,12,0,0" Text="{x:Bind Description}" TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2" />
+            <TextBlock Margin="0,8,0,0" Text="{x:Bind Description}" TextWrapping="Wrap" Grid.Row="1" Grid.ColumnSpan="2" />
         </Grid>
     </DataTemplate>
     

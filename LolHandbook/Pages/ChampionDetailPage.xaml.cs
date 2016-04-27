@@ -1,4 +1,5 @@
-﻿using LolHandbook.ViewModels;
+﻿using DataDragon;
+using LolHandbook.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -15,8 +16,14 @@ namespace LolHandbook.Pages
         {
             base.OnNavigatedTo(e);
 
-            string id = e.Parameter as string;
-            this.DataContext = ViewModelFactory.CreateChampionDetailViewModel(id);
+            if (e.Parameter is ChampionBase)
+            {
+                this.DataContext = ViewModelFactory.CreateChampionDetailViewModel((ChampionBase)e.Parameter);
+            }
+            else if (e.Parameter is string)
+            {
+                this.DataContext = ViewModelFactory.CreateChampionDetailViewModel((string)e.Parameter);
+            }
         }
     }
 }

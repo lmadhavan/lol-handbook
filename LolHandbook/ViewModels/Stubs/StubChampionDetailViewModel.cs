@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
+using Windows.UI.Xaml;
 
 namespace LolHandbook.ViewModels.Stubs
 {
@@ -7,27 +8,6 @@ namespace LolHandbook.ViewModels.Stubs
     {
         public StubChampionDetailViewModel()
         {
-            this.ChampionDetail = new ChampionDetail
-            {
-                Name = "Champion",
-                Title = "the Titular Champion",
-                Blurb = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis.",
-                Lore = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                Tags = new List<string>(new string[] { "Fighter", "Tank" }),
-                Stats = new ChampionStats(),
-
-                Rating = new ChampionRating
-                {
-                    Attack = 6,
-                    Defense = 5,
-                    Magic = 4,
-                    Difficulty = 8
-                },
-
-                AllyTips = new List<string>(new string[] { "Stay close to him." }),
-                EnemyTips = new List<string>(new string[] { "Stay away from him." })
-            };
-
             this.Spells = new List<ISpellViewModel>();
             Spells.Add(new ChampionPassiveViewModel(new ChampionPassive
             {
@@ -52,8 +32,14 @@ namespace LolHandbook.ViewModels.Stubs
             }));
         }
 
-        public ChampionBase ChampionBase => ChampionDetail;
-        public ChampionDetail ChampionDetail { get; private set; }
+        public string Name => "Champion";
+        public string Title => "with Some Title";
+        public string Role => "Role: Fighter, Tank";
+        public string Blurb => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in quam purus. Donec at lacus felis.";
+
+        public Visibility MoreButtonVisible => Visibility.Visible;
+        public string Lore => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
         public IList<ISpellViewModel> Spells { get; private set; }
     }
 }

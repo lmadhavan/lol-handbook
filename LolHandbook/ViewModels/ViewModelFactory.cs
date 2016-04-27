@@ -25,6 +25,11 @@ namespace LolHandbook.ViewModels
             return new ChampionsViewModel(DataDragonClient);
         }
 
+        public static object CreateChampionDetailViewModel(ChampionBase champion)
+        {
+            return new ChampionDetailViewModel(DataDragonClient, champion);
+        }
+
         public static object CreateChampionDetailViewModel(string id)
         {
             return new ChampionDetailViewModel(DataDragonClient, id);

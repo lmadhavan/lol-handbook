@@ -25,19 +25,19 @@
                 </Grid.RowDefinitions>
 
                 <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="96" Height="96" Grid.Column="0">
-                    <Image Source="{Binding ChampionBase.ImageUri}" Stretch="UniformToFill" />
+                    <Image Source="{Binding ImageUri}" Stretch="UniformToFill" />
                 </Border>
 
                 <StackPanel Orientation="Vertical" Margin="12,0" Grid.Column="1">
-                    <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{Binding ChampionBase.Name}" />
-                    <TextBlock Text="{Binding ChampionBase.Title}" />
-                    <TextBlock FontWeight="Medium" Margin="0,12,0,0" Text="{Binding ChampionBase.Tags, Converter={StaticResource TagsConverter}}" />
+                    <TextBlock FontWeight="SemiLight" FontSize="28" Text="{Binding Name}" />
+                    <TextBlock Text="{Binding Title}" />
+                    <TextBlock FontWeight="Medium" Margin="0,12,0,0" Text="{Binding Role}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,12">
-                    <TextBlock Text="{Binding ChampionBase.Blurb, Converter={StaticResource HtmlConverter}}" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Blurb}" TextWrapping="Wrap" />
 
-                    <Button Style="{StaticResource TextBlockButtonStyle}" Padding="0" FontWeight="Medium" Content="More">
+                    <Button Style="{StaticResource TextBlockButtonStyle}" Padding="0" FontWeight="Medium" Content="More" Visibility="{Binding MoreButtonVisible}">
                         <Button.Flyout>
                             <Flyout>
                                 <Flyout.FlyoutPresenterStyle>
@@ -48,7 +48,7 @@
                                         <Setter Property="TabNavigation" Value="Cycle" />
                                     </Style>
                                 </Flyout.FlyoutPresenterStyle>
-                                <TextBlock Text="{Binding ChampionDetail.Lore, Converter={StaticResource HtmlConverter}}" TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Lore}" TextWrapping="Wrap" />
                             </Flyout>
                         </Button.Flyout>
                     </Button>

@@ -25,7 +25,7 @@ namespace LolHandbook.Pages
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             ChampionSummary summary = (ChampionSummary)e.ClickedItem;
-            Frame.Navigate(typeof(ChampionDetailPage), summary.Id);
+            Frame.Navigate(typeof(ChampionDetailPage), summary);
         }
     }
 }

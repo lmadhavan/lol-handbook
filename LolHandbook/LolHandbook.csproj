@@ -95,8 +95,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\TagsConverter.cs" />
-    <Compile Include="Converters\HtmlConverter.cs" />
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="CooldownBurnFormatter.cs" />
     <Compile Include="MainFrame.xaml.cs">
@@ -118,6 +116,7 @@
     <Compile Include="ViewModels\ChampionDetailViewModel.cs" />
     <Compile Include="ViewModels\ChampionPassiveViewModel.cs" />
     <Compile Include="ViewModels\ChampionsViewModel.cs" />
+    <Compile Include="ViewModels\HtmlSanitizer.cs" />
     <Compile Include="ViewModels\IChampionDetailViewModel.cs" />
     <Compile Include="ViewModels\IChampionsViewModel.cs" />
     <Compile Include="ViewModels\ISummonerSpellsViewModel.cs" />

@@ -10,9 +10,7 @@
                 <resources:DataTemplates />
             </ResourceDictionary.MergedDictionaries>
             
-            <conv:HtmlConverter x:Key="HtmlConverter" />
             <conv:ImageUriConverter x:Key="ImageUriConverter" />
-            <conv:TagsConverter x:Key="TagsConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
