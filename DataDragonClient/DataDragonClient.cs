@@ -36,6 +36,27 @@ namespace DataDragon
             return champions;
         }
 
+        public async Task<ChampionDetail> GetChampion(string id)
+        {
+            IList<ChampionDetail> champions = await GetDataAsync<ChampionDetail>($"champion/{id}.json");
+
+            ChampionDetail champion = champions[0];
+            champion.ImageUri = uriBuilder.GetImageUri(champion.Image);
+            champion.Passive.ImageUri = uriBuilder.GetImageUri(champion.Passive.Image);
+
+            foreach (ChampionSpell spell in champion.Spells)
+            {
+                spell.ImageUri = uriBuilder.GetImageUri(spell.Image);
+            }
+
+            foreach (ChampionSkin skin in champion.Skins)
+            {
+                skin.ImageUri = uriBuilder.GetImageUri(new ImageId { Group = "splash", Full = id + "_" + skin.Num });
+            }
+
+            return champion;
+        }
+
         public async Task<IList<SummonerSpell>> GetSummonerSpellsAsync()
         {
             IList<SummonerSpell> summonerSpells = await GetDataAsync<SummonerSpell>("summoner.json");

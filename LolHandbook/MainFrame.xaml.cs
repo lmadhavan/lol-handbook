@@ -15,6 +15,7 @@ namespace LolHandbook
         static MainFrame()
         {
             PageTitles[typeof(ChampionsPage)] = "Champions";
+            PageTitles[typeof(ChampionDetailPage)] = "Champions";
             PageTitles[typeof(SummonerSpellsPage)] = "Summoner Spells";
         }
 
@@ -25,6 +26,7 @@ namespace LolHandbook
             ContentFrame.Navigated += OnNavigated;
             ContentFrame.NavigationFailed += OnNavigationFailed;
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+            Window.Current.CoreWindow.PointerPressed += OnPointerPressed;
         }
 
         private Frame ContentFrame => SplitView.Content as Frame;
@@ -33,6 +35,11 @@ namespace LolHandbook
 
         public void Navigate(Type type)
         {
+            Navigate(type, null);
+        }
+
+        public void Navigate(Type type, object parameter)
+        {
             SplitView.IsPaneOpen = false;
 
             if (IsContentLoaded && ContentType == type)
@@ -40,7 +47,7 @@ namespace LolHandbook
                 return;
             }
 
-            ContentFrame.Navigate(type);
+            ContentFrame.Navigate(type, parameter);
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e)
@@ -63,6 +70,17 @@ namespace LolHandbook
             {
                 e.Handled = true;
                 ContentFrame.GoBack();
+            }
+        }
+
+        private void OnPointerPressed(CoreWindow sender, PointerEventArgs args)
+        {
+            if (args.CurrentPoint.Properties.IsXButton1Pressed)
+            {
+                if (ContentFrame.CanGoBack)
+                {
+                    ContentFrame.GoBack();
+                }
             }
         }
 

@@ -34,10 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActiveSpellBase.cs" />
+    <Compile Include="ChampionBase.cs" />
+    <Compile Include="ChampionDetail.cs" />
+    <Compile Include="ChampionPassive.cs" />
+    <Compile Include="ChampionRating.cs" />
+    <Compile Include="ChampionSkin.cs" />
+    <Compile Include="ChampionSpell.cs" />
+    <Compile Include="ChampionStats.cs" />
     <Compile Include="ChampionSummary.cs" />
     <Compile Include="DataDragonClient.cs" />
     <Compile Include="ImageId.cs" />
+    <Compile Include="LevelTip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpellBase.cs" />
     <Compile Include="SummonerSpell.cs" />
     <Compile Include="UriBuilder.cs" />
   </ItemGroup>

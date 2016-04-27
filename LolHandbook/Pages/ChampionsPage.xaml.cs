@@ -1,4 +1,5 @@
-﻿using LolHandbook.ViewModels;
+﻿using DataDragon;
+using LolHandbook.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Pages
@@ -19,6 +20,12 @@ namespace LolHandbook.Pages
         {
             TagFlyout.Hide();
             viewModel.TagFilter = TagList.SelectedItem as string;
+        }
+
+        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ChampionSummary summary = (ChampionSummary)e.ClickedItem;
+            Frame.Navigate(typeof(ChampionDetailPage), summary.Id);
         }
     }
 }

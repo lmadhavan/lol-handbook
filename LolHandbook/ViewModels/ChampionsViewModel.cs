@@ -11,8 +11,8 @@ namespace LolHandbook.ViewModels
         private string tagFilter;
 
         public ChampionsViewModel(DataDragonClient dataDragonClient)
-            : base(dataDragonClient)
         {
+            LoadData(dataDragonClient);
         }
 
         public IList<ChampionSummary> Champions
@@ -59,7 +59,7 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        protected override async void LoadData(DataDragonClient dataDragonClient)
+        private async void LoadData(DataDragonClient dataDragonClient)
         {
             this.tagFilter = "All";
 
