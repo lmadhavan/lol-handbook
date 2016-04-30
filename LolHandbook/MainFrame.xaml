@@ -63,6 +63,9 @@
                     <Button Style="{StaticResource NavPaneButtonStyle}" Click="Nav_Champions_Click">
                         <TextBlock Text="Champions" />
                     </Button>
+                    <Button Style="{StaticResource NavPaneButtonStyle}" Click="Nav_Items_Click">
+                        <TextBlock Text="Items" />
+                    </Button>
                     <Button Style="{StaticResource NavPaneButtonStyle}" Click="Nav_SummonerSpells_Click">
                         <TextBlock Text="Summoner Spells" />
                     </Button>

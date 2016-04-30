@@ -1,5 +1,4 @@
-﻿using System;
-using DataDragon;
+﻿using DataDragon;
 
 namespace LolHandbook.ViewModels
 {
@@ -33,6 +32,11 @@ namespace LolHandbook.ViewModels
         public static object CreateChampionDetailViewModel(string id)
         {
             return new ChampionDetailViewModel(DataDragonClient, id);
+        }
+
+        public static IItemsViewModel CreateItemsViewModel()
+        {
+            return new ItemsViewModel(DataDragonClient);
         }
 
         public static ISummonerSpellsViewModel CreateSummonerSpellsViewModel()

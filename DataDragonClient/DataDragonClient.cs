@@ -69,6 +69,18 @@ namespace DataDragon
             return summonerSpells;
         }
 
+        public async Task<IList<Item>> GetItemsAsync()
+        {
+            IList<Item> items = await GetDataAsync<Item>("item.json");
+
+            foreach (Item item in items)
+            {
+                item.ImageUri = uriBuilder.GetImageUri(item.Image);
+            }
+
+            return items;
+        }
+
         private async Task<IList<T>> GetDataAsync<T>(string path)
         {
             Uri uri = uriBuilder.GetDataUri(path);

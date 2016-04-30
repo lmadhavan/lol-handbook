@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DataDragon
 {
-    public abstract class ChampionBase
+    public abstract class ChampionBase : ISupportTags
     {
         internal ChampionBase()
         {

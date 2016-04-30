@@ -16,6 +16,7 @@ namespace LolHandbook
         {
             PageTitles[typeof(ChampionsPage)] = "Champions";
             PageTitles[typeof(ChampionDetailPage)] = "Champions";
+            PageTitles[typeof(ItemsPage)] = "Items";
             PageTitles[typeof(SummonerSpellsPage)] = "Summoner Spells";
         }
 
@@ -92,6 +93,11 @@ namespace LolHandbook
         private void Nav_Champions_Click(object sender, RoutedEventArgs e)
         {
             Navigate(typeof(ChampionsPage));
+        }
+
+        private void Nav_Items_Click(object sender, RoutedEventArgs e)
+        {
+            Navigate(typeof(ItemsPage));
         }
 
         private void Nav_SummonerSpells_Click(object sender, RoutedEventArgs e)

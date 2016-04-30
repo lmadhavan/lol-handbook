@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels
 {
-    public interface IChampionsViewModel
+    public interface IChampionsViewModel : IFilterableViewModel
     {
         IList<ChampionSummary> Champions { get; }
-        IList<string> Tags { get; }
-        string TagFilter { get; set; }
     }
 }

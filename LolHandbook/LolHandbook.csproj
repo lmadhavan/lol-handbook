@@ -104,6 +104,9 @@
     <Compile Include="Pages\ChampionDetailPage.xaml.cs">
       <DependentUpon>ChampionDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ItemsPage.xaml.cs">
+      <DependentUpon>ItemsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ChampionsPage.xaml.cs">
       <DependentUpon>ChampionsPage.xaml</DependentUpon>
     </Compile>
@@ -117,13 +120,18 @@
     <Compile Include="ViewModels\ChampionDetailViewModel.cs" />
     <Compile Include="ViewModels\ChampionPassiveViewModel.cs" />
     <Compile Include="ViewModels\ChampionStatsViewModel.cs" />
+    <Compile Include="ViewModels\FilterableViewModelBase.cs" />
+    <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\ChampionsViewModel.cs" />
     <Compile Include="ViewModels\HtmlSanitizer.cs" />
     <Compile Include="ViewModels\IChampionDetailViewModel.cs" />
+    <Compile Include="ViewModels\IFilterableViewModel.cs" />
+    <Compile Include="ViewModels\IItemsViewModel.cs" />
     <Compile Include="ViewModels\IChampionsViewModel.cs" />
     <Compile Include="ViewModels\ISummonerSpellsViewModel.cs" />
     <Compile Include="ViewModels\ISpellViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubChampionDetailViewModel.cs" />
+    <Compile Include="ViewModels\Stubs\StubItemsViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubChampionsViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubSummonerSpellsViewModel.cs" />
     <Compile Include="ViewModels\SummonerSpellsViewModel.cs" />
@@ -160,6 +168,10 @@
     <Page Include="Pages\ChampionDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ItemsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\ChampionsPage.xaml">
       <SubType>Designer</SubType>
