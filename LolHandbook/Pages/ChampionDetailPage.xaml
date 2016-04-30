@@ -12,8 +12,8 @@
         <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             
             <!-- Champion bio -->
-            
-            <Grid Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Padding="20">
+
+            <Grid Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Padding="20,20,20,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -55,12 +55,9 @@
                 </StackPanel>
             </Grid>
 
-            <StackPanel Orientation="Vertical" Margin="20">
-                
-                <!-- Abilities -->
-                
-                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Abilities" />
-
+            <!-- Abilities -->
+            
+            <StackPanel Orientation="Vertical" Padding="20,10">
                 <ListView SelectionMode="None" IsItemClickEnabled="False" IsHitTestVisible="False" ItemsSource="{Binding Spells}" ItemTemplate="{StaticResource SpellDataTemplate}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -69,6 +66,18 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
+            </StackPanel>
+
+            <!-- Tips -->
+
+            <StackPanel Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Orientation="Vertical" Padding="20,10,20,20">
+                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Tips" />
+
+                <TextBlock FontWeight="SemiBold" Margin="0,10,0,0" Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ as\ \{0\}:}" />
+                <TextBlock Text="{Binding AllyTips}" TextWrapping="WrapWholeWords" />
+
+                <TextBlock FontWeight="SemiBold" Margin="0,10,0,0"  Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ against\ \{0\}:}" />
+                <TextBlock Text="{Binding EnemyTips}" TextWrapping="WrapWholeWords" />
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

@@ -95,6 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="CooldownBurnFormatter.cs" />
     <Compile Include="MainFrame.xaml.cs">

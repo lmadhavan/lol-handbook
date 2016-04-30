@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using Windows.UI.Xaml;
+using System.Linq;
 
 namespace LolHandbook.ViewModels
 {
@@ -40,11 +41,19 @@ namespace LolHandbook.ViewModels
 
         public IList<ISpellViewModel> Spells { get; private set; }
 
+        public string AllyTips => Format(ChampionDetail?.AllyTips);
+        public string EnemyTips => Format(ChampionDetail?.EnemyTips);
+
         private T Resolve<T>(Func<ChampionBase, T> accessor)
         {
             if (ChampionDetail != null) return accessor(ChampionDetail);
             if (ChampionBase != null) return accessor(ChampionBase);
             return default(T);
+        }
+
+        private string Format(IList<string> list)
+        {
+            return list == null ? null : string.Join("\n", list.Select(str => "\u2022 " + str));
         }
 
         private async void LoadData(DataDragonClient dataDragonClient, string id)
@@ -66,6 +75,8 @@ namespace LolHandbook.ViewModels
             RaisePropertyChanged(nameof(MoreButtonVisible));
             RaisePropertyChanged(nameof(Lore));
             RaisePropertyChanged(nameof(Spells));
+            RaisePropertyChanged(nameof(AllyTips));
+            RaisePropertyChanged(nameof(EnemyTips));
         }
     }
 }
