@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="ViewModels\ChampionDetailViewModel.cs" />
     <Compile Include="ViewModels\ChampionPassiveViewModel.cs" />
+    <Compile Include="ViewModels\ChampionStatsViewModel.cs" />
     <Compile Include="ViewModels\ChampionsViewModel.cs" />
     <Compile Include="ViewModels\HtmlSanitizer.cs" />
     <Compile Include="ViewModels\IChampionDetailViewModel.cs" />

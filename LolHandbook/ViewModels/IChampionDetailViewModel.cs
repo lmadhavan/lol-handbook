@@ -14,6 +14,7 @@ namespace LolHandbook.ViewModels
         string Lore { get; }
 
         IList<ISpellViewModel> Spells { get; }
+        ChampionStatsViewModel Stats { get; }
 
         string AllyTips { get; }
         string EnemyTips { get; }

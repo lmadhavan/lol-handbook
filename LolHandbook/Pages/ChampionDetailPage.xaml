@@ -68,9 +68,79 @@
                 </ListView>
             </StackPanel>
 
-            <!-- Tips -->
+            <!-- Stats -->
 
             <StackPanel Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Orientation="Vertical" Padding="20,10,20,20">
+                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Stats" />
+
+                <Grid Margin="0,5,0,0" DataContext="{Binding Stats}">
+                    <Grid.Resources>
+                        <Style x:Key="StatName" TargetType="TextBlock">
+                            <Setter Property="FontWeight" Value="SemiBold" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="Margin" Value="0,5,10,0" />
+                        </Style>
+
+                        <Style x:Key="StatValue" TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="Foreground" Value="{ThemeResource SystemBaseMediumColor}" />
+                            <Setter Property="Margin" Value="0,5,0,0" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Health:" Grid.Row="0" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding Health}" Grid.Row="0" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Health Regen:" Grid.Row="1" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding HealthRegen}" Grid.Row="1" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Armor:" Grid.Row="2" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding Armor}" Grid.Row="2" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Mana:" Grid.Row="3" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding Mana}" Grid.Row="3" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Mana Regen:" Grid.Row="4" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding ManaRegen}" Grid.Row="4" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Magic Resist:" Grid.Row="5" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding MagicResist}" Grid.Row="5" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Movement Speed:" Grid.Row="6" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding MovementSpeed}" Grid.Row="6" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Attack Speed:" Grid.Row="7" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding AttackSpeed}" Grid.Row="7" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Attack Damage:" Grid.Row="8" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding AttackDamage}" Grid.Row="8" Grid.Column="1" />
+
+                    <TextBlock Style="{StaticResource StatName}" Text="Attack Range:" Grid.Row="9" Grid.Column="0" />
+                    <TextBlock Style="{StaticResource StatValue}" Text="{Binding AttackRange}" Grid.Row="9" Grid.Column="1" />
+                </Grid>
+            </StackPanel>
+
+            <!-- Tips -->
+
+            <StackPanel Orientation="Vertical" Padding="20,10,20,20">
                 <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Tips" />
 
                 <TextBlock FontWeight="SemiBold" Margin="0,10,0,0" Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ as\ \{0\}:}" />

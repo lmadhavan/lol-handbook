@@ -1,6 +1,7 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
 using Windows.UI.Xaml;
+using System;
 
 namespace LolHandbook.ViewModels.Stubs
 {
@@ -30,6 +31,8 @@ namespace LolHandbook.ViewModels.Stubs
                 Resource = "{{ e1 }}% of current Health",
                 EffectBurn = new List<string>(new string[] { null, "20" })
             }));
+
+            this.Stats = new ChampionStatsViewModel(new ChampionStats());
         }
 
         public string Name => "Champion";
@@ -41,6 +44,7 @@ namespace LolHandbook.ViewModels.Stubs
         public string Lore => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
         public IList<ISpellViewModel> Spells { get; private set; }
+        public ChampionStatsViewModel Stats { get; private set; }
 
         public string AllyTips => "- Tip 1\n- Tip 2";
         public string EnemyTips => "- Tip 3\n- Tip 4";

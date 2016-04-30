@@ -40,9 +40,11 @@ namespace LolHandbook.ViewModels
         public string Lore => HtmlSanitizer.Sanitize(ChampionDetail?.Lore);
 
         public IList<ISpellViewModel> Spells { get; private set; }
+        public ChampionStatsViewModel Stats { get; private set; }
 
         public string AllyTips => Format(ChampionDetail?.AllyTips);
         public string EnemyTips => Format(ChampionDetail?.EnemyTips);
+
 
         private T Resolve<T>(Func<ChampionBase, T> accessor)
         {
@@ -53,7 +55,12 @@ namespace LolHandbook.ViewModels
 
         private string Format(IList<string> list)
         {
-            return list == null ? null : string.Join("\n", list.Select(str => "\u2022 " + str));
+            if (list == null)
+            {
+                return null;
+            }
+
+            return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
         private async void LoadData(DataDragonClient dataDragonClient, string id)
@@ -67,6 +74,8 @@ namespace LolHandbook.ViewModels
                 Spells.Add(new ChampionSpellViewModel(championSpell));
             }
 
+            this.Stats = new ChampionStatsViewModel(ChampionDetail.Stats);
+
             RaisePropertyChanged(nameof(ImageUri));
             RaisePropertyChanged(nameof(Name));
             RaisePropertyChanged(nameof(Title));
@@ -75,6 +84,7 @@ namespace LolHandbook.ViewModels
             RaisePropertyChanged(nameof(MoreButtonVisible));
             RaisePropertyChanged(nameof(Lore));
             RaisePropertyChanged(nameof(Spells));
+            RaisePropertyChanged(nameof(Stats));
             RaisePropertyChanged(nameof(AllyTips));
             RaisePropertyChanged(nameof(EnemyTips));
         }
