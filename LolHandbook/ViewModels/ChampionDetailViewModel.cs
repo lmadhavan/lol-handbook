@@ -40,7 +40,15 @@ namespace LolHandbook.ViewModels
         public string Lore => HtmlSanitizer.Sanitize(ChampionDetail?.Lore);
 
         public IList<ISpellViewModel> Spells { get; private set; }
-        public ChampionStatsViewModel Stats { get; private set; }
+
+        public ChampionStatsViewModel Stats
+        {
+            get
+            {
+                ChampionStats stats = Resolve(c => c.Stats);
+                return stats == null ? null : new ChampionStatsViewModel(stats);
+            }
+        }
 
         public string AllyTips => Format(ChampionDetail?.AllyTips);
         public string EnemyTips => Format(ChampionDetail?.EnemyTips);
@@ -73,8 +81,6 @@ namespace LolHandbook.ViewModels
             {
                 Spells.Add(new ChampionSpellViewModel(championSpell));
             }
-
-            this.Stats = new ChampionStatsViewModel(ChampionDetail.Stats);
 
             RaisePropertyChanged(nameof(ImageUri));
             RaisePropertyChanged(nameof(Name));

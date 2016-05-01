@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Pages
@@ -11,9 +12,13 @@ namespace LolHandbook.Pages
         public ItemsPage()
         {
             this.InitializeComponent();
-            this.viewModel = ViewModelFactory.CreateItemsViewModel();
-            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-            this.DataContext = viewModel;
+
+            if (!DesignMode.DesignModeEnabled)
+            {
+                this.viewModel = ViewModelFactory.CreateItemsViewModel();
+                this.DataContext = viewModel;
+            }
+
         }
 
         private void TagList_SelectionChanged(object sender, SelectionChangedEventArgs e)

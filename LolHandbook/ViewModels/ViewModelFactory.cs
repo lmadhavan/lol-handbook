@@ -38,10 +38,5 @@ namespace LolHandbook.ViewModels
         {
             return new ItemsViewModel(DataDragonClient);
         }
-
-        public static ISummonerSpellsViewModel CreateSummonerSpellsViewModel()
-        {
-            return new SummonerSpellsViewModel(DataDragonClient);
-        }
     }
 }

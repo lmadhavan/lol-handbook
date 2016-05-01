@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Margin="12,4,12,8" Grid.Row="0">
-            <TextBlock Text="Show:" VerticalAlignment="Center" />
+            <TextBlock Text="Category:" VerticalAlignment="Center" />
 
             <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter}">
                 <Button.Flyout>

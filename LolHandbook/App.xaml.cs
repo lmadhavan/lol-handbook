@@ -1,7 +1,11 @@
 ﻿using LolHandbook.Pages;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace LolHandbook
 {
@@ -20,6 +24,25 @@ namespace LolHandbook
             this.Suspending += OnSuspending;
         }
 
+        public static void Navigate(Type pageType, object parameter)
+        {
+            App app = (App)Current;
+            app.Frame.Navigate(pageType, parameter);
+        }
+
+        private Frame Frame
+        {
+            get
+            {
+                return Window.Current.Content as Frame;
+            }
+
+            set
+            {
+                Window.Current.Content = value;
+            }
+        }
+
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -34,33 +57,63 @@ namespace LolHandbook
             }
 #endif
 
-            MainFrame rootFrame = Window.Current.Content as MainFrame;
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null)
+            if (Frame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new MainFrame();
+                Frame = new Frame();
+                Frame.CacheSize = 1;
+                Frame.Navigated += OnNavigated;
+                Frame.NavigationFailed += OnNavigationFailed;
+                SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+                Window.Current.CoreWindow.PointerPressed += OnPointerPressed;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
                 }
-
-                // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
             }
 
             if (e.PrelaunchActivated == false)
             {
-                if (!rootFrame.IsContentLoaded)
+                if (Frame.Content == null)
                 {
-                    rootFrame.Navigate(typeof(ChampionsPage));
+                    Frame.Navigate(typeof(MainPage));
                 }
 
                 // Ensure the current window is active
                 Window.Current.Activate();
+            }
+        }
+
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+        }
+
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
+        }
+
+        private void OnBackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
+        }
+
+        private void OnPointerPressed(CoreWindow sender, PointerEventArgs args)
+        {
+            if (args.CurrentPoint.Properties.IsXButton1Pressed)
+            {
+                if (Frame.CanGoBack)
+                {
+                    Frame.GoBack();
+                }
             }
         }
 

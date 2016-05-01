@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Pages
@@ -11,9 +12,12 @@ namespace LolHandbook.Pages
         public ChampionsPage()
         {
             this.InitializeComponent();
-            this.viewModel = ViewModelFactory.CreateChampionsViewModel();
-            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-            this.DataContext = viewModel;
+
+            if (!DesignMode.DesignModeEnabled)
+            {
+                this.viewModel = ViewModelFactory.CreateChampionsViewModel();
+                this.DataContext = viewModel;
+            }
         }
 
         private void TagList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -25,7 +29,7 @@ namespace LolHandbook.Pages
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             ChampionSummary summary = (ChampionSummary)e.ClickedItem;
-            Frame.Navigate(typeof(ChampionDetailPage), summary);
+            App.Navigate(typeof(ChampionDetailPage), summary);
         }
     }
 }
