@@ -54,6 +54,8 @@
                 </StackPanel>
             </Grid>
 
+            <ProgressBar IsIndeterminate="True" Visibility="{Binding Spells, Converter={StaticResource VisibilityConverter}, ConverterParameter=Invert}" />
+
             <!-- Abilities -->
             
             <StackPanel Orientation="Vertical" Padding="20,10">

@@ -12,6 +12,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -27,7 +28,9 @@
             </Button>
         </StackPanel>
 
-        <GridView SelectionMode="None" ItemsSource="{Binding Champions}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" Grid.Row="1">
+        <ProgressBar IsIndeterminate="True" Visibility="{Binding Champions, Converter={StaticResource VisibilityConverter}, ConverterParameter=Invert}" Grid.Row="1" />
+
+        <GridView SelectionMode="None" ItemsSource="{Binding Champions}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" Grid.Row="2">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="dd:ChampionSummary">
                     <StackPanel Orientation="Vertical" Margin="8" Width="70" ToolTipService.ToolTip="{x:Bind Name}">
