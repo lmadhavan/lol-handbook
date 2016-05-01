@@ -5,6 +5,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace LolHandbook
@@ -27,7 +28,7 @@ namespace LolHandbook
         public static void Navigate(Type pageType, object parameter)
         {
             App app = (App)Current;
-            app.Frame.Navigate(pageType, parameter);
+            app.Frame.Navigate(pageType, parameter, new DrillInNavigationTransitionInfo());
         }
 
         private Frame Frame
@@ -63,9 +64,14 @@ namespace LolHandbook
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 Frame = new Frame();
+
                 Frame.CacheSize = 1;
                 Frame.Navigated += OnNavigated;
                 Frame.NavigationFailed += OnNavigationFailed;
+
+                Frame.ContentTransitions = new TransitionCollection();
+                Frame.ContentTransitions.Add(new NavigationThemeTransition());
+
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
                 Window.Current.CoreWindow.PointerPressed += OnPointerPressed;
 
