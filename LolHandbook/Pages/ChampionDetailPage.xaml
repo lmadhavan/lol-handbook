@@ -10,7 +10,6 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            
             <!-- Champion bio -->
 
             <Grid Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Padding="20,20,20,10">
@@ -25,7 +24,7 @@
                 </Grid.RowDefinitions>
 
                 <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="96" Height="96" Grid.Column="0">
-                    <Image Source="{Binding ImageUri}" Stretch="UniformToFill" />
+                    <Image Source="{Binding IconUri}" Stretch="UniformToFill" />
                 </Border>
 
                 <StackPanel Orientation="Vertical" Margin="12,0" Grid.Column="1">
@@ -149,6 +148,10 @@
                 <TextBlock FontWeight="SemiBold" Margin="0,10,0,0"  Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ against\ \{0\}:}" />
                 <TextBlock FontSize="13" Text="{Binding EnemyTips}" TextWrapping="WrapWholeWords" />
             </StackPanel>
+
+            <!-- Wallpaper -->
+
+            <Image Source="{Binding SkinUri}" HorizontalAlignment="Stretch" />
         </StackPanel>
     </ScrollViewer>
 </Page>

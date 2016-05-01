@@ -21,7 +21,9 @@ namespace LolHandbook.ViewModels
         private ChampionBase ChampionBase { get; }
         private ChampionDetail ChampionDetail { get; set; }
 
-        public Uri ImageUri => Resolve(c => c.ImageUri);
+        public Uri IconUri => Resolve(c => c.ImageUri);
+        public Uri SkinUri => ChampionDetail?.Skins[0].ImageUri;
+
         public string Name => Resolve(c => c.Name);
         public string Title => Resolve(c => c.Title);
         public string Blurb => HtmlSanitizer.Sanitize(Resolve(c => c.Blurb));
@@ -80,7 +82,8 @@ namespace LolHandbook.ViewModels
                 Spells.Add(new ChampionSpellViewModel(championSpell));
             }
 
-            RaisePropertyChanged(nameof(ImageUri));
+            RaisePropertyChanged(nameof(IconUri));
+            RaisePropertyChanged(nameof(SkinUri));
             RaisePropertyChanged(nameof(Name));
             RaisePropertyChanged(nameof(Title));
             RaisePropertyChanged(nameof(Role));

@@ -51,7 +51,7 @@ namespace DataDragon
 
             foreach (ChampionSkin skin in champion.Skins)
             {
-                skin.ImageUri = uriBuilder.GetImageUri(new ImageId { Group = "splash", Full = id + "_" + skin.Num });
+                skin.ImageUri = uriBuilder.GetSkinUri(id, skin.Num);
             }
 
             return champion;

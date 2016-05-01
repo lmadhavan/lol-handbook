@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
-using Windows.UI.Xaml;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels
 {
     public interface IChampionDetailViewModel
     {
+        Uri IconUri { get; }
+        Uri SkinUri { get; }
+
         string Name { get; }
         string Title { get; }
         string Role { get; }

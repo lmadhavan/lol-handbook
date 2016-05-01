@@ -17,5 +17,10 @@ namespace DataDragon
         {
             return new Uri($"{Cdn}/{Version}/img/{id.Group}/{id.Full}");
         }
+
+        internal Uri GetSkinUri(string championId, int skinNum)
+        {
+            return new Uri($"{Cdn}/img/champion/splash/{championId}_{skinNum}.jpg");
+        }
     }
 }

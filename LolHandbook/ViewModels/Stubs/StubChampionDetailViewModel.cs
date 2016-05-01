@@ -1,4 +1,5 @@
 ﻿using DataDragon;
+using System;
 using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels.Stubs
@@ -32,6 +33,9 @@ namespace LolHandbook.ViewModels.Stubs
 
             this.Stats = new ChampionStatsViewModel(new ChampionStats());
         }
+
+        public Uri IconUri => null;
+        public Uri SkinUri => null;
 
         public string Name => "Champion";
         public string Title => "with Some Title";
