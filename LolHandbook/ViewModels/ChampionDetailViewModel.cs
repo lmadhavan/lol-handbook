@@ -8,9 +8,13 @@ namespace LolHandbook.ViewModels
 {
     public class ChampionDetailViewModel : ViewModelBase, IChampionDetailViewModel
     {
+        private readonly CachingDataDragonClient dataDragonClient;
+        private readonly string id;
+
         public ChampionDetailViewModel(CachingDataDragonClient dataDragonClient, string id)
         {
-            LoadData(dataDragonClient, id);
+            this.dataDragonClient = dataDragonClient;
+            this.id = id;
         }
 
         public ChampionDetailViewModel(CachingDataDragonClient dataDragonClient, ChampionBase champion)
@@ -72,9 +76,19 @@ namespace LolHandbook.ViewModels
             return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
-        private async void LoadData(CachingDataDragonClient dataDragonClient, string id)
+        public async void LoadData(bool forceReload)
         {
+            if (ChampionDetail != null && !forceReload)
+            {
+                return;
+            }
+
             this.ChampionDetail = await Task.Run(() => dataDragonClient.GetChampionAsync(id));
+
+            if (ChampionDetail == null)
+            {
+                return;
+            }
 
             this.Spells = new List<ISpellViewModel>();
             Spells.Add(new ChampionPassiveViewModel(ChampionDetail.Passive));

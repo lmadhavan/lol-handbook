@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels.Stubs
 {
-    public class StubChampionsViewModel : IChampionsViewModel
+    public class StubChampionsViewModel : ViewModelBase, IChampionsViewModel
     {
         public StubChampionsViewModel()
         {
@@ -31,5 +31,9 @@ namespace LolHandbook.ViewModels.Stubs
             get;
             set;
         } = "All";
+
+        public void LoadData(bool forceReload)
+        {
+        }
     }
 }

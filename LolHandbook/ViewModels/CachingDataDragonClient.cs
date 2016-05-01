@@ -1,6 +1,7 @@
 ﻿using DataDragon;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,11 +18,19 @@ namespace LolHandbook.ViewModels
             this.client = new DataDragonClient();
         }
 
-        public async Task<IList<ChampionSummary>> GetChampionsAsync()
+        public async Task<IList<ChampionSummary>> GetChampionsAsync(bool forceReload)
         {
-            if (champions == null)
+            if (champions == null || forceReload)
             {
-                this.champions = await client.GetChampionsAsync();
+                try
+                {
+                    this.champions = await client.GetChampionsAsync();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine($"Exception in {nameof(GetChampionsAsync)}: {e}");
+                    return null;
+                }
             }
 
             return champions.Values.ToList();
@@ -29,14 +38,30 @@ namespace LolHandbook.ViewModels
 
         public async Task<ChampionDetail> GetChampionAsync(string id)
         {
-            return await client.GetChampionAsync(id);
+            try
+            {
+                return await client.GetChampionAsync(id);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Exception in {nameof(GetChampionAsync)}: {e}");
+                return null;
+            }
         }
 
-        public async Task<IList<Item>> GetItemsAsync()
+        public async Task<IList<Item>> GetItemsAsync(bool forceReload)
         {
-            if (items == null)
+            if (items == null || forceReload)
             {
-                this.items = await client.GetItemsAsync();
+                try
+                {
+                    this.items = await client.GetItemsAsync();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine($"Exception in {nameof(GetItemsAsync)}: {e}");
+                    return null;
+                }
             }
 
             return items.Values.ToList();
@@ -46,15 +71,17 @@ namespace LolHandbook.ViewModels
         {
             if (items == null)
             {
-                throw new InvalidOperationException();
+                Debug.WriteLine($"Call to {nameof(GetItem)} before items have been loaded");
+                return null;
             }
 
-            if (items.ContainsKey(id))
+            if (!items.ContainsKey(id))
             {
-                return items[id];
+                Debug.WriteLine($"Call to {nameof(GetItem)} with invalid item ID {id}");
+                return null;
             }
 
-            return null;
+            return items[id];
         }
     }
 }

@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Pages
 {
-    public sealed partial class ChampionsPage : Page
+    public sealed partial class ChampionsPage : Page, ISupportResuming
     {
         private readonly IChampionsViewModel viewModel;
 
@@ -16,8 +16,14 @@ namespace LolHandbook.Pages
             if (!DesignMode.DesignModeEnabled)
             {
                 this.viewModel = ViewModelFactory.CreateChampionsViewModel();
+                viewModel.LoadData(false);
                 this.DataContext = viewModel;
             }
+        }
+
+        public void OnResuming()
+        {
+            viewModel.LoadData(false);
         }
 
         private void TagList_SelectionChanged(object sender, SelectionChangedEventArgs e)

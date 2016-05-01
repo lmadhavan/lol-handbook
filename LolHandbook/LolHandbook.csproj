@@ -99,6 +99,7 @@
     <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="CooldownBurnFormatter.cs" />
+    <Compile Include="ISupportResuming.cs" />
     <Compile Include="Pages\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
     </Compile>
@@ -123,6 +124,7 @@
     <Compile Include="ViewModels\ChampionPassiveViewModel.cs" />
     <Compile Include="ViewModels\ChampionStatsViewModel.cs" />
     <Compile Include="ViewModels\FilterableViewModelBase.cs" />
+    <Compile Include="ViewModels\IAsyncViewModel.cs" />
     <Compile Include="ViewModels\IItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />

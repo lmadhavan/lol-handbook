@@ -1,9 +1,10 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
+using System;
 
 namespace LolHandbook.ViewModels.Stubs
 {
-    public class StubItemsViewModel : IItemsViewModel
+    public class StubItemsViewModel : ViewModelBase, IItemsViewModel
     {
         public StubItemsViewModel()
         {
@@ -31,5 +32,9 @@ namespace LolHandbook.ViewModels.Stubs
             get;
             set;
         } = "All";
+
+        public void LoadData(bool forceReload)
+        {
+        }
     }
 }

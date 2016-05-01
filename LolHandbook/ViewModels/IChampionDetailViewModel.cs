@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels
 {
-    public interface IChampionDetailViewModel
+    public interface IChampionDetailViewModel : IAsyncViewModel
     {
         Uri IconUri { get; }
         Uri SkinUri { get; }

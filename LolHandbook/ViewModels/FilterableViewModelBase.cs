@@ -1,6 +1,7 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
@@ -14,28 +15,6 @@ namespace LolHandbook.ViewModels
         {
             this.collectionName = collectionName;
             this.tagFilter = "All";
-        }
-
-        protected IList<T> Collection
-        {
-            get
-            {
-                return collection;
-            }
-
-            set
-            {
-                this.collection = value;
-
-                List<string> tags = value.SelectMany(x => x.Tags).Distinct().ToList();
-                tags.Sort();
-                tags.Insert(0, "All");
-                this.Tags = tags;
-
-                RaisePropertyChanged(nameof(TagFilter));
-                RaisePropertyChanged(collectionName);
-                RaisePropertyChanged(nameof(Tags));
-            }
         }
 
         protected IList<T> FilteredCollection
@@ -67,5 +46,31 @@ namespace LolHandbook.ViewModels
                 RaisePropertyChanged(collectionName);
             }
         }
+
+        public async void LoadData(bool forceReload)
+        {
+            if (collection != null && !forceReload)
+            {
+                return;
+            }
+
+            IList<T> list = await LoadList(forceReload);
+
+            if (list != null)
+            {
+                this.collection = list.OrderBy(e => e.Name).ToList();
+
+                List<string> tags = list.SelectMany(e => e.Tags).Distinct().ToList();
+                tags.Sort();
+                tags.Insert(0, "All");
+                this.Tags = tags;
+
+                RaisePropertyChanged(nameof(TagFilter));
+                RaisePropertyChanged(collectionName);
+                RaisePropertyChanged(nameof(Tags));
+            }
+        }
+
+        protected abstract Task<IList<T>> LoadList(bool forceReload);
     }
 }

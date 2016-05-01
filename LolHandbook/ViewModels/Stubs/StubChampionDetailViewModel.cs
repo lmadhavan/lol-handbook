@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels.Stubs
 {
-    public class StubChampionDetailViewModel : IChampionDetailViewModel
+    public class StubChampionDetailViewModel : ViewModelBase, IChampionDetailViewModel
     {
         public StubChampionDetailViewModel()
         {
@@ -48,5 +48,9 @@ namespace LolHandbook.ViewModels.Stubs
 
         public string AllyTips => "- Tip 1\n- Tip 2";
         public string EnemyTips => "- Tip 3\n- Tip 4";
+
+        public void LoadData(bool forceReload)
+        {
+        }
     }
 }

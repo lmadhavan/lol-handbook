@@ -5,11 +5,21 @@ using Windows.UI.Xaml.Navigation;
 
 namespace LolHandbook.Pages
 {
-    public sealed partial class ChampionDetailPage : Page
+    public sealed partial class ChampionDetailPage : Page, ISupportResuming
     {
+        private IChampionDetailViewModel viewModel;
+
         public ChampionDetailPage()
         {
             this.InitializeComponent();
+        }
+
+        public void OnResuming()
+        {
+            if (viewModel != null)
+            {
+                viewModel.LoadData(false);
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -18,11 +28,17 @@ namespace LolHandbook.Pages
 
             if (e.Parameter is ChampionBase)
             {
-                this.DataContext = ViewModelFactory.CreateChampionDetailViewModel((ChampionBase)e.Parameter);
+                viewModel = ViewModelFactory.CreateChampionDetailViewModel((ChampionBase)e.Parameter);
             }
             else if (e.Parameter is string)
             {
-                this.DataContext = ViewModelFactory.CreateChampionDetailViewModel((string)e.Parameter);
+                viewModel = ViewModelFactory.CreateChampionDetailViewModel((string)e.Parameter);
+            }
+
+            if (viewModel != null)
+            {
+                viewModel.LoadData(false);
+                this.DataContext = viewModel;
             }
         }
     }

@@ -1,28 +1,29 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
     public class ChampionsViewModel : FilterableViewModelBase<ChampionSummary>, IChampionsViewModel
     {
+        private readonly CachingDataDragonClient dataDragonClient;
+
         public ChampionsViewModel(CachingDataDragonClient dataDragonClient)
             : base(nameof(Champions))
         {
-            LoadData(dataDragonClient);
+            this.dataDragonClient = dataDragonClient;
         }
 
         public IList<ChampionSummary> Champions => FilteredCollection;
 
-        private async void LoadData(CachingDataDragonClient dataDragonClient)
+        protected override async Task<IList<ChampionSummary>> LoadList(bool forceReload)
         {
             Debug.Write("Fetching champions... ");
-            IList<ChampionSummary> champions = await Task.Run(() => dataDragonClient.GetChampionsAsync());
+            IList<ChampionSummary> champions = await Task.Run(() => dataDragonClient.GetChampionsAsync(forceReload));
             Debug.WriteLine("Done.");
 
-            base.Collection = champions.OrderBy(c => c.Name).ToList();
+            return champions;
         }
     }
 }

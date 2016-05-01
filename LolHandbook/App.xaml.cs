@@ -23,6 +23,7 @@ namespace LolHandbook
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Resuming += OnResuming;
         }
 
         public static void Navigate(Type pageType, object parameter)
@@ -51,13 +52,6 @@ namespace LolHandbook
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (Frame == null)
@@ -88,7 +82,6 @@ namespace LolHandbook
                     Frame.Navigate(typeof(MainPage));
                 }
 
-                // Ensure the current window is active
                 Window.Current.Activate();
             }
         }
@@ -135,6 +128,15 @@ namespace LolHandbook
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private void OnResuming(object sender, object e)
+        {
+            ISupportResuming page = Frame.Content as ISupportResuming;
+            if (page != null)
+            {
+                page.OnResuming();
+            }
         }
     }
 }
