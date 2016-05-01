@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
@@ -73,7 +74,7 @@ namespace LolHandbook.ViewModels
 
         private async void LoadData(CachingDataDragonClient dataDragonClient, string id)
         {
-            this.ChampionDetail = await dataDragonClient.GetChampionAsync(id);
+            this.ChampionDetail = await Task.Run(() => dataDragonClient.GetChampionAsync(id));
 
             this.Spells = new List<ISpellViewModel>();
             Spells.Add(new ChampionPassiveViewModel(ChampionDetail.Passive));
