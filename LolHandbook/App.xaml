@@ -12,6 +12,7 @@
 
             <conv:StringConverter x:Key="StringConverter" />
             <conv:ImageUriConverter x:Key="ImageUriConverter" />
+            <conv:VisibilityConverter x:Key="VisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

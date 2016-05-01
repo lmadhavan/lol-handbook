@@ -1,22 +1,21 @@
 ﻿using DataDragon;
-using System.Collections.Generic;
 using System;
-using Windows.UI.Xaml;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LolHandbook.ViewModels
 {
     public class ChampionDetailViewModel : ViewModelBase, IChampionDetailViewModel
     {
-        public ChampionDetailViewModel(DataDragonClient dataDragonClient, string id)
+        public ChampionDetailViewModel(CachingDataDragonClient dataDragonClient, string id)
         {
             LoadData(dataDragonClient, id);
         }
 
-        public ChampionDetailViewModel(DataDragonClient dataDragonClient, ChampionBase champion)
+        public ChampionDetailViewModel(CachingDataDragonClient dataDragonClient, ChampionBase champion)
+            : this(dataDragonClient, champion.Id)
         {
             this.ChampionBase = champion;
-            LoadData(dataDragonClient, champion.Id);
         }
 
         private ChampionBase ChampionBase { get; }
@@ -36,7 +35,6 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public Visibility MoreButtonVisible => Lore == null ? Visibility.Collapsed : Visibility.Visible;
         public string Lore => HtmlSanitizer.Sanitize(ChampionDetail?.Lore);
 
         public IList<ISpellViewModel> Spells { get; private set; }
@@ -71,9 +69,9 @@ namespace LolHandbook.ViewModels
             return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
-        private async void LoadData(DataDragonClient dataDragonClient, string id)
+        private async void LoadData(CachingDataDragonClient dataDragonClient, string id)
         {
-            this.ChampionDetail = await dataDragonClient.GetChampion(id);
+            this.ChampionDetail = await dataDragonClient.GetChampionAsync(id);
 
             this.Spells = new List<ISpellViewModel>();
             Spells.Add(new ChampionPassiveViewModel(ChampionDetail.Passive));
@@ -87,7 +85,6 @@ namespace LolHandbook.ViewModels
             RaisePropertyChanged(nameof(Title));
             RaisePropertyChanged(nameof(Role));
             RaisePropertyChanged(nameof(Blurb));
-            RaisePropertyChanged(nameof(MoreButtonVisible));
             RaisePropertyChanged(nameof(Lore));
             RaisePropertyChanged(nameof(Spells));
             RaisePropertyChanged(nameof(Stats));

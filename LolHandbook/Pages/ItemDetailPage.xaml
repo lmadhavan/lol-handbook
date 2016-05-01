@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="LolHandbook.Pages.ItemDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:stubs="using:LolHandbook.ViewModels.Stubs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance Type=stubs:StubItemDetailViewModel, IsDesignTimeCreatable=True}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            
+            <!-- Item description -->
+
+            <Grid Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Padding="20,20,20,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border VerticalAlignment="Top" Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="64" Height="64" Grid.Column="0">
+                    <Image Source="{Binding ImageUri}" Stretch="UniformToFill" />
+                </Border>
+
+                <StackPanel Orientation="Vertical" Margin="12,0" Grid.Column="1">
+                    <TextBlock FontWeight="SemiLight" FontSize="24" Text="{Binding Name}" TextWrapping="WrapWholeWords" />
+
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        <Image Source="http://ddragon.leagueoflegends.com/cdn/5.5.1/img/ui/gold.png" Width="28" Height="20" Stretch="None" />
+                        <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Text="{Binding Cost}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,12">
+                    <TextBlock Text="{Binding Plaintext}" TextWrapping="Wrap" />
+                    <TextBlock Margin="0,12,0,0" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemBaseMediumColor}" Text="{Binding Description}" TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+
+            <!-- Requires -->
+            
+            <StackPanel Orientation="Vertical" Padding="20,8,20,0" Visibility="{Binding Requires, Converter={StaticResource VisibilityConverter}}">
+                <TextBlock FontSize="20" Text="Requires" />
+                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding Requires}" ItemTemplate="{StaticResource ItemDataTemplate}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
+            </StackPanel>
+
+            <!-- Builds Into -->
+
+            <StackPanel Orientation="Vertical" Padding="20,8,20,0" Visibility="{Binding BuildsInto, Converter={StaticResource VisibilityConverter}}">
+                <TextBlock FontSize="20" Text="Builds Into" />
+                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding BuildsInto}" ItemTemplate="{StaticResource ItemDataTemplate}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

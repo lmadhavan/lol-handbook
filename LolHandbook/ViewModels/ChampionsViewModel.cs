@@ -7,7 +7,7 @@ namespace LolHandbook.ViewModels
 {
     public class ChampionsViewModel : FilterableViewModelBase<ChampionSummary>, IChampionsViewModel
     {
-        public ChampionsViewModel(DataDragonClient dataDragonClient)
+        public ChampionsViewModel(CachingDataDragonClient dataDragonClient)
             : base(nameof(Champions))
         {
             LoadData(dataDragonClient);
@@ -15,7 +15,7 @@ namespace LolHandbook.ViewModels
 
         public IList<ChampionSummary> Champions => FilteredCollection;
 
-        private async void LoadData(DataDragonClient dataDragonClient)
+        private async void LoadData(CachingDataDragonClient dataDragonClient)
         {
             Debug.Write("Fetching champions... ");
             IList<ChampionSummary> champions = await dataDragonClient.GetChampionsAsync();

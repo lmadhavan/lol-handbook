@@ -7,7 +7,7 @@ namespace LolHandbook.ViewModels
 {
     public class ItemsViewModel : FilterableViewModelBase<Item>, IItemsViewModel
     {
-        public ItemsViewModel(DataDragonClient dataDragonClient)
+        public ItemsViewModel(CachingDataDragonClient dataDragonClient)
             : base(nameof(Items))
         {
             LoadData(dataDragonClient);
@@ -15,7 +15,7 @@ namespace LolHandbook.ViewModels
 
         public IList<Item> Items => FilteredCollection;
 
-        private async void LoadData(DataDragonClient dataDragonClient)
+        private async void LoadData(CachingDataDragonClient dataDragonClient)
         {
             Debug.Write("Fetching items... ");
             IList<Item> items = await dataDragonClient.GetItemsAsync();

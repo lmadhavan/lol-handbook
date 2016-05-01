@@ -9,8 +9,6 @@ namespace LolHandbook.ViewModels
         string Title { get; }
         string Role { get; }
         string Blurb { get; }
-
-        Visibility MoreButtonVisible { get; }
         string Lore { get; }
 
         IList<ISpellViewModel> Spells { get; }

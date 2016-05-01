@@ -24,11 +24,11 @@ namespace DataDragon
             httpClient.Dispose();
         }
 
-        public async Task<IList<ChampionSummary>> GetChampionsAsync()
+        public async Task<IDictionary<string, ChampionSummary>> GetChampionsAsync()
         {
-            IList<ChampionSummary> champions = await GetDataAsync<ChampionSummary>("champion.json");
+            IDictionary<string, ChampionSummary> champions = await GetDataAsync<ChampionSummary>("champion.json");
 
-            foreach (ChampionSummary champion in champions)
+            foreach (ChampionSummary champion in champions.Values)
             {
                 champion.ImageUri = uriBuilder.GetImageUri(champion.Image);
             }
@@ -36,11 +36,11 @@ namespace DataDragon
             return champions;
         }
 
-        public async Task<ChampionDetail> GetChampion(string id)
+        public async Task<ChampionDetail> GetChampionAsync(string id)
         {
-            IList<ChampionDetail> champions = await GetDataAsync<ChampionDetail>($"champion/{id}.json");
+            IDictionary<string, ChampionDetail> champions = await GetDataAsync<ChampionDetail>($"champion/{id}.json");
 
-            ChampionDetail champion = champions[0];
+            ChampionDetail champion = champions[id];
             champion.ImageUri = uriBuilder.GetImageUri(champion.Image);
             champion.Passive.ImageUri = uriBuilder.GetImageUri(champion.Passive.Image);
 
@@ -57,11 +57,11 @@ namespace DataDragon
             return champion;
         }
 
-        public async Task<IList<SummonerSpell>> GetSummonerSpellsAsync()
+        public async Task<IDictionary<string, SummonerSpell>> GetSummonerSpellsAsync()
         {
-            IList<SummonerSpell> summonerSpells = await GetDataAsync<SummonerSpell>("summoner.json");
+            IDictionary<string, SummonerSpell> summonerSpells = await GetDataAsync<SummonerSpell>("summoner.json");
 
-            foreach (SummonerSpell summonerSpell in summonerSpells)
+            foreach (SummonerSpell summonerSpell in summonerSpells.Values)
             {
                 summonerSpell.ImageUri = uriBuilder.GetImageUri(summonerSpell.Image);
             }
@@ -69,11 +69,11 @@ namespace DataDragon
             return summonerSpells;
         }
 
-        public async Task<IList<Item>> GetItemsAsync()
+        public async Task<IDictionary<string, Item>> GetItemsAsync()
         {
-            IList<Item> items = await GetDataAsync<Item>("item.json");
+            IDictionary<string, Item> items = await GetDataAsync<Item>("item.json");
 
-            foreach (Item item in items)
+            foreach (Item item in items.Values)
             {
                 item.ImageUri = uriBuilder.GetImageUri(item.Image);
             }
@@ -81,7 +81,7 @@ namespace DataDragon
             return items;
         }
 
-        private async Task<IList<T>> GetDataAsync<T>(string path)
+        private async Task<IDictionary<string, T>> GetDataAsync<T>(string path)
         {
             Uri uri = uriBuilder.GetDataUri(path);
 
@@ -89,9 +89,7 @@ namespace DataDragon
             string content = await response.Content.ReadAsStringAsync();
 
             string data = JObject.Parse(content)["data"].ToString();
-            IDictionary<string, T> entries = JsonConvert.DeserializeObject<IDictionary<string, T>>(data);
-
-            return entries.Values.ToList();
+            return JsonConvert.DeserializeObject<IDictionary<string, T>>(data);
         }
     }
 }

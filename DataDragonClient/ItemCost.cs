@@ -2,9 +2,9 @@
 {
     public sealed class ItemCost
     {
-        bool Purchasable { get; set; }
-        int Base { get; set; }
-        int Total { get; set; }
-        int Sell { get; set; }
+        public bool Purchasable { get; set; }
+        public int Base { get; set; }
+        public int Total { get; set; }
+        public int Sell { get; set; }
     }
 }

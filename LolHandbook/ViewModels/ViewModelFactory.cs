@@ -4,15 +4,15 @@ namespace LolHandbook.ViewModels
 {
     public sealed class ViewModelFactory
     {
-        private static DataDragonClient dataDragonClient;
+        private static CachingDataDragonClient dataDragonClient;
 
-        private static DataDragonClient DataDragonClient
+        private static CachingDataDragonClient DataDragonClient
         {
             get
             {
                 if (dataDragonClient == null)
                 {
-                    dataDragonClient = new DataDragonClient();
+                    dataDragonClient = new CachingDataDragonClient();
                 }
 
                 return dataDragonClient;
@@ -24,12 +24,12 @@ namespace LolHandbook.ViewModels
             return new ChampionsViewModel(DataDragonClient);
         }
 
-        public static object CreateChampionDetailViewModel(ChampionBase champion)
+        public static IChampionDetailViewModel CreateChampionDetailViewModel(ChampionBase champion)
         {
             return new ChampionDetailViewModel(DataDragonClient, champion);
         }
 
-        public static object CreateChampionDetailViewModel(string id)
+        public static IChampionDetailViewModel CreateChampionDetailViewModel(string id)
         {
             return new ChampionDetailViewModel(DataDragonClient, id);
         }
@@ -37,6 +37,16 @@ namespace LolHandbook.ViewModels
         public static IItemsViewModel CreateItemsViewModel()
         {
             return new ItemsViewModel(DataDragonClient);
+        }
+
+        public static IItemDetailViewModel CreateItemDetailViewModel(Item item)
+        {
+            return new ItemDetailViewModel(DataDragonClient, item);
+        }
+
+        public static IItemDetailViewModel CreateItemDetailViewModel(string id)
+        {
+            return new ItemDetailViewModel(DataDragonClient, id);
         }
     }
 }

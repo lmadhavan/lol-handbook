@@ -30,6 +30,7 @@ namespace LolHandbook.Pages
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             Item item = (Item)e.ClickedItem;
+            App.Navigate(typeof(ItemDetailPage), item);
         }
     }
 }
