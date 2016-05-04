@@ -1,6 +1,8 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace LolHandbook.Pages
@@ -12,28 +14,57 @@ namespace LolHandbook.Pages
         public ChampionDetailPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (e.Parameter is ChampionBase)
+            string id = ResolveChampionId(e.Parameter);
+
+            if (viewModel == null || viewModel.Id != id)
             {
-                viewModel = ViewModelFactory.CreateChampionDetailViewModel((ChampionBase)e.Parameter);
-            }
-            else
-            {
-                viewModel = ViewModelFactory.CreateChampionDetailViewModel(e.Parameter.ToString());
+                this.viewModel = CreateViewModel(e.Parameter);
+                this.DataContext = viewModel;
+                ScrollViewer.ScrollToVerticalOffset(0);
             }
 
             viewModel.LoadData(false);
-            this.DataContext = viewModel;
+        }
+
+        private IChampionDetailViewModel CreateViewModel(object parameter)
+        {
+            if (parameter is ChampionBase)
+            {
+                return ViewModelFactory.CreateChampionDetailViewModel((ChampionBase)parameter);
+            }
+            else
+            {
+                return ViewModelFactory.CreateChampionDetailViewModel(parameter.ToString());
+            }
+        }
+
+        private string ResolveChampionId(object parameter)
+        {
+            if (parameter is ChampionBase)
+            {
+                return ((ChampionBase)parameter).Id;
+            }
+            else
+            {
+                return parameter.ToString();
+            }
         }
 
         public void OnResuming()
         {
             viewModel.LoadData(false);
+        }
+
+        private void Skin_Click(object sender, RoutedEventArgs e)
+        {
+            App.Navigate(typeof(ChampionSkinsPage), viewModel.Skins, new SlideNavigationTransitionInfo());
         }
     }
 }

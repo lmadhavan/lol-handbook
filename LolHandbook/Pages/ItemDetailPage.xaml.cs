@@ -10,6 +10,7 @@ namespace LolHandbook.Pages
         public ItemDetailPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -24,6 +25,8 @@ namespace LolHandbook.Pages
             {
                 this.DataContext = ViewModelFactory.CreateItemDetailViewModel((string)e.Parameter);
             }
+
+            ScrollViewer.ScrollToVerticalOffset(0);
         }
 
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
@@ -32,6 +35,7 @@ namespace LolHandbook.Pages
             if (item != null)
             {
                 this.DataContext = ViewModelFactory.CreateItemDetailViewModel(item);
+                ScrollViewer.ScrollToVerticalOffset(0);
             }
         }
     }

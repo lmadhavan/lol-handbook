@@ -27,8 +27,8 @@ namespace LolHandbook.ViewModels
         private ChampionDetail ChampionDetail { get; set; }
 
         public Uri IconUri => Resolve(c => c.ImageUri);
-        public Uri SkinUri => ChampionDetail?.Skins[0].ImageUri;
 
+        public string Id => id;
         public string Name => Resolve(c => c.Name);
         public string Title => Resolve(c => c.Title);
         public string Blurb => HtmlSanitizer.Sanitize(Resolve(c => c.Blurb));
@@ -57,6 +57,9 @@ namespace LolHandbook.ViewModels
 
         public string AllyTips => Format(ChampionDetail?.AllyTips);
         public string EnemyTips => Format(ChampionDetail?.EnemyTips);
+
+        public Uri DefaultSkinUri => ChampionDetail?.Skins[0].ImageUri;
+        public IList<ChampionSkin> Skins => ChampionDetail?.Skins;
 
         private T Resolve<T>(Func<ChampionBase, T> accessor)
         {
@@ -99,7 +102,7 @@ namespace LolHandbook.ViewModels
             }
 
             RaisePropertyChanged(nameof(IconUri));
-            RaisePropertyChanged(nameof(SkinUri));
+            RaisePropertyChanged(nameof(DefaultSkinUri));
             RaisePropertyChanged(nameof(Name));
             RaisePropertyChanged(nameof(Title));
             RaisePropertyChanged(nameof(Role));

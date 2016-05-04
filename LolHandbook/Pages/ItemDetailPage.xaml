@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=stubs:StubItemDetailViewModel, IsDesignTimeCreatable=True}">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             
             <!-- Item description -->

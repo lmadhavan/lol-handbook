@@ -100,6 +100,9 @@
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="CooldownBurnFormatter.cs" />
     <Compile Include="ISupportResuming.cs" />
+    <Compile Include="Pages\ChampionSkinsPage.xaml.cs">
+      <DependentUpon>ChampionSkinsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,7 @@
     <Compile Include="ViewModels\CachingDataDragonClient.cs" />
     <Compile Include="ViewModels\ChampionDetailViewModel.cs" />
     <Compile Include="ViewModels\ChampionPassiveViewModel.cs" />
+    <Compile Include="ViewModels\ChampionSkinsViewModel.cs" />
     <Compile Include="ViewModels\ChampionStatsViewModel.cs" />
     <Compile Include="ViewModels\FilterableViewModelBase.cs" />
     <Compile Include="ViewModels\IAsyncViewModel.cs" />
@@ -135,7 +139,9 @@
     <Compile Include="ViewModels\IItemsViewModel.cs" />
     <Compile Include="ViewModels\IChampionsViewModel.cs" />
     <Compile Include="ViewModels\ISpellViewModel.cs" />
+    <Compile Include="ViewModels\IChampionSkinsViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubChampionDetailViewModel.cs" />
+    <Compile Include="ViewModels\Stubs\StubChampionSkinsViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubItemDetailViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubItemsViewModel.cs" />
     <Compile Include="ViewModels\Stubs\StubChampionsViewModel.cs" />
@@ -164,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\ChampionSkinsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ItemDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

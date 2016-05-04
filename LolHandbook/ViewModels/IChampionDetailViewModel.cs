@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataDragon;
+using System;
 using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels
@@ -6,8 +7,8 @@ namespace LolHandbook.ViewModels
     public interface IChampionDetailViewModel : IAsyncViewModel
     {
         Uri IconUri { get; }
-        Uri SkinUri { get; }
 
+        string Id { get; }
         string Name { get; }
         string Title { get; }
         string Role { get; }
@@ -19,5 +20,8 @@ namespace LolHandbook.ViewModels
 
         string AllyTips { get; }
         string EnemyTips { get; }
+
+        Uri DefaultSkinUri { get; }
+        IList<ChampionSkin> Skins { get; }
     }
 }

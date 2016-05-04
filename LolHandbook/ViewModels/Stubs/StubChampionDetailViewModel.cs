@@ -35,8 +35,8 @@ namespace LolHandbook.ViewModels.Stubs
         }
 
         public Uri IconUri => null;
-        public Uri SkinUri => null;
 
+        public string Id => "ID";
         public string Name => "Champion";
         public string Title => "with Some Title";
         public string Role => "Role: Fighter, Tank";
@@ -48,5 +48,8 @@ namespace LolHandbook.ViewModels.Stubs
 
         public string AllyTips => "- Tip 1\n- Tip 2";
         public string EnemyTips => "- Tip 3\n- Tip 4";
+
+        public Uri DefaultSkinUri => null;
+        public IList<ChampionSkin> Skins => new List<ChampionSkin>();
     }
 }

@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     d:DataContext="{d:DesignInstance Type=stubs:StubChampionDetailViewModel, IsDesignTimeCreatable=True}">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <!-- Champion bio -->
 
@@ -151,9 +151,16 @@
                 <TextBlock FontSize="13" Text="{Binding EnemyTips}" TextWrapping="WrapWholeWords" />
             </StackPanel>
 
-            <!-- Wallpaper -->
+            <!-- Skins -->
 
-            <Image Source="{Binding SkinUri}" HorizontalAlignment="Stretch" />
+            <Button Padding="0" Style="{ThemeResource TextBlockButtonStyle}" Click="Skin_Click">
+                <Grid>
+                    <Image Source="{Binding DefaultSkinUri}" HorizontalAlignment="Stretch" />
+                    <Border Margin="16" Padding="12,4" Background="#A6808080" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBlock Foreground="White" FontSize="13" FontWeight="SemiBold" Text="Explore Skins" />
+                    </Border>
+                </Grid>
+            </Button>
         </StackPanel>
     </ScrollViewer>
 </Page>

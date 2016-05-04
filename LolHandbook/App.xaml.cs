@@ -28,8 +28,13 @@ namespace LolHandbook
 
         public static void Navigate(Type pageType, object parameter)
         {
+            Navigate(pageType, parameter, new DrillInNavigationTransitionInfo());
+        }
+
+        public static void Navigate(Type pageType, object parameter, NavigationTransitionInfo navigationTransitionInfo)
+        {
             App app = (App)Current;
-            app.Frame.Navigate(pageType, parameter, new DrillInNavigationTransitionInfo());
+            app.Frame.Navigate(pageType, parameter, navigationTransitionInfo);
         }
 
         private Frame Frame
@@ -59,7 +64,7 @@ namespace LolHandbook
                 // Create a Frame to act as the navigation context and navigate to the first page
                 Frame = new Frame();
 
-                Frame.CacheSize = 1;
+                Frame.CacheSize = 4;
                 Frame.Navigated += OnNavigated;
                 Frame.NavigationFailed += OnNavigationFailed;
 
