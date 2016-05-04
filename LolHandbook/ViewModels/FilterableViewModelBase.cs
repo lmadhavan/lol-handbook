@@ -47,14 +47,16 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public async void LoadData(bool forceReload)
+        public override async void LoadData(bool forceReload)
         {
             if (collection != null && !forceReload)
             {
                 return;
             }
 
+            this.Loading = true;
             IList<T> list = await LoadList(forceReload);
+            this.Loading = false;
 
             if (list != null)
             {

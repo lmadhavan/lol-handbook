@@ -54,7 +54,7 @@
                 </StackPanel>
             </Grid>
 
-            <ProgressBar IsIndeterminate="True" Visibility="{Binding Spells, Converter={StaticResource VisibilityConverter}, ConverterParameter=Invert}" />
+            <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" />
 
             <!-- Abilities -->
             

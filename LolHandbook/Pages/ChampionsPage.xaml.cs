@@ -26,6 +26,11 @@ namespace LolHandbook.Pages
             viewModel.LoadData(false);
         }
 
+        public void Refresh()
+        {
+            viewModel.LoadData(true);
+        }
+
         private void TagList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TagFlyout.Hide();

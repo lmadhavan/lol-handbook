@@ -14,14 +14,6 @@ namespace LolHandbook.Pages
             this.InitializeComponent();
         }
 
-        public void OnResuming()
-        {
-            if (viewModel != null)
-            {
-                viewModel.LoadData(false);
-            }
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -30,16 +22,18 @@ namespace LolHandbook.Pages
             {
                 viewModel = ViewModelFactory.CreateChampionDetailViewModel((ChampionBase)e.Parameter);
             }
-            else if (e.Parameter is string)
+            else
             {
-                viewModel = ViewModelFactory.CreateChampionDetailViewModel((string)e.Parameter);
+                viewModel = ViewModelFactory.CreateChampionDetailViewModel(e.Parameter.ToString());
             }
 
-            if (viewModel != null)
-            {
-                viewModel.LoadData(false);
-                this.DataContext = viewModel;
-            }
+            viewModel.LoadData(false);
+            this.DataContext = viewModel;
+        }
+
+        public void OnResuming()
+        {
+            viewModel.LoadData(false);
         }
     }
 }

@@ -30,4 +30,12 @@
             <local:ItemsPage x:Name="ItemsPage" />
         </PivotItem>
     </Pivot>
+
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Refresh" Click="OnRefresh" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

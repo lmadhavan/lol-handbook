@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace LolHandbook.Pages
@@ -15,6 +16,12 @@ namespace LolHandbook.Pages
         {
             ChampionsPage.OnResuming();
             ItemsPage.OnResuming();
+        }
+
+        private void OnRefresh(object sender, RoutedEventArgs e)
+        {
+            ChampionsPage.Refresh();
+            ItemsPage.Refresh();
         }
     }
 }

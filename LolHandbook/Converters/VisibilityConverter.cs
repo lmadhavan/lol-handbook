@@ -9,14 +9,7 @@ namespace LolHandbook.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            bool visible = IsVisible(value);
-
-            if (parameter as string == "Invert")
-            {
-                visible = !visible;
-            }
-
-            return visible ? Visibility.Visible : Visibility.Collapsed;
+            return IsVisible(value) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private static bool IsVisible(object value)
@@ -24,6 +17,11 @@ namespace LolHandbook.Converters
             if (value == null)
             {
                 return false;
+            }
+
+            if (value is bool)
+            {
+                return (bool)value;
             }
 
             ICollection collection = value as ICollection;

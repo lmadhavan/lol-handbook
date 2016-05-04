@@ -58,7 +58,6 @@ namespace LolHandbook.ViewModels
         public string AllyTips => Format(ChampionDetail?.AllyTips);
         public string EnemyTips => Format(ChampionDetail?.EnemyTips);
 
-
         private T Resolve<T>(Func<ChampionBase, T> accessor)
         {
             if (ChampionDetail != null) return accessor(ChampionDetail);
@@ -76,14 +75,16 @@ namespace LolHandbook.ViewModels
             return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
-        public async void LoadData(bool forceReload)
+        public override async void LoadData(bool forceReload)
         {
             if (ChampionDetail != null && !forceReload)
             {
                 return;
             }
 
+            this.Loading = true;
             this.ChampionDetail = await Task.Run(() => dataDragonClient.GetChampionAsync(id));
+            this.Loading = false;
 
             if (ChampionDetail == null)
             {

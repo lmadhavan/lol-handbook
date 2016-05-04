@@ -48,9 +48,5 @@ namespace LolHandbook.ViewModels.Stubs
 
         public string AllyTips => "- Tip 1\n- Tip 2";
         public string EnemyTips => "- Tip 3\n- Tip 4";
-
-        public void LoadData(bool forceReload)
-        {
-        }
     }
 }

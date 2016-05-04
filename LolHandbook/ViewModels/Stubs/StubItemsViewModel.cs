@@ -32,9 +32,5 @@ namespace LolHandbook.ViewModels.Stubs
             get;
             set;
         } = "All";
-
-        public void LoadData(bool forceReload)
-        {
-        }
     }
 }

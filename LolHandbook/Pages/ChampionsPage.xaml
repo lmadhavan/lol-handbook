@@ -22,13 +22,13 @@
             <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter}">
                 <Button.Flyout>
                     <Flyout x:Name="TagFlyout">
-                        <ListView x:Name="TagList" ItemsSource="{Binding Tags}" SelectionChanged="TagList_SelectionChanged" />
+                        <ListBox x:Name="TagList" ItemsSource="{Binding Tags}" SelectionChanged="TagList_SelectionChanged" />
                     </Flyout>
                 </Button.Flyout>
             </Button>
         </StackPanel>
 
-        <ProgressBar IsIndeterminate="True" Visibility="{Binding Champions, Converter={StaticResource VisibilityConverter}, ConverterParameter=Invert}" Grid.Row="1" />
+        <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
 
         <GridView SelectionMode="None" ItemsSource="{Binding Champions}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" Grid.Row="2">
             <GridView.ItemTemplate>
