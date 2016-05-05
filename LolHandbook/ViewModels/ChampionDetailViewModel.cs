@@ -101,6 +101,12 @@ namespace LolHandbook.ViewModels
                 Spells.Add(new ChampionSpellViewModel(championSpell));
             }
 
+            if (Skins.Count > 0)
+            {
+                // Replace "default" skin name with champion name
+                Skins[0].Name = Name;
+            }
+
             RaisePropertyChanged(nameof(IconUri));
             RaisePropertyChanged(nameof(DefaultSkinUri));
             RaisePropertyChanged(nameof(Name));

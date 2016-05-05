@@ -2,6 +2,7 @@
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -73,6 +74,7 @@ namespace LolHandbook
 
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
                 Window.Current.CoreWindow.PointerPressed += OnPointerPressed;
+                DataTransferManager.GetForCurrentView().DataRequested += OnDataRequested;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
@@ -118,6 +120,15 @@ namespace LolHandbook
                 {
                     Frame.GoBack();
                 }
+            }
+        }
+
+        private void OnDataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            ISupportSharing page = Frame.Content as ISupportSharing;
+            if (page != null)
+            {
+                page.OnDataRequested(args.Request);
             }
         }
 

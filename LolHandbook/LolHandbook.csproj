@@ -100,6 +100,7 @@
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="CooldownBurnFormatter.cs" />
     <Compile Include="ISupportResuming.cs" />
+    <Compile Include="ISupportSharing.cs" />
     <Compile Include="Pages\ChampionSkinsPage.xaml.cs">
       <DependentUpon>ChampionSkinsPage.xaml</DependentUpon>
     </Compile>
