@@ -15,7 +15,7 @@ namespace LolHandbook.ViewModels
 
         public CachingDataDragonClient()
         {
-            this.client = new DataDragonClient();
+            this.client = new DataDragonClient("na");
         }
 
         public async Task<IList<ChampionSummary>> GetChampionsAsync(bool forceReload)

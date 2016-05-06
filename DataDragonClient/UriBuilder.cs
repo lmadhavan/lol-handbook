@@ -2,20 +2,32 @@
 
 namespace DataDragon
 {
+    /// <summary>
+    /// Builds Data Dragon request URIs.
+    /// </summary>
     internal sealed class UriBuilder
     {
-        private const string Cdn = "http://ddragon.leagueoflegends.com/cdn";
-        private const string Version = "6.8.1";
-        private const string Language = "en_US";
+        private readonly RealmInfo realmInfo;
+        private readonly string language;
+
+        internal UriBuilder(RealmInfo realmInfo, string language)
+        {
+            this.realmInfo = realmInfo;
+            this.language = language;
+        }
+
+        internal string Cdn => realmInfo.Cdn;
+        internal string PatchVersion => realmInfo.PatchVersion;
+        internal string Language => language ?? realmInfo.DefaultLanguage;
 
         internal Uri GetDataUri(string path)
         {
-            return new Uri($"{Cdn}/{Version}/data/{Language}/{path}");
+            return new Uri($"{Cdn}/{PatchVersion}/data/{Language}/{path}");
         }
 
         internal Uri GetImageUri(ImageId id)
         {
-            return new Uri($"{Cdn}/{Version}/img/{id.Group}/{id.Full}");
+            return new Uri($"{Cdn}/{PatchVersion}/img/{id.Group}/{id.Full}");
         }
 
         internal Uri GetSkinUri(string championId, int skinNum)

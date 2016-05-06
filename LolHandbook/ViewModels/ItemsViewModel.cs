@@ -1,6 +1,5 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
@@ -19,11 +18,7 @@ namespace LolHandbook.ViewModels
 
         protected override async Task<IList<Item>> LoadList(bool forceReload)
         {
-            Debug.Write("Fetching items... ");
-            IList<Item> items = await Task.Run(() => dataDragonClient.GetItemsAsync(forceReload));
-            Debug.WriteLine("Done.");
-
-            return items;
+            return await Task.Run(() => dataDragonClient.GetItemsAsync(forceReload));
         }
     }
 }
