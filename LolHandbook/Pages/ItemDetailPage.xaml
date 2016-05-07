@@ -18,10 +18,16 @@
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </StackPanel.Resources>
-            
+
             <!-- Item description -->
 
             <Grid Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Padding="20,20,20,10">
+                <Grid.Transitions>
+                    <TransitionCollection>
+                        <ContentThemeTransition />
+                    </TransitionCollection>
+                </Grid.Transitions>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
