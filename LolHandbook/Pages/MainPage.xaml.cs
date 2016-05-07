@@ -9,7 +9,7 @@ namespace LolHandbook.Pages
         public MainPage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         public void OnResuming()

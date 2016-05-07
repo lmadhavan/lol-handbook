@@ -65,7 +65,6 @@ namespace LolHandbook
                 // Create a Frame to act as the navigation context and navigate to the first page
                 Frame = new Frame();
 
-                Frame.CacheSize = 4;
                 Frame.Navigated += OnNavigated;
                 Frame.NavigationFailed += OnNavigationFailed;
 

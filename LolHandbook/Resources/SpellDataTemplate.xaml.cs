@@ -1,8 +1,8 @@
 ﻿namespace LolHandbook.Resources
 {
-    public partial class DataTemplates
+    public partial class SpellDataTemplate
     {
-        public DataTemplates()
+        public SpellDataTemplate()
         {
             InitializeComponent();
         }

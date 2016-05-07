@@ -120,8 +120,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\DataTemplates.xaml.cs">
-      <DependentUpon>DataTemplates.xaml</DependentUpon>
+    <Compile Include="Resources\ItemDataTemplate.xaml.cs">
+      <DependentUpon>ItemDataTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\SpellDataTemplate.xaml.cs">
+      <DependentUpon>SpellDataTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CachingDataDragonClient.cs" />
     <Compile Include="ViewModels\ChampionDetailViewModel.cs" />
@@ -195,7 +198,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\DataTemplates.xaml">
+    <Page Include="Resources\ItemDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Resources\SpellDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
