@@ -7,6 +7,8 @@ namespace LolHandbook.ViewModels
 {
     public abstract class FilterableViewModelBase<T> : ViewModelBase, IFilterableViewModel where T : ISupportTags
     {
+        public const string TagAll = "All";
+
         private readonly string collectionName;
         private IList<T> collection;
         private string tagFilter;
@@ -14,14 +16,14 @@ namespace LolHandbook.ViewModels
         protected FilterableViewModelBase(string collectionName)
         {
             this.collectionName = collectionName;
-            this.tagFilter = "All";
+            this.tagFilter = TagAll;
         }
 
         protected IList<T> FilteredCollection
         {
             get
             {
-                if (collection == null || tagFilter == "All")
+                if (collection == null || tagFilter == TagAll)
                 {
                     return collection;
                 }
@@ -47,7 +49,7 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public override async void LoadData(bool forceReload)
+        public override async Task LoadData(bool forceReload)
         {
             if (collection != null && !forceReload)
             {
@@ -64,7 +66,7 @@ namespace LolHandbook.ViewModels
 
                 List<string> tags = list.SelectMany(e => e.Tags).Distinct().ToList();
                 tags.Sort();
-                tags.Insert(0, "All");
+                tags.Insert(0, TagAll);
                 this.Tags = tags;
 
                 RaisePropertyChanged(nameof(TagFilter));

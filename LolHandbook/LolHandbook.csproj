@@ -126,32 +126,6 @@
     <Compile Include="Resources\SpellDataTemplate.xaml.cs">
       <DependentUpon>SpellDataTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CachingDataDragonClient.cs" />
-    <Compile Include="ViewModels\ChampionDetailViewModel.cs" />
-    <Compile Include="ViewModels\ChampionPassiveViewModel.cs" />
-    <Compile Include="ViewModels\ChampionSkinsViewModel.cs" />
-    <Compile Include="ViewModels\ChampionStatsViewModel.cs" />
-    <Compile Include="ViewModels\FilterableViewModelBase.cs" />
-    <Compile Include="ViewModels\IAsyncViewModel.cs" />
-    <Compile Include="ViewModels\IItemDetailViewModel.cs" />
-    <Compile Include="ViewModels\ItemDetailViewModel.cs" />
-    <Compile Include="ViewModels\ItemsViewModel.cs" />
-    <Compile Include="ViewModels\ChampionsViewModel.cs" />
-    <Compile Include="ViewModels\HtmlSanitizer.cs" />
-    <Compile Include="ViewModels\IChampionDetailViewModel.cs" />
-    <Compile Include="ViewModels\IFilterableViewModel.cs" />
-    <Compile Include="ViewModels\IItemsViewModel.cs" />
-    <Compile Include="ViewModels\IChampionsViewModel.cs" />
-    <Compile Include="ViewModels\ISpellViewModel.cs" />
-    <Compile Include="ViewModels\IChampionSkinsViewModel.cs" />
-    <Compile Include="ViewModels\Stubs\StubChampionDetailViewModel.cs" />
-    <Compile Include="ViewModels\Stubs\StubChampionSkinsViewModel.cs" />
-    <Compile Include="ViewModels\Stubs\StubItemDetailViewModel.cs" />
-    <Compile Include="ViewModels\Stubs\StubItemsViewModel.cs" />
-    <Compile Include="ViewModels\Stubs\StubChampionsViewModel.cs" />
-    <Compile Include="ViewModels\ChampionSpellViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="ViewModels\ViewModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -214,7 +188,12 @@
       <Project>{95b3f26a-59e7-4971-8a7b-5fbe38a95ae2}</Project>
       <Name>DataDragonClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LolHandbook.ViewModels\LolHandbook.ViewModels.csproj">
+      <Project>{08595497-5793-409e-9bdc-e0a1251a92ca}</Project>
+      <Name>LolHandbook.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

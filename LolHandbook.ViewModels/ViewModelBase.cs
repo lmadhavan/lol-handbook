@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
@@ -27,7 +28,7 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public virtual void LoadData(bool forceReload)
+        public virtual async Task LoadData(bool forceReload)
         {
         }
     }

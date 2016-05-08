@@ -1,29 +1,13 @@
 ﻿using DataDragon;
-using System;
 using System.Text.RegularExpressions;
 
 namespace LolHandbook.ViewModels
 {
-    public class ChampionSpellViewModel : ISpellViewModel
+    internal static class ChampionSpellExtensions
     {
         private static readonly Regex ResourcePattern = new Regex(@"\{\{ (\w+) \}\}");
 
-        private readonly ChampionSpell championSpell;
-        private readonly string resourceBurn;
-
-        public ChampionSpellViewModel(ChampionSpell championSpell)
-        {
-            this.championSpell = championSpell;
-            this.resourceBurn = ResolveResourceBurn();
-        }
-
-        public Uri ImageUri => championSpell.ImageUri;
-        public string Name => championSpell.Name;
-        public string Description => HtmlSanitizer.Sanitize(championSpell.Description);
-        public string AdditionalInfo => $"Cost: {resourceBurn}";
-        public string Cooldown => $"Cooldown: {championSpell.CooldownBurn} seconds";
-
-        private string ResolveResourceBurn()
+        internal static string ResolveResourceBurn(this ChampionSpell championSpell)
         {
             string resource = championSpell.Resource;
 
@@ -32,7 +16,7 @@ namespace LolHandbook.ViewModels
             {
                 string expression = match.Groups[0].Value;
                 string variable = match.Groups[1].Value;
-                string variableValue = ResolveVariable(variable);
+                string variableValue = championSpell.ResolveVariable(variable);
 
                 resource = resource.Replace(expression, variableValue);
                 match = match.NextMatch();
@@ -41,7 +25,7 @@ namespace LolHandbook.ViewModels
             return resource;
         }
 
-        private string ResolveVariable(string variable)
+        private static string ResolveVariable(this ChampionSpell championSpell, string variable)
         {
             if (variable == "cost")
             {

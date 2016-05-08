@@ -78,7 +78,7 @@ namespace LolHandbook.ViewModels
             return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
-        public override async void LoadData(bool forceReload)
+        public override async Task LoadData(bool forceReload)
         {
             if (ChampionDetail != null && !forceReload)
             {
