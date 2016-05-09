@@ -2,9 +2,11 @@
     x:Class="LolHandbook.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LolHandbook"
     xmlns:conv="using:LolHandbook.Converters">
     <Application.Resources>
         <ResourceDictionary>
+            <local:ViewModelLocator x:Key="ViewModelLocator" />
             <conv:StringConverter x:Key="StringConverter" />
             <conv:ImageUriConverter x:Key="ImageUriConverter" />
             <conv:VisibilityConverter x:Key="VisibilityConverter" />

@@ -10,8 +10,9 @@ namespace LolHandbook.Pages
         public ItemDetailPage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
+
+        private ItemDetailViewModel ViewModel => DataContext as ItemDetailViewModel;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -19,11 +20,11 @@ namespace LolHandbook.Pages
 
             if (e.Parameter is Item)
             {
-                this.DataContext = ViewModelFactory.CreateItemDetailViewModel((Item)e.Parameter);
+                ViewModel.Item = (Item)e.Parameter;
             }
             else if (e.Parameter is string)
             {
-                this.DataContext = ViewModelFactory.CreateItemDetailViewModel((string)e.Parameter);
+                ViewModel.Id = (string)e.Parameter;
             }
 
             ScrollViewer.ScrollToVerticalOffset(0);
@@ -34,7 +35,7 @@ namespace LolHandbook.Pages
             Item item = (Item)e.ClickedItem;
             if (item != null)
             {
-                this.DataContext = ViewModelFactory.CreateItemDetailViewModel(item);
+                ViewModel.Item = item;
                 ScrollViewer.ScrollToVerticalOffset(0);
             }
         }

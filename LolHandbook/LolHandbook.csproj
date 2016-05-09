@@ -125,6 +125,7 @@
     <Compile Include="Resources\SpellDataTemplate.xaml.cs">
       <DependentUpon>SpellDataTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

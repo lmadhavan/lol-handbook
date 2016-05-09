@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels.Services
 {
-    public sealed class DataDragonService
+    public sealed class DataDragonService : IDataDragonService
     {
         private static DataDragonService instance;
 

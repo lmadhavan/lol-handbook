@@ -24,15 +24,5 @@ namespace LolHandbook.ViewModels
         {
             return new ItemsViewModel(DataDragonService.Instance, LocalizationService.Instance);
         }
-
-        public static IItemDetailViewModel CreateItemDetailViewModel(Item item)
-        {
-            return new ItemDetailViewModel(DataDragonService.Instance, item);
-        }
-
-        public static IItemDetailViewModel CreateItemDetailViewModel(string id)
-        {
-            return new ItemDetailViewModel(DataDragonService.Instance, id);
-        }
     }
 }
