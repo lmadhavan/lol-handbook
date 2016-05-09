@@ -4,10 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:stubs="using:LolHandbook.ViewModels.Stubs"
     xmlns:resources="using:LolHandbook.Resources"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance Type=stubs:StubChampionDetailViewModel, IsDesignTimeCreatable=True}">
+    NavigationCacheMode="Required"
+    DataContext="{Binding ChampionDetailViewModel, Source={StaticResource ViewModelLocator}}">
 
     <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

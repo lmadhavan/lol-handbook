@@ -7,29 +7,65 @@ using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
-    public class ChampionDetailViewModel : ViewModelBase, IChampionDetailViewModel
+    public class ChampionDetailViewModel : ViewModelBase
     {
-        private readonly DataDragonService dataDragonService;
-        private readonly string id;
+        private readonly IDataDragonService dataDragonService;
+        private string id;
+        private ChampionSummary summary;
 
-        public ChampionDetailViewModel(DataDragonService dataDragonService, string id)
+        public ChampionDetailViewModel(IDataDragonService dataDragonService)
         {
             this.dataDragonService = dataDragonService;
-            this.id = id;
         }
 
-        public ChampionDetailViewModel(DataDragonService dataDragonService, ChampionBase champion)
-            : this(dataDragonService, champion.Id)
+        public string Id
         {
-            this.ChampionBase = champion;
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                if (id != value)
+                {
+                    Set(value, null);
+                }
+            }
         }
 
-        private ChampionBase ChampionBase { get; }
-        private ChampionDetail ChampionDetail { get; set; }
+        public ChampionSummary Summary
+        {
+            get
+            {
+                return summary;
+            }
+
+            set
+            {
+                if (summary != value)
+                {
+                    Set(value.Id, value);
+                }
+            }
+        }
+
+        private void Set(string id, ChampionSummary summary)
+        {
+            this.id = id;
+            RaisePropertyChanged(nameof(Id));
+
+            this.summary = summary;
+            RaisePropertyChanged(nameof(Summary));
+
+            this.Detail = null;
+            LoadData(false);
+        }
+
+        private ChampionDetail Detail { get; set; }
 
         public Uri IconUri => Resolve(c => c.ImageUri);
 
-        public string Id => id;
         public string Name => Resolve(c => c.Name);
         public string Title => Resolve(c => c.Title);
         public string Blurb => HtmlSanitizer.Sanitize(Resolve(c => c.Blurb));
@@ -43,7 +79,7 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public string Lore => HtmlSanitizer.Sanitize(ChampionDetail?.Lore);
+        public string Lore => HtmlSanitizer.Sanitize(Detail?.Lore);
 
         public IList<ISpellViewModel> Spells { get; private set; }
 
@@ -56,16 +92,16 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public string AllyTips => Format(ChampionDetail?.AllyTips);
-        public string EnemyTips => Format(ChampionDetail?.EnemyTips);
+        public string AllyTips => Format(Detail?.AllyTips);
+        public string EnemyTips => Format(Detail?.EnemyTips);
 
-        public Uri DefaultSkinUri => ChampionDetail?.Skins[0].ImageUri;
-        public IList<ChampionSkin> Skins => ChampionDetail?.Skins;
+        public Uri DefaultSkinUri => Detail?.Skins[0].ImageUri;
+        public IList<ChampionSkin> Skins => Detail?.Skins;
 
         private T Resolve<T>(Func<ChampionBase, T> accessor)
         {
-            if (ChampionDetail != null) return accessor(ChampionDetail);
-            if (ChampionBase != null) return accessor(ChampionBase);
+            if (Detail != null) return accessor(Detail);
+            if (Summary != null) return accessor(Summary);
             return default(T);
         }
 
@@ -79,25 +115,25 @@ namespace LolHandbook.ViewModels
             return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
-        public override async Task LoadData(bool forceReload)
+        public new async void LoadData(bool forceReload)
         {
-            if (ChampionDetail != null && !forceReload)
+            if (Detail != null && !forceReload)
             {
                 return;
             }
 
             this.Loading = true;
-            this.ChampionDetail = await Task.Run(() => dataDragonService.GetChampionAsync(id));
+            this.Detail = await Task.Run(() => dataDragonService.GetChampionAsync(id));
             this.Loading = false;
 
-            if (ChampionDetail == null)
+            if (Detail == null)
             {
                 return;
             }
 
             this.Spells = new List<ISpellViewModel>();
-            Spells.Add(new ChampionPassiveViewModel(ChampionDetail.Passive));
-            foreach (ChampionSpell championSpell in ChampionDetail.Spells)
+            Spells.Add(new ChampionPassiveViewModel(Detail.Passive));
+            foreach (ChampionSpell championSpell in Detail.Spells)
             {
                 Spells.Add(new ChampionSpellViewModel(championSpell));
             }

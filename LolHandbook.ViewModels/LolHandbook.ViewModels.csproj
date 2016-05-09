@@ -51,7 +51,6 @@
     <Compile Include="FilterableViewModelBase.cs" />
     <Compile Include="HtmlSanitizer.cs" />
     <Compile Include="IAsyncViewModel.cs" />
-    <Compile Include="IChampionDetailViewModel.cs" />
     <Compile Include="IChampionSkinsViewModel.cs" />
     <Compile Include="IChampionsViewModel.cs" />
     <Compile Include="IFilterableViewModel.cs" />

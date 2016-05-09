@@ -24,6 +24,7 @@ namespace LolHandbook
             }
         }
 
+        public ChampionDetailViewModel ChampionDetailViewModel => stub ? new StubChampionDetailViewModel(dataDragonService) : new ChampionDetailViewModel(dataDragonService);
         public ItemDetailViewModel ItemDetailViewModel => stub ? new StubItemDetailViewModel(dataDragonService) : new ItemDetailViewModel(dataDragonService);
     }
 }
