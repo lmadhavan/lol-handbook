@@ -62,6 +62,18 @@ namespace DataDragon
         }
 
         /// <summary>
+        /// Gets a dictionary of localized game strings.
+        /// </summary>
+        /// <returns>A dictionary of localized game strings.</returns>
+        public async Task<IDictionary<string, string>> GetLocalizedStringsAsync()
+        {
+            UriBuilder uriBuilder = await uriBuilderReference.GetUriBuilderAsync(httpClient);
+
+            Uri uri = uriBuilder.GetDataUri("language.json");
+            return await httpClient.GetDataAsync<string>(uri);
+        }
+
+        /// <summary>
         /// Gets summary information about all champions in the game.
         /// </summary>
         /// <returns>A dictionary of <see cref="ChampionSummary"/> objects keyed by champion ID.</returns>

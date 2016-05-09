@@ -1,4 +1,5 @@
 ﻿using DataDragon;
+using LolHandbook.ViewModels.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,32 +10,34 @@ namespace LolHandbook.ViewModels
     {
         public const string TagAll = "All";
 
+        private readonly ILocalizationService localizationService;
         private readonly string collectionName;
-        private IList<T> collection;
-        private string tagFilter;
 
-        protected FilterableViewModelBase(string collectionName)
+        private IList<T> collection;
+        private Tag tagFilter;
+
+        protected FilterableViewModelBase(ILocalizationService localizationService, string collectionName)
         {
+            this.localizationService = localizationService;
             this.collectionName = collectionName;
-            this.tagFilter = TagAll;
         }
 
         protected IList<T> FilteredCollection
         {
             get
             {
-                if (collection == null || tagFilter == TagAll)
+                if (collection == null || tagFilter.Id == TagAll)
                 {
                     return collection;
                 }
 
-                return collection.Where(c => c.Tags?.Contains(tagFilter) ?? false).ToList();
+                return collection.Where(c => c.Tags?.Contains(tagFilter.Id) ?? false).ToList();
             }
         }
 
-        public IList<string> Tags { get; private set; }
+        public IList<Tag> Tags { get; private set; }
 
-        public string TagFilter
+        public Tag TagFilter
         {
             get
             {
@@ -57,6 +60,7 @@ namespace LolHandbook.ViewModels
             }
 
             this.Loading = true;
+            await localizationService.LoadData(forceReload);
             IList<T> list = await LoadList(forceReload);
             this.Loading = false;
 
@@ -67,12 +71,17 @@ namespace LolHandbook.ViewModels
                 List<string> tags = list.SelectMany(e => e.Tags).Distinct().ToList();
                 tags.Sort();
                 tags.Insert(0, TagAll);
-                this.Tags = tags;
 
-                RaisePropertyChanged(nameof(TagFilter));
-                RaisePropertyChanged(collectionName);
+                this.Tags = tags.Select(t => CreateTag(t)).ToList();
                 RaisePropertyChanged(nameof(Tags));
+
+                this.TagFilter = CreateTag(TagAll);
             }
+        }
+
+        private Tag CreateTag(string id)
+        {
+            return new Tag(id, localizationService.Lookup(id));
         }
 
         protected abstract Task<IList<T>> LoadList(bool forceReload);

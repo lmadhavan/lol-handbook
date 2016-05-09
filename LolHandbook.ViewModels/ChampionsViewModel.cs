@@ -1,4 +1,5 @@
 ﻿using DataDragon;
+using LolHandbook.ViewModels.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,19 +7,19 @@ namespace LolHandbook.ViewModels
 {
     public class ChampionsViewModel : FilterableViewModelBase<ChampionSummary>, IChampionsViewModel
     {
-        private readonly CachingDataDragonClient dataDragonClient;
+        private readonly DataDragonService dataDragonService;
 
-        public ChampionsViewModel(CachingDataDragonClient dataDragonClient)
-            : base(nameof(Champions))
+        public ChampionsViewModel(DataDragonService dataDragonService, ILocalizationService localizationService)
+            : base(localizationService, nameof(Champions))
         {
-            this.dataDragonClient = dataDragonClient;
+            this.dataDragonService = dataDragonService;
         }
 
         public IList<ChampionSummary> Champions => FilteredCollection;
 
         protected override async Task<IList<ChampionSummary>> LoadList(bool forceReload)
         {
-            return await Task.Run(() => dataDragonClient.GetChampionsAsync(forceReload));
+            return await Task.Run(() => dataDragonService.GetChampionsAsync(forceReload));
         }
     }
 }

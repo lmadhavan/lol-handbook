@@ -1,6 +1,8 @@
 ﻿using DataDragon;
+using LolHandbook.ViewModels.Services;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
@@ -20,16 +22,17 @@ namespace LolHandbook.ViewModels
         [Test]
         public void ExtractsTagsFromCollection()
         {
-            Assert.That(viewModel.Tags, Is.EqualTo(new List<string> { StubViewModel.TagAll, "tag1", "tag2" }).AsCollection);
+            IList<string> tags = viewModel.Tags.Select(t => t.Id).ToList();
+            Assert.That(tags, Is.EqualTo(new List<string> { StubViewModel.TagAll, "tag1", "tag2" }).AsCollection);
         }
 
         [Test]
         public void FiltersCollectionByTag()
         {
-            Assert.That(viewModel.TagFilter, Is.EqualTo(StubViewModel.TagAll));
+            Assert.That(viewModel.TagFilter.Id, Is.EqualTo(StubViewModel.TagAll));
             Assert.That(viewModel.Collection.Count, Is.EqualTo(2));
 
-            viewModel.TagFilter = "tag1";
+            viewModel.TagFilter = new Tag("tag1");
             Assert.That(viewModel.Collection.Count, Is.EqualTo(1));
             Assert.That(viewModel.Collection[0].Name, Is.EqualTo("element1"));
         }
@@ -42,7 +45,7 @@ namespace LolHandbook.ViewModels
 
         private class StubViewModel : FilterableViewModelBase<StubElement>
         {
-            public StubViewModel() : base("dont-care")
+            public StubViewModel() : base(new StubLocalizationService(), "dont-care")
             {
             }
 

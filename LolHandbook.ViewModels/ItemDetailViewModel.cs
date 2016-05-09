@@ -1,4 +1,5 @@
 ﻿using DataDragon;
+using LolHandbook.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 
@@ -8,12 +9,12 @@ namespace LolHandbook.ViewModels
     {
         private readonly Item item;
 
-        public ItemDetailViewModel(CachingDataDragonClient dataDragonClient, string id)
-            : this(dataDragonClient, dataDragonClient.GetItem(id))
+        public ItemDetailViewModel(DataDragonService dataDragonService, string id)
+            : this(dataDragonService, dataDragonService.GetItem(id))
         {
         }
 
-        public ItemDetailViewModel(CachingDataDragonClient dataDragonClient, Item item)
+        public ItemDetailViewModel(DataDragonService dataDragonService, Item item)
         {
             this.item = item;
 
@@ -22,7 +23,7 @@ namespace LolHandbook.ViewModels
             {
                 foreach (string id in item.Requires)
                 {
-                    Requires.Add(dataDragonClient.GetItem(id));
+                    Requires.Add(dataDragonService.GetItem(id));
                 }
             }
 
@@ -31,7 +32,7 @@ namespace LolHandbook.ViewModels
             {
                 foreach (string id in item.BuildsInto)
                 {
-                    BuildsInto.Add(dataDragonClient.GetItem(id));
+                    BuildsInto.Add(dataDragonService.GetItem(id));
                 }
             }
         }

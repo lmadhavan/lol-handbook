@@ -5,17 +5,51 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LolHandbook.ViewModels
+namespace LolHandbook.ViewModels.Services
 {
-    public class CachingDataDragonClient
+    public sealed class DataDragonService
     {
+        private static DataDragonService instance;
+
         private readonly DataDragonClient client;
+        private IDictionary<string, string> localizedStrings;
         private IDictionary<string, ChampionSummary> champions;
         private IDictionary<string, Item> items;
 
-        public CachingDataDragonClient()
+        private DataDragonService()
         {
             this.client = new DataDragonClient("na");
+        }
+
+        public static DataDragonService Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new DataDragonService();
+                }
+
+                return instance;
+            }
+        }
+
+        public async Task<IDictionary<string, string>> GetLocalizedStringsAsync(bool forceReload)
+        {
+            if (localizedStrings == null || forceReload)
+            {
+                try
+                {
+                    this.localizedStrings = await client.GetLocalizedStringsAsync();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine($"Exception in {nameof(GetLocalizedStringsAsync)}: {e}");
+                    return null;
+                }
+            }
+
+            return localizedStrings;
         }
 
         public async Task<IList<ChampionSummary>> GetChampionsAsync(bool forceReload)

@@ -34,7 +34,7 @@ namespace LolHandbook.Pages
         private void TagList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TagFlyout.Hide();
-            viewModel.TagFilter = TagList.SelectedItem as string;
+            viewModel.TagFilter = TagList.SelectedItem as Tag;
         }
 
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)

@@ -27,10 +27,10 @@
         <StackPanel Orientation="Horizontal" Margin="12,4,12,8" Grid.Row="0">
             <TextBlock Text="Category:" VerticalAlignment="Center" />
 
-            <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter}">
+            <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter.Name}">
                 <Button.Flyout>
                     <Flyout x:Name="TagFlyout">
-                        <ListBox x:Name="TagList" ItemsSource="{Binding Tags}" SelectionChanged="TagList_SelectionChanged" />
+                        <ListBox x:Name="TagList" ItemsSource="{Binding Tags}" DisplayMemberPath="Name" SelectionChanged="TagList_SelectionChanged" />
                     </Flyout>
                 </Button.Flyout>
             </Button>

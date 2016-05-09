@@ -1,6 +1,5 @@
 ﻿using DataDragon;
 using System.Collections.Generic;
-using System;
 
 namespace LolHandbook.ViewModels.Stubs
 {
@@ -18,19 +17,19 @@ namespace LolHandbook.ViewModels.Stubs
                 });
             }
 
-            this.Tags = new List<string>();
-            Tags.Add("All");
-            Tags.Add("Boots");
-            Tags.Add("Health");
+            this.Tags = new List<Tag>();
+            Tags.Add(new Tag("All"));
+            Tags.Add(new Tag("Boots"));
+            Tags.Add(new Tag("Health"));
         }
 
         public IList<Item> Items { get; }
-        public IList<string> Tags { get; }
+        public IList<Tag> Tags { get; }
 
-        public string TagFilter
+        public Tag TagFilter
         {
             get;
             set;
-        } = "All";
+        } = new Tag("All");
     }
 }

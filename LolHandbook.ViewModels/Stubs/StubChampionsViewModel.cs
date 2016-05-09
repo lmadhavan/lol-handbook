@@ -17,19 +17,19 @@ namespace LolHandbook.ViewModels.Stubs
                 });
             }
 
-            this.Tags = new List<string>();
-            Tags.Add("All");
-            Tags.Add("Fighter");
-            Tags.Add("Tank");
+            this.Tags = new List<Tag>();
+            Tags.Add(new Tag("All"));
+            Tags.Add(new Tag("Fighter"));
+            Tags.Add(new Tag("Tank"));
         }
 
         public IList<ChampionSummary> Champions { get; }
-        public IList<string> Tags { get; }
+        public IList<Tag> Tags { get; }
 
-        public string TagFilter
+        public Tag TagFilter
         {
             get;
             set;
-        } = "All";
+        } = new Tag("All");
     }
 }

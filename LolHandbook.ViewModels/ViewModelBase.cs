@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using LolHandbook.ViewModels.Services;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels

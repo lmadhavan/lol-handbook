@@ -98,7 +98,6 @@
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\ImageUriConverter.cs" />
-    <Compile Include="CooldownBurnFormatter.cs" />
     <Compile Include="ISupportResuming.cs" />
     <Compile Include="ISupportSharing.cs" />
     <Compile Include="Pages\ChampionSkinsPage.xaml.cs">
