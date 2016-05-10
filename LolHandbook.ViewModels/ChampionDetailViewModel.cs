@@ -59,6 +59,9 @@ namespace LolHandbook.ViewModels
             RaisePropertyChanged(nameof(Summary));
 
             this.Detail = null;
+            this.Spells = null;
+
+            RaiseAllPropertiesChanged();
             LoadData(false);
         }
 
@@ -144,6 +147,11 @@ namespace LolHandbook.ViewModels
                 Skins[0].Name = Name;
             }
 
+            RaiseAllPropertiesChanged();
+        }
+
+        private void RaiseAllPropertiesChanged()
+        {
             RaisePropertyChanged(nameof(IconUri));
             RaisePropertyChanged(nameof(DefaultSkinUri));
             RaisePropertyChanged(nameof(Name));
