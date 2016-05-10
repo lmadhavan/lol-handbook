@@ -12,32 +12,33 @@ namespace LolHandbook.Pages
 {
     public sealed partial class ChampionSkinsPage : Page, ISupportSharing
     {
-        private IChampionSkinsViewModel viewModel;
-
         public ChampionSkinsPage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Required;
         }
+
+        private ChampionSkinsViewModel ViewModel => DataContext as ChampionSkinsViewModel;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            this.viewModel = new ChampionSkinsViewModel((IList<ChampionSkin>)e.Parameter);
-            this.DataContext = viewModel;
+            if (e.Parameter is IList<ChampionSkin>)
+            {
+                ViewModel.Skins = (IList<ChampionSkin>)e.Parameter;
+            }
         }
 
         public void OnDataRequested(DataRequest request)
         {
-            request.Data.Properties.Title = viewModel.CurrentSkinName;
+            request.Data.Properties.Title = ViewModel.CurrentSkinName;
 
             DataRequestDeferral deferral = request.GetDeferral();
 
             try
             {
-                string filename = viewModel.CurrentSkinName + ".jpg";
-                Uri uri = viewModel.SkinUris[viewModel.CurrentSkinIndex];
+                string filename = ViewModel.CurrentSkinName + ".jpg";
+                Uri uri = ViewModel.CurrentSkinUri;
 
                 RandomAccessStreamReference streamReference = RandomAccessStreamReference.CreateFromUri(uri);
 

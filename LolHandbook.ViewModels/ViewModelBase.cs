@@ -1,10 +1,9 @@
-﻿using LolHandbook.ViewModels.Services;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
-    public abstract class ViewModelBase : IAsyncViewModel
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
         private bool loading;
 
@@ -27,10 +26,6 @@ namespace LolHandbook.ViewModels
                 this.loading = value;
                 RaisePropertyChanged(nameof(Loading));
             }
-        }
-
-        public virtual async Task LoadData(bool forceReload)
-        {
         }
     }
 }

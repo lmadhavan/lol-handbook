@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
-    public abstract class FilterableViewModelBase<T> : ViewModelBase, IFilterableViewModel where T : ISupportTags
+    public abstract class FilterableViewModelBase<T> : ViewModelBase where T : ISupportTags
     {
         public const string TagAll = "All";
 
@@ -52,7 +52,7 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public override async Task LoadData(bool forceReload)
+        public async Task LoadData(bool forceReload)
         {
             if (collection != null && !forceReload)
             {
@@ -85,5 +85,21 @@ namespace LolHandbook.ViewModels
         }
 
         protected abstract Task<IList<T>> LoadList(bool forceReload);
+    }
+
+    public class Tag
+    {
+        public Tag(string id) : this(id, id)
+        {
+        }
+
+        public Tag(string id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
+        }
+
+        public string Id { get; }
+        public string Name { get; }
     }
 }

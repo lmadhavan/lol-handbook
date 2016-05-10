@@ -1,40 +1,32 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
-using Windows.ApplicationModel;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Pages
 {
     public sealed partial class ChampionsPage : Page, ISupportResuming
     {
-        private readonly IChampionsViewModel viewModel;
-
         public ChampionsPage()
         {
             this.InitializeComponent();
-
-            if (!DesignMode.DesignModeEnabled)
-            {
-                this.viewModel = ViewModelFactory.CreateChampionsViewModel();
-                viewModel.LoadData(false);
-                this.DataContext = viewModel;
-            }
         }
+
+        private ChampionsViewModel ViewModel => DataContext as ChampionsViewModel;
 
         public void OnResuming()
         {
-            viewModel.LoadData(false);
+            ViewModel.LoadData(false);
         }
 
         public void Refresh()
         {
-            viewModel.LoadData(true);
+            ViewModel.LoadData(true);
         }
 
         private void TagList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TagFlyout.Hide();
-            viewModel.TagFilter = TagList.SelectedItem as Tag;
+            ViewModel.TagFilter = TagList.SelectedItem as Tag;
         }
 
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)

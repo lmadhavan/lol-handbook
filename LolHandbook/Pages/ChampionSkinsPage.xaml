@@ -2,11 +2,9 @@
     x:Class="LolHandbook.Pages.ChampionSkinsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:stubs="using:LolHandbook.ViewModels.Stubs"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DataContext="{d:DesignInstance Type=stubs:StubChampionSkinsViewModel, IsDesignTimeCreatable=True}"
+    DataContext="{Binding ChampionSkinsViewModel, Source={StaticResource ViewModelLocator}}"
+    NavigationCacheMode="Required"
     RequestedTheme="Dark">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

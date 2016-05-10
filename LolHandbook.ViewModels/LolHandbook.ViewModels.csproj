@@ -50,11 +50,6 @@
     <Compile Include="ChampionsViewModel.cs" />
     <Compile Include="FilterableViewModelBase.cs" />
     <Compile Include="HtmlSanitizer.cs" />
-    <Compile Include="IAsyncViewModel.cs" />
-    <Compile Include="IChampionSkinsViewModel.cs" />
-    <Compile Include="IChampionsViewModel.cs" />
-    <Compile Include="IFilterableViewModel.cs" />
-    <Compile Include="IItemsViewModel.cs" />
     <Compile Include="ISpellViewModel.cs" />
     <Compile Include="ItemDetailViewModel.cs" />
     <Compile Include="ItemsViewModel.cs" />
@@ -68,11 +63,8 @@
     <Compile Include="Services\StubLocalizationService.cs" />
     <Compile Include="Stubs\StubChampionDetailViewModel.cs" />
     <Compile Include="Stubs\StubChampionSkinsViewModel.cs" />
-    <Compile Include="Stubs\StubChampionsViewModel.cs" />
     <Compile Include="Stubs\StubItemDetailViewModel.cs" />
-    <Compile Include="Stubs\StubItemsViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
-    <Compile Include="ViewModelFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

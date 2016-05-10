@@ -1,20 +1,18 @@
-﻿using System;
+﻿using DataDragon;
 using System.Collections.Generic;
 
 namespace LolHandbook.ViewModels.Stubs
 {
-    public class StubChampionSkinsViewModel : ViewModelBase, IChampionSkinsViewModel
+    public class StubChampionSkinsViewModel : ChampionSkinsViewModel
     {
         public StubChampionSkinsViewModel()
         {
-            this.SkinUris = new List<Uri>() { null, null, null };
+            this.Skins = new List<ChampionSkin>
+            {
+                new ChampionSkin { Name = "Skin 1" },
+                new ChampionSkin { Name = "Skin 2" },
+                new ChampionSkin { Name = "Skin 3" }
+            };
         }
-
-        public int TotalSkins => 3;
-        public IList<Uri> SkinUris { get; }
-
-        public int CurrentSkinIndex { get; set; }
-        public int CurrentSkinDisplayIndex { get; }
-        public string CurrentSkinName => "default";
     }
 }

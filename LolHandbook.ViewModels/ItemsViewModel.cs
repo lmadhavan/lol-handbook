@@ -5,14 +5,15 @@ using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
-    public class ItemsViewModel : FilterableViewModelBase<Item>, IItemsViewModel
+    public class ItemsViewModel : FilterableViewModelBase<Item>
     {
-        private readonly DataDragonService dataDragonService;
+        private readonly IDataDragonService dataDragonService;
 
-        public ItemsViewModel(DataDragonService dataDragonService, ILocalizationService localizationService)
+        public ItemsViewModel(IDataDragonService dataDragonService, ILocalizationService localizationService)
             : base(localizationService, nameof(Items))
         {
             this.dataDragonService = dataDragonService;
+            LoadData(false);
         }
 
         public IList<Item> Items => FilteredCollection;

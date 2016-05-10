@@ -5,36 +5,54 @@ using System.Linq;
 
 namespace LolHandbook.ViewModels
 {
-    public class ChampionSkinsViewModel : ViewModelBase, IChampionSkinsViewModel
+    public class ChampionSkinsViewModel : ViewModelBase
     {
-        private readonly IList<ChampionSkin> skins;
-        private int currentSkin;
+        private IList<ChampionSkin> skins;
+        private int currentSkinIndex;
 
-        public ChampionSkinsViewModel(IList<ChampionSkin> skins)
+        public IList<ChampionSkin> Skins
         {
-            this.skins = skins;
+            get
+            {
+                return skins;
+            }
+
+            set
+            {
+                if (skins != value)
+                {
+                    this.skins = value;
+                    RaisePropertyChanged(nameof(Skins));
+                    RaisePropertyChanged(nameof(TotalSkins));
+                    RaisePropertyChanged(nameof(SkinUris));
+
+                    this.CurrentSkinIndex = 0;
+                }
+            }
         }
 
+        public string CurrentSkinName => skins[currentSkinIndex].Name;
+
         public int TotalSkins => skins.Count;
-        public IList<Uri> SkinUris => skins.Select(s => s.ImageUri).ToList();
+        public int CurrentSkinDisplayIndex => currentSkinIndex + 1;
 
         public int CurrentSkinIndex
         {
             get
             {
-                return currentSkin;
+                return currentSkinIndex;
             }
 
             set
             {
-                this.currentSkin = value;
+                this.currentSkinIndex = value;
                 RaisePropertyChanged(nameof(CurrentSkinIndex));
                 RaisePropertyChanged(nameof(CurrentSkinDisplayIndex));
                 RaisePropertyChanged(nameof(CurrentSkinName));
             }
         }
 
-        public int CurrentSkinDisplayIndex => currentSkin + 1;
-        public string CurrentSkinName => skins[currentSkin].Name;
+        public IList<Uri> SkinUris => skins.Select(s => s.ImageUri).ToList();
+        public Uri CurrentSkinUri => skins[currentSkinIndex].ImageUri;
     }
 }

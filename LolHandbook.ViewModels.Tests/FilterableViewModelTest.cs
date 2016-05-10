@@ -16,7 +16,6 @@ namespace LolHandbook.ViewModels
         public void SetUp()
         {
             this.viewModel = new StubViewModel();
-            viewModel.LoadData(false).Wait();
         }
 
         [Test]
@@ -47,6 +46,7 @@ namespace LolHandbook.ViewModels
         {
             public StubViewModel() : base(new StubLocalizationService(), "dont-care")
             {
+                LoadData(false).Wait();
             }
 
             internal IList<StubElement> Collection => FilteredCollection;

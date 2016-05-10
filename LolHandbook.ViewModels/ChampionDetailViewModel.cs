@@ -115,7 +115,7 @@ namespace LolHandbook.ViewModels
             return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
-        public new async void LoadData(bool forceReload)
+        public async void LoadData(bool forceReload)
         {
             if (Detail != null && !forceReload)
             {
