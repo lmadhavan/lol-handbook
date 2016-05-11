@@ -1,5 +1,4 @@
 ﻿using DataDragon;
-using LolHandbook.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 
@@ -7,13 +6,13 @@ namespace LolHandbook.ViewModels
 {
     public class ItemDetailViewModel : ViewModelBase
     {
-        private readonly IDataDragonService dataDragonService;
+        private readonly IDataDragonClient dataDragonClient;
         private string id;
         private Item item;
 
-        public ItemDetailViewModel(IDataDragonService dataDragonService)
+        public ItemDetailViewModel(IDataDragonClient dataDragonClient)
         {
-            this.dataDragonService = dataDragonService;
+            this.dataDragonClient = dataDragonClient;
         }
 
         public string Id
@@ -30,7 +29,10 @@ namespace LolHandbook.ViewModels
                     this.id = value;
                     RaisePropertyChanged(nameof(Id));
 
-                    this.Item = dataDragonService.GetItem(id);
+                    this.Item = null;
+                    RaisePropertyChanged(nameof(Item));
+
+                    LoadData(id);
                 }
             }
         }
@@ -46,9 +48,13 @@ namespace LolHandbook.ViewModels
             {
                 if (item != value)
                 {
+                    this.id = null;
+                    RaisePropertyChanged(nameof(Id));
+
                     this.item = value;
                     RaisePropertyChanged(nameof(Item));
-                    LoadData();
+
+                    LoadData(null);
                 }
             }
         }
@@ -62,42 +68,66 @@ namespace LolHandbook.ViewModels
         public IList<Item> Requires { get; private set; }
         public IList<Item> BuildsInto { get; private set; }
 
-        private void LoadData()
+        private async void LoadData(string id)
         {
-            LoadRequires();
-            LoadBuildsInto();
+            IDictionary<string, Item> items = await dataDragonClient.GetItemsAsync();
+
+            if (id != null)
+            {
+                if (items.ContainsKey(id))
+                {
+                    this.item = items[id];
+                    RaisePropertyChanged(nameof(Item));
+                } else
+                {
+                    return;
+                }
+            }
 
             RaisePropertyChanged(nameof(Name));
             RaisePropertyChanged(nameof(ImageUri));
             RaisePropertyChanged(nameof(Cost));
             RaisePropertyChanged(nameof(Description));
             RaisePropertyChanged(nameof(Plaintext));
-            RaisePropertyChanged(nameof(Requires));
-            RaisePropertyChanged(nameof(BuildsInto));
+
+            LoadRequires(items);
+            LoadBuildsInto(items);
         }
 
-        private void LoadRequires()
+        private void LoadRequires(IDictionary<string, Item> items)
         {
             this.Requires = new List<Item>();
+
             if (item.Requires != null)
             {
                 foreach (string id in item.Requires)
                 {
-                    Requires.Add(dataDragonService.GetItem(id));
+                    if (items.ContainsKey(id))
+                    {
+                        Requires.Add(items[id]);
+                    }
                 }
             }
+
+            RaisePropertyChanged(nameof(Requires));
         }
 
-        private void LoadBuildsInto()
+        private void LoadBuildsInto(IDictionary<string, Item> items)
         {
             this.BuildsInto = new List<Item>();
+
             if (item.BuildsInto != null)
             {
                 foreach (string id in item.BuildsInto)
                 {
-                    BuildsInto.Add(dataDragonService.GetItem(id));
+                    if (items.ContainsKey(id))
+                    {
+                        BuildsInto.Add(items[id]);
+                    }
                 }
             }
+
+            RaisePropertyChanged(nameof(BuildsInto));
         }
     }
 }

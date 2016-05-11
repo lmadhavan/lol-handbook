@@ -51,7 +51,7 @@ namespace LolHandbook.ViewModels
 
             internal IList<StubElement> Collection => FilteredCollection;
 
-            protected async override Task<IList<StubElement>> LoadList(bool forceReload)
+            protected async override Task<IList<StubElement>> LoadList()
             {
                 return await Task.Run(() => new List<StubElement>
                 {

@@ -1,23 +1,22 @@
 ﻿using DataDragon;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels.Services
 {
-    public sealed class StubDataDragonService : IDataDragonService
+    public sealed class StubDataDragonClient : IDataDragonClient
     {
-        private readonly IList<ChampionSummary> champions;
+        private readonly IDictionary<string, ChampionSummary> champions;
         private readonly ChampionDetail champion;
         private readonly IDictionary<string, Item> items;
 
-        public StubDataDragonService()
+        public StubDataDragonClient()
         {
-            this.champions = new List<ChampionSummary>();
+            this.champions = new Dictionary<string, ChampionSummary>();
             for (int i = 0; i < 25; i++)
             {
-                champions.Add(new ChampionSummary { Name = "Champion " + i });
+                champions[i.ToString()] = new ChampionSummary { Name = "Champion " + i };
             }
 
             this.champion = new ChampionDetail
@@ -73,29 +72,38 @@ namespace LolHandbook.ViewModels.Services
             items["2"] = new Item { Name = "Item 2" };
         }
 
-        public Task<IDictionary<string, string>> GetLocalizedStringsAsync(bool forceReload)
+        public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
-        public async Task<IList<ChampionSummary>> GetChampionsAsync(bool forceReload)
+        public async Task<string> GetPatchVersionAsync()
+        {
+            return await Task.Run(() => "1.2.3");
+        }
+
+        public async Task<IDictionary<string, string>> GetLocalizedStringsAsync()
+        {
+            return await Task.Run(() => new Dictionary<string, string>());
+        }
+
+        public async Task<IDictionary<string, ChampionSummary>> GetChampionSummariesAsync()
         {
             return await Task.Run(() => champions);
         }
 
-        public async Task<ChampionDetail> GetChampionAsync(string id)
+        public async Task<ChampionDetail> GetChampionDetailAsync(string id)
         {
             return await Task.Run(() => champion);
         }
 
-        public async Task<IList<Item>> GetItemsAsync(bool forceReload)
+        public Task<IDictionary<string, SummonerSpell>> GetSummonerSpellsAsync()
         {
-            return await Task.Run(() => items.Values.ToList());
+            throw new NotImplementedException();
         }
 
-        public Item GetItem(string id)
+        public async Task<IDictionary<string, Item>> GetItemsAsync()
         {
-            return items[id];
+            return await Task.Run(() => items);
         }
     }
 }

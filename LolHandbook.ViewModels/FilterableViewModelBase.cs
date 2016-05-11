@@ -60,8 +60,8 @@ namespace LolHandbook.ViewModels
             }
 
             this.Loading = true;
-            await localizationService.LoadData(forceReload);
-            IList<T> list = await LoadList(forceReload);
+            await localizationService.LoadData();
+            IList<T> list = await LoadList();
             this.Loading = false;
 
             if (list != null)
@@ -84,7 +84,7 @@ namespace LolHandbook.ViewModels
             return new Tag(id, localizationService.Lookup(id));
         }
 
-        protected abstract Task<IList<T>> LoadList(bool forceReload);
+        protected abstract Task<IList<T>> LoadList();
     }
 
     public class Tag

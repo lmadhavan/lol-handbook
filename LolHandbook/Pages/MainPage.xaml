@@ -33,7 +33,7 @@
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Refresh" Click="OnRefresh" />
+                <AppBarButton Label="Refresh" Click="Refresh_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

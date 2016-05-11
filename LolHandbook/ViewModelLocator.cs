@@ -1,4 +1,5 @@
-﻿using LolHandbook.ViewModels;
+﻿using DataDragon;
+using LolHandbook.ViewModels;
 using LolHandbook.ViewModels.Services;
 using LolHandbook.ViewModels.Stubs;
 using Windows.ApplicationModel;
@@ -8,7 +9,7 @@ namespace LolHandbook
     public class ViewModelLocator
     {
         private readonly bool stub;
-        private readonly IDataDragonService dataDragonService;
+        private readonly IDataDragonClient dataDragonClient;
         private readonly ILocalizationService localizationService;
 
         public ViewModelLocator()
@@ -16,21 +17,21 @@ namespace LolHandbook
             if (DesignMode.DesignModeEnabled)
             {
                 this.stub = true;
-                this.dataDragonService = new StubDataDragonService();
+                this.dataDragonClient = new StubDataDragonClient();
                 this.localizationService = new StubLocalizationService();
             }
             else
             {
                 this.stub = false;
-                this.dataDragonService = DataDragonService.Instance;
+                this.dataDragonClient = DataDragonService.Instance;
                 this.localizationService = LocalizationService.Instance;
             }
         }
 
-        public ChampionsViewModel ChampionsViewModel => new ChampionsViewModel(dataDragonService, localizationService);
-        public ItemsViewModel ItemsViewModel => new ItemsViewModel(dataDragonService, localizationService);
-        public ChampionDetailViewModel ChampionDetailViewModel => stub ? new StubChampionDetailViewModel(dataDragonService) : new ChampionDetailViewModel(dataDragonService);
+        public ChampionsViewModel ChampionsViewModel => new ChampionsViewModel(dataDragonClient, localizationService);
+        public ItemsViewModel ItemsViewModel => new ItemsViewModel(dataDragonClient, localizationService);
+        public ChampionDetailViewModel ChampionDetailViewModel => stub ? new StubChampionDetailViewModel(dataDragonClient) : new ChampionDetailViewModel(dataDragonClient);
         public ChampionSkinsViewModel ChampionSkinsViewModel => stub ? new StubChampionSkinsViewModel() : new ChampionSkinsViewModel();
-        public ItemDetailViewModel ItemDetailViewModel => stub ? new StubItemDetailViewModel(dataDragonService) : new ItemDetailViewModel(dataDragonService);
+        public ItemDetailViewModel ItemDetailViewModel => stub ? new StubItemDetailViewModel(dataDragonClient) : new ItemDetailViewModel(dataDragonClient);
     }
 }

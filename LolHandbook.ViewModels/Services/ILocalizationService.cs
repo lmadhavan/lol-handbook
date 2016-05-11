@@ -4,7 +4,7 @@ namespace LolHandbook.ViewModels.Services
 {
     public interface ILocalizationService
     {
-        Task LoadData(bool forceReload);
+        Task LoadData();
         string Lookup(string key);
     }
 }

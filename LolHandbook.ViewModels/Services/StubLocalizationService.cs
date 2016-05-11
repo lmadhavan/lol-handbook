@@ -4,7 +4,7 @@ namespace LolHandbook.ViewModels.Services
 {
     public sealed class StubLocalizationService : ILocalizationService
     {
-        public async Task LoadData(bool forceReload)
+        public async Task LoadData()
         {
         }
 

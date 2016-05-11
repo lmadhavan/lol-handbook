@@ -1,6 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using LolHandbook.ViewModels.Services;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace LolHandbook.Pages
 {
@@ -17,8 +17,9 @@ namespace LolHandbook.Pages
             ItemsPage.OnResuming();
         }
 
-        private void OnRefresh(object sender, RoutedEventArgs e)
+        private void Refresh_Click(object sender, RoutedEventArgs e)
         {
+            DataDragonService.InvalidateCache();
             ChampionsPage.Refresh();
             ItemsPage.Refresh();
         }

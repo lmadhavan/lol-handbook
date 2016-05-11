@@ -1,10 +1,10 @@
-﻿using LolHandbook.ViewModels.Services;
+﻿using DataDragon;
 
 namespace LolHandbook.ViewModels.Stubs
 {
     public class StubChampionDetailViewModel : ChampionDetailViewModel
     {
-        public StubChampionDetailViewModel(IDataDragonService dataDragonService) : base(dataDragonService)
+        public StubChampionDetailViewModel(IDataDragonClient dataDragonClient) : base(dataDragonClient)
         {
             this.Id = "ID";
         }

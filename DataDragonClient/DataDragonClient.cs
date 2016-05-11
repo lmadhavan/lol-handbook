@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 namespace DataDragon
 {
     /// <summary>
-    /// Provides a client for accessing the League of Legends Data Dragon service.
+    /// Provides a default implementation of <see cref="IDataDragonClient"/>.
     /// </summary>
-    public sealed class DataDragonClient : IDisposable
+    public sealed class DataDragonClient : IDataDragonClient
     {
         private readonly JsonHttpClient httpClient;
         private readonly UriBuilderReference uriBuilderReference;
@@ -47,24 +47,12 @@ namespace DataDragon
             uriBuilderReference.Reset();
         }
 
-        /// <summary>
-        /// Gets the current patch version used by the client.
-        /// </summary>
-        /// <returns>The current patch version.</returns>
-        /// <remarks>
-        /// Realm information, including patch version, is cached by the client.
-        /// You can call <see cref="InvalidateRealmInfo"/> to force this information to be reloaded.
-        /// </remarks>
         public async Task<string> GetPatchVersionAsync()
         {
             UriBuilder uriBuilder = await uriBuilderReference.GetUriBuilderAsync(httpClient);
             return uriBuilder.PatchVersion;
         }
 
-        /// <summary>
-        /// Gets a dictionary of localized game strings.
-        /// </summary>
-        /// <returns>A dictionary of localized game strings.</returns>
         public async Task<IDictionary<string, string>> GetLocalizedStringsAsync()
         {
             UriBuilder uriBuilder = await uriBuilderReference.GetUriBuilderAsync(httpClient);
@@ -73,11 +61,7 @@ namespace DataDragon
             return await httpClient.GetDataAsync<string>(uri);
         }
 
-        /// <summary>
-        /// Gets summary information about all champions in the game.
-        /// </summary>
-        /// <returns>A dictionary of <see cref="ChampionSummary"/> objects keyed by champion ID.</returns>
-        public async Task<IDictionary<string, ChampionSummary>> GetChampionsAsync()
+        public async Task<IDictionary<string, ChampionSummary>> GetChampionSummariesAsync()
         {
             UriBuilder uriBuilder = await uriBuilderReference.GetUriBuilderAsync(httpClient);
 
@@ -92,12 +76,7 @@ namespace DataDragon
             return champions;
         }
 
-        /// <summary>
-        /// Gets detailed information about the specified champion.
-        /// </summary>
-        /// <param name="id">A champion ID.</param>
-        /// <returns>A <see cref="ChampionDetail"/> object describing the specified champion.</returns>
-        public async Task<ChampionDetail> GetChampionAsync(string id)
+        public async Task<ChampionDetail> GetChampionDetailAsync(string id)
         {
             UriBuilder uriBuilder = await uriBuilderReference.GetUriBuilderAsync(httpClient);
 
@@ -121,10 +100,6 @@ namespace DataDragon
             return champion;
         }
 
-        /// <summary>
-        /// Gets information about all summoner spells in the game.
-        /// </summary>
-        /// <returns>A dictionary of <see cref="SummonerSpell"/> objects keyed by summoner spell ID.</returns>
         public async Task<IDictionary<string, SummonerSpell>> GetSummonerSpellsAsync()
         {
             UriBuilder uriBuilder = await uriBuilderReference.GetUriBuilderAsync(httpClient);
@@ -140,10 +115,6 @@ namespace DataDragon
             return summonerSpells;
         }
 
-        /// <summary>
-        /// Gets information about all items in the game.
-        /// </summary>
-        /// <returns>A dictionary of <see cref="Item"/> objects keyed by item ID.</returns>
         public async Task<IDictionary<string, Item>> GetItemsAsync()
         {
             UriBuilder uriBuilder = await uriBuilderReference.GetUriBuilderAsync(httpClient);

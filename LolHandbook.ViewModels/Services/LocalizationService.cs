@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using DataDragon;
+using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels.Services
 {
@@ -6,12 +7,12 @@ namespace LolHandbook.ViewModels.Services
     {
         private static LocalizationService instance;
 
-        private readonly DataDragonService dataDragonService;
+        private readonly IDataDragonClient dataDragonClient;
         private LanguageDictionary languageDictionary;
 
         private LocalizationService()
         {
-            this.dataDragonService = DataDragonService.Instance;
+            this.dataDragonClient = DataDragonService.Instance;
         }
 
         public static LocalizationService Instance
@@ -27,9 +28,9 @@ namespace LolHandbook.ViewModels.Services
             }
         }
 
-        public async Task LoadData(bool forceReload)
+        public async Task LoadData()
         {
-            this.languageDictionary = new LanguageDictionary(await dataDragonService.GetLocalizedStringsAsync(forceReload));
+            this.languageDictionary = new LanguageDictionary(await dataDragonClient.GetLocalizedStringsAsync());
         }
 
         public string Lookup(string key)

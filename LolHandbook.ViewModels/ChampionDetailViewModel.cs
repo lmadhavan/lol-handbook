@@ -1,5 +1,4 @@
 ﻿using DataDragon;
-using LolHandbook.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +8,13 @@ namespace LolHandbook.ViewModels
 {
     public class ChampionDetailViewModel : ViewModelBase
     {
-        private readonly IDataDragonService dataDragonService;
+        private readonly IDataDragonClient dataDragonClient;
         private string id;
         private ChampionSummary summary;
 
-        public ChampionDetailViewModel(IDataDragonService dataDragonService)
+        public ChampionDetailViewModel(IDataDragonClient dataDragonClient)
         {
-            this.dataDragonService = dataDragonService;
+            this.dataDragonClient = dataDragonClient;
         }
 
         public string Id
@@ -126,7 +125,7 @@ namespace LolHandbook.ViewModels
             }
 
             this.Loading = true;
-            this.Detail = await Task.Run(() => dataDragonService.GetChampionAsync(id));
+            this.Detail = await Task.Run(() => dataDragonClient.GetChampionDetailAsync(id));
             this.Loading = false;
 
             if (Detail == null)
