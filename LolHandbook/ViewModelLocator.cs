@@ -33,5 +33,6 @@ namespace LolHandbook
         public ChampionDetailViewModel ChampionDetailViewModel => stub ? new StubChampionDetailViewModel(dataDragonClient) : new ChampionDetailViewModel(dataDragonClient);
         public ChampionSkinsViewModel ChampionSkinsViewModel => stub ? new StubChampionSkinsViewModel() : new ChampionSkinsViewModel();
         public ItemDetailViewModel ItemDetailViewModel => stub ? new StubItemDetailViewModel(dataDragonClient) : new ItemDetailViewModel(dataDragonClient);
+        public AboutViewModel AboutViewModel => new AboutViewModel(dataDragonClient);
     }
 }

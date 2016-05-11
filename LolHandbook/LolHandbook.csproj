@@ -100,6 +100,9 @@
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="ISupportResuming.cs" />
     <Compile Include="ISupportSharing.cs" />
+    <Compile Include="Pages\AboutDialog.xaml.cs">
+      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ChampionSkinsPage.xaml.cs">
       <DependentUpon>ChampionSkinsPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\AboutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ChampionSkinsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

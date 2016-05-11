@@ -44,6 +44,7 @@
     <Compile Include="..\LolHandbook\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AboutViewModel.cs" />
     <Compile Include="Properties\AdditionalAssemblyInfo.cs" />
     <Compile Include="Services\DataDragonService.cs" />
     <Compile Include="ChampionDetailViewModel.cs" />
