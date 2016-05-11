@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="12,4,12,8" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Margin="14,4,12,8" Grid.Row="0">
             <TextBlock Text="Role:" VerticalAlignment="Center" />
 
             <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter.Name}">

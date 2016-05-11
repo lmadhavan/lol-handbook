@@ -6,29 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     NavigationCacheMode="Required">
 
-    <Pivot Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <PivotItem Margin="0">
-            <PivotItem.Header>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Margin="4,0,0,0" VerticalAlignment="Center" Symbol="People" />
-                    <TextBlock Margin="8,0,16,0" Text="Champions" />
-                </StackPanel>
-            </PivotItem.Header>
-
-            <local:ChampionsPage x:Name="ChampionsPage" />
-        </PivotItem>
-
-        <PivotItem Margin="0">
-            <PivotItem.Header>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Margin="4,0,0,0" VerticalAlignment="Center" Symbol="ShowBcc" />
-                    <TextBlock Margin="8,0,16,0" Text="Items" />
-                </StackPanel>
-            </PivotItem.Header>
-
-            <local:ItemsPage x:Name="ItemsPage" />
-        </PivotItem>
-    </Pivot>
+    <Page.Resources>
+        <ResourceDictionary Source="/Resources/PivotStyles.xaml" />
+    </Page.Resources>
 
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">
@@ -38,4 +18,15 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
+
+    <Pivot Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <PivotItem Margin="0" Header="Champions">
+            <local:ChampionsPage x:Name="ChampionsPage" />
+        </PivotItem>
+
+        <PivotItem Margin="0" Header="Items">
+            <local:ItemsPage x:Name="ItemsPage" />
+        </PivotItem>
+    </Pivot>
+
 </Page>
