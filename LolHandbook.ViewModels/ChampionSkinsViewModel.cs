@@ -25,9 +25,9 @@ namespace LolHandbook.ViewModels
                     RaisePropertyChanged(nameof(Skins));
                     RaisePropertyChanged(nameof(TotalSkins));
                     RaisePropertyChanged(nameof(SkinUris));
-
-                    this.CurrentSkinIndex = 0;
                 }
+
+                this.CurrentSkinIndex = 0;
             }
         }
 
