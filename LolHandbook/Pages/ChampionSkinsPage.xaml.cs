@@ -32,6 +32,7 @@ namespace LolHandbook.Pages
         public void OnDataRequested(DataRequest request)
         {
             request.Data.Properties.Title = ViewModel.CurrentSkinName;
+            request.Data.SetUri(ViewModel.CurrentSkinUri);
 
             DataRequestDeferral deferral = request.GetDeferral();
 
