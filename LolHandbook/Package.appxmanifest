@@ -3,7 +3,7 @@
   <Identity Name="89b29f1c-db2c-485e-bab7-fd8fa0516e3b" Publisher="CN=Madhavan" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="89b29f1c-db2c-485e-bab7-fd8fa0516e3b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>LoL Handbook</DisplayName>
+    <DisplayName>League Handbook</DisplayName>
     <PublisherDisplayName>Madhavan Lakshminarayanan</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,8 +15,12 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="LolHandbook.App">
-      <uap:VisualElements DisplayName="LoL Handbook" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="A handy League of Legends reference." BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <uap:VisualElements DisplayName="League Handbook" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="A handy League of Legends reference." BackgroundColor="transparent">
+        <uap:DefaultTile ShortName="League Handbook" Wide310x150Logo="Assets\Wide310x150Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>

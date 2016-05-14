@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LoL Handbook")]
+[assembly: AssemblyTitle("League Handbook")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Madhavan Lakshminarayanan")]
-[assembly: AssemblyProduct("LoL Handbook")]
+[assembly: AssemblyProduct("League Handbook")]
 [assembly: AssemblyCopyright("©  2016 Madhavan Lakshminarayanan")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
