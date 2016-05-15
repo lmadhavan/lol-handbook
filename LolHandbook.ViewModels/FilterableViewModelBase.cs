@@ -70,11 +70,12 @@ namespace LolHandbook.ViewModels
             {
                 this.collection = list.Where(e => e.Name.Length > 0).OrderBy(e => e.Name).ToList();
 
-                List<string> tags = list.SelectMany(e => e.Tags).Distinct().ToList();
-                tags.Sort();
-                tags.Insert(0, TagAll);
+                List<string> tagIds = list.SelectMany(e => e.Tags).Distinct().ToList();
 
-                this.Tags = tags.Select(t => CreateTag(t)).ToList();
+                List<Tag> tags = tagIds.Select(t => CreateTag(t)).OrderBy(t => t.Name).ToList();
+                tags.Insert(0, new Tag(TagAll));
+
+                this.Tags = tags;
                 RaisePropertyChanged(nameof(Tags));
 
                 this.TagFilter = CreateTag(TagAll);
