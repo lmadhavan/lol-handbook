@@ -10,6 +10,7 @@
             <conv:StringConverter x:Key="StringConverter" />
             <conv:ImageUriConverter x:Key="ImageUriConverter" />
             <conv:VisibilityConverter x:Key="VisibilityConverter" />
+            <conv:SelectionModeConverter x:Key="SelectionModeConverter" />
 
             <DataTemplate x:Key="GroupHeaderTemplate">
                 <TextBlock FontWeight="SemiLight" FontSize="26" Text="{Binding Key}" />

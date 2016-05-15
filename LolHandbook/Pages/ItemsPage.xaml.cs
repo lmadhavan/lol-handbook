@@ -31,7 +31,7 @@ namespace LolHandbook.Pages
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (ItemDetailPage.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            if (!MasterDetailsControl.IsDetailsPaneVisible)
             {
                 Item item = (Item)e.ClickedItem;
                 App.Navigate(typeof(ItemDetailPage), item);

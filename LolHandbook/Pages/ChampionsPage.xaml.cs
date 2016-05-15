@@ -31,7 +31,7 @@ namespace LolHandbook.Pages
 
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (ChampionDetailPage.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            if (!MasterDetailsControl.IsDetailsPaneVisible)
             {
                 ChampionSummary summary = (ChampionSummary)e.ClickedItem;
                 App.Navigate(typeof(ChampionDetailPage), summary);

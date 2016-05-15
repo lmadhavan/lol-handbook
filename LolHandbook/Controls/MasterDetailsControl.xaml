@@ -1,0 +1,46 @@
+﻿<UserControl
+    x:Class="LolHandbook.Controls.MasterDetailsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MasterColumn.Width" Value="*" />
+                        <Setter Target="DetailsColumn.Width" Value="0" />
+                        <Setter Target="DetailsPanePresenter.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MasterColumn.Width" Value="280" />
+                        <Setter Target="DetailsColumn.Width" Value="*" />
+                        <Setter Target="DetailsPanePresenter.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MasterColumn" Width="*" />
+            <ColumnDefinition x:Name="DetailsColumn" Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ContentPresenter x:Name="MasterPanePresenter" Grid.Column="0" />
+        <ContentPresenter x:Name="DetailsPanePresenter" Grid.Column="1" />
+    </Grid>
+</UserControl>

@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LolHandbook.Pages"
+    xmlns:controls="using:LolHandbook.Controls"
     xmlns:dd="using:DataDragon"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ChampionsViewModel, Source={StaticResource ViewModelLocator}}">
@@ -11,80 +12,55 @@
         <CollectionViewSource x:Key="ChampionGroups" IsSourceGrouped="True" Source="{Binding ChampionGroups}" />
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ChampionListColumn.Width" Value="*" />
-                        <Setter Target="ChampionDetailColumn.Width" Value="0" />
-                        <Setter Target="ChampionsView.SelectionMode" Value="None" />
-                        <Setter Target="ChampionDetailPage.Visibility" Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
+    <controls:MasterDetailsControl x:Name="MasterDetailsControl" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:MasterDetailsControl.MasterPane>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ChampionListColumn.Width" Value="280" />
-                        <Setter Target="ChampionDetailColumn.Width" Value="*" />
-                        <Setter Target="ChampionsView.SelectionMode" Value="Single" />
-                        <Setter Target="ChampionDetailPage.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+                <StackPanel Orientation="Horizontal" Margin="14,4,12,8" Grid.Row="0">
+                    <TextBlock Text="Role:" VerticalAlignment="Center" />
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+                    <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter.Name}">
+                        <Button.Flyout>
+                            <Flyout x:Name="TagFlyout">
+                                <ListBox x:Name="TagList" ItemsSource="{Binding Tags}" DisplayMemberPath="Name" SelectionChanged="TagList_SelectionChanged" />
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </StackPanel>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="ChampionListColumn" Width="*" />
-            <ColumnDefinition x:Name="ChampionDetailColumn" Width="*" />
-        </Grid.ColumnDefinitions>
+                <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
 
-        <StackPanel Orientation="Horizontal" Margin="14,4,12,8" Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Role:" VerticalAlignment="Center" />
+                <GridView Grid.Row="2"
+                          SelectionMode="{Binding ElementName=MasterDetailsControl, Path=IsDetailsPaneVisible, Converter={StaticResource SelectionModeConverter}}"
+                          SelectedItem="{Binding ElementName=ChampionDetailPage, Path=ViewModel.Summary, Mode=TwoWay}"
+                          ItemsSource="{Binding Source={StaticResource ChampionGroups}}"
+                          IsItemClickEnabled="True" ItemClick="GridView_ItemClick">
+                    <GridView.GroupStyle>
+                        <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
+                    </GridView.GroupStyle>
 
-            <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter.Name}">
-                <Button.Flyout>
-                    <Flyout x:Name="TagFlyout">
-                        <ListBox x:Name="TagList" ItemsSource="{Binding Tags}" DisplayMemberPath="Name" SelectionChanged="TagList_SelectionChanged" />
-                    </Flyout>
-                </Button.Flyout>
-            </Button>
-        </StackPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="dd:ChampionSummary">
+                            <StackPanel Orientation="Vertical" Margin="8" Width="70" ToolTipService.ToolTip="{x:Bind Name}">
+                                <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="64" Height="64">
+                                    <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
+                                </Border>
+                                <TextBlock Text="{x:Bind Name}" TextAlignment="Center" TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+        </controls:MasterDetailsControl.MasterPane>
 
-        <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" Grid.Column="0" />
+        <controls:MasterDetailsControl.DetailsPane>
+            <local:ChampionDetailPage x:Name="ChampionDetailPage" />
+        </controls:MasterDetailsControl.DetailsPane>
+    </controls:MasterDetailsControl>
 
-        <GridView x:Name="ChampionsView" Grid.Row="2" Grid.Column="0"
-                  SelectedItem="{Binding ElementName=ChampionDetailPage, Path=ViewModel.Summary, Mode=TwoWay}"
-                  ItemsSource="{Binding Source={StaticResource ChampionGroups}}"
-                  IsItemClickEnabled="True" ItemClick="GridView_ItemClick">
-            <GridView.GroupStyle>
-                <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
-            </GridView.GroupStyle>
-            
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="dd:ChampionSummary">
-                    <StackPanel Orientation="Vertical" Margin="8" Width="70" ToolTipService.ToolTip="{x:Bind Name}">
-                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="64" Height="64">
-                            <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
-                        </Border>
-                        <TextBlock Text="{x:Bind Name}" TextAlignment="Center" TextTrimming="CharacterEllipsis" />
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-
-        <local:ChampionDetailPage x:Name="ChampionDetailPage" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" />
-    </Grid>
 </Page>
