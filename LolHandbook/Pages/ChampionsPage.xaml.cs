@@ -31,8 +31,11 @@ namespace LolHandbook.Pages
 
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ChampionSummary summary = (ChampionSummary)e.ClickedItem;
-            App.Navigate(typeof(ChampionDetailPage), summary);
+            if (ChampionDetailPage.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            {
+                ChampionSummary summary = (ChampionSummary)e.ClickedItem;
+                App.Navigate(typeof(ChampionDetailPage), summary);
+            }
         }
     }
 }

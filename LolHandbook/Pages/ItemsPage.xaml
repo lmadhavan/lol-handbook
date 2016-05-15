@@ -31,7 +31,7 @@
                         <AdaptiveTrigger MinWindowWidth="800" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="ItemListColumn.Width" Value="250" />
+                        <Setter Target="ItemListColumn.Width" Value="280" />
                         <Setter Target="ItemDetailColumn.Width" Value="*" />
                         <Setter Target="ItemsView.SelectionMode" Value="Single" />
                         <Setter Target="ItemDetailPage.Visibility" Value="Visible" />

@@ -14,7 +14,7 @@ namespace LolHandbook.Pages
             this.InitializeComponent();
         }
 
-        private ChampionDetailViewModel ViewModel => DataContext as ChampionDetailViewModel;
+        public ChampionDetailViewModel ViewModel => DataContext as ChampionDetailViewModel;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
