@@ -98,7 +98,7 @@ namespace LolHandbook.ViewModels
         {
             this.Requires = new List<Item>();
 
-            if (item.Requires != null)
+            if (item?.Requires != null)
             {
                 foreach (string id in item.Requires)
                 {
@@ -116,7 +116,7 @@ namespace LolHandbook.ViewModels
         {
             this.BuildsInto = new List<Item>();
 
-            if (item.BuildsInto != null)
+            if (item?.BuildsInto != null)
             {
                 foreach (string id in item.BuildsInto)
                 {

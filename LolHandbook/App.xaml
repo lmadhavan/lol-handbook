@@ -12,7 +12,7 @@
             <conv:VisibilityConverter x:Key="VisibilityConverter" />
 
             <DataTemplate x:Key="GroupHeaderTemplate">
-                <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding Key}" />
+                <TextBlock FontWeight="SemiLight" FontSize="26" Text="{Binding Key}" />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

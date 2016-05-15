@@ -61,7 +61,7 @@
                                 </VisualState>
                                 <VisualState x:Name="Wide">
                                     <VisualState.StateTriggers>
-                                        <AdaptiveTrigger MinWindowWidth="500" />
+                                        <AdaptiveTrigger MinWindowWidth="800" />
                                     </VisualState.StateTriggers>
                                     <VisualState.Setters>
                                         <Setter Target="HeaderClipper.HorizontalContentAlignment" Value="Stretch" />

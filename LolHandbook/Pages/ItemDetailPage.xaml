@@ -20,12 +20,6 @@
             <!-- Item description -->
 
             <Grid Background="{ThemeResource PivotNavButtonBackgroundThemeBrush}" Padding="20,20,20,10">
-                <Grid.Transitions>
-                    <TransitionCollection>
-                        <ContentThemeTransition />
-                    </TransitionCollection>
-                </Grid.Transitions>
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -59,14 +53,14 @@
             
             <StackPanel Orientation="Vertical" Padding="20,8,20,0" Visibility="{Binding Requires, Converter={StaticResource VisibilityConverter}}">
                 <TextBlock FontSize="20" Text="Requires" />
-                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding Requires}" ItemTemplate="{StaticResource ItemDataTemplateWide}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
+                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding Requires}" ItemTemplate="{StaticResource ItemDataTemplateFixedWidth}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
             </StackPanel>
 
             <!-- Builds Into -->
 
             <StackPanel Orientation="Vertical" Padding="20,8,20,0" Visibility="{Binding BuildsInto, Converter={StaticResource VisibilityConverter}}">
                 <TextBlock FontSize="20" Text="Builds Into" />
-                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding BuildsInto}" ItemTemplate="{StaticResource ItemDataTemplateWide}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
+                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding BuildsInto}" ItemTemplate="{StaticResource ItemDataTemplateFixedWidth}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
             </StackPanel>
 
         </StackPanel>

@@ -12,7 +12,7 @@ namespace LolHandbook.Pages
             this.InitializeComponent();
         }
 
-        private ItemDetailViewModel ViewModel => DataContext as ItemDetailViewModel;
+        public ItemDetailViewModel ViewModel => DataContext as ItemDetailViewModel;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

@@ -4,24 +4,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dd="using:DataDragon">
     
-    <DataTemplate x:Key="ItemDataTemplate" x:DataType="dd:Item">
-        <StackPanel Orientation="Horizontal" Margin="8" Width="160" ToolTipService.ToolTip="{x:Bind Name}">
-            <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="32" Height="32">
+    <DataTemplate x:Key="ItemDataTemplateAutoWidth" x:DataType="dd:Item">
+        <Grid Margin="0,8" ToolTipService.ToolTip="{x:Bind Name}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="32" Height="32" HorizontalAlignment="Left" Grid.Column="0">
                 <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
             </Border>
 
-            <TextBlock Margin="8,0,0,0" Width="120" Text="{x:Bind Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
-        </StackPanel>
+            <TextBlock Text="{x:Bind Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Grid.Column="1" />
+        </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="ItemDataTemplateWide" x:DataType="dd:Item">
-        <StackPanel Orientation="Horizontal" Margin="8" Width="200" ToolTipService.ToolTip="{x:Bind Name}">
-            <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="32" Height="32">
+    <DataTemplate x:Key="ItemDataTemplateFixedWidth" x:DataType="dd:Item">
+        <Grid Margin="8" Width="200" ToolTipService.ToolTip="{x:Bind Name}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="160" />
+            </Grid.ColumnDefinitions>
+
+            <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="32" Height="32" HorizontalAlignment="Left" Grid.Column="0">
                 <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
             </Border>
 
-            <TextBlock Margin="8,0,0,0" Width="160" Text="{x:Bind Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
-        </StackPanel>
+            <TextBlock Text="{x:Bind Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Grid.Column="1" />
+        </Grid>
     </DataTemplate>
 
 </ResourceDictionary>

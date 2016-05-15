@@ -29,10 +29,13 @@ namespace LolHandbook.Pages
             ViewModel.TagFilter = TagList.SelectedItem as Tag;
         }
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Item item = (Item)e.ClickedItem;
-            App.Navigate(typeof(ItemDetailPage), item);
+            if (ItemDetailPage.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            {
+                Item item = (Item)e.ClickedItem;
+                App.Navigate(typeof(ItemDetailPage), item);
+            }
         }
     }
 }
