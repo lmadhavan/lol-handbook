@@ -6,6 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ItemsViewModel, Source={StaticResource ViewModelLocator}}">
 
+    <Page.Resources>
+        <CollectionViewSource x:Key="ItemGroups" IsSourceGrouped="True" Source="{Binding ItemGroups}" />
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.Resources>
             <ResourceDictionary>
@@ -35,6 +39,10 @@
 
         <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
 
-        <GridView x:Name="ItemsView" SelectionMode="None" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemDataTemplate}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" Grid.Row="2" />
+        <GridView x:Name="ItemsView" SelectionMode="None" ItemsSource="{Binding Source={StaticResource ItemGroups}}" ItemTemplate="{StaticResource ItemDataTemplate}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" Grid.Row="2">
+            <GridView.GroupStyle>
+                <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
+            </GridView.GroupStyle>
+        </GridView>
     </Grid>
 </Page>

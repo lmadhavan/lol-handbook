@@ -28,12 +28,19 @@ namespace LolHandbook.ViewModels
         [Test]
         public void FiltersCollectionByTag()
         {
-            Assert.That(viewModel.TagFilter.Id, Is.EqualTo(StubViewModel.TagAll));
-            Assert.That(viewModel.Collection.Count, Is.EqualTo(2));
-
             viewModel.TagFilter = new Tag("tag1");
-            Assert.That(viewModel.Collection.Count, Is.EqualTo(1));
-            Assert.That(viewModel.Collection[0].Name, Is.EqualTo("element1"));
+
+            Assert.That(viewModel.Groups.Count(), Is.EqualTo(1));
+
+            IEnumerable<StubElement> elements = viewModel.Groups.First();
+            Assert.That(elements.Count, Is.EqualTo(2));
+            Assert.That(elements.Select(e => e.Name).ToList(), Is.EqualTo(new List<string> { "A1", "A2" }).AsCollection);
+        }
+
+        [Test]
+        public void GroupsCollectionAlphabetically()
+        {
+            Assert.That(viewModel.Groups.Select(g => g.Key), Is.EqualTo(new List<string> { "A", "B" }).AsCollection);
         }
 
         private class StubElement : ISupportTags
@@ -44,19 +51,20 @@ namespace LolHandbook.ViewModels
 
         private class StubViewModel : FilterableViewModelBase<StubElement>
         {
-            public StubViewModel() : base(new StubLocalizationService(), "dont-care")
+            public StubViewModel() : base(new StubLocalizationService(), nameof(Groups))
             {
                 LoadData(false).Wait();
             }
 
-            internal IList<StubElement> Collection => FilteredCollection;
+            internal IEnumerable<IGrouping<string, StubElement>> Groups => FilteredGroups;
 
             protected async override Task<IList<StubElement>> LoadList()
             {
                 return await Task.Run(() => new List<StubElement>
                 {
-                    new StubElement { Name = "element1", Tags = new List<string> { "tag1" } },
-                    new StubElement { Name = "element2", Tags = new List<string> { "tag2" } }
+                    new StubElement { Name = "A1", Tags = new List<string> { "tag1" } },
+                    new StubElement { Name = "A2", Tags = new List<string> { "tag1" } },
+                    new StubElement { Name = "B", Tags = new List<string> { "tag2" } }
                 });
             }
         }

@@ -11,13 +11,13 @@ namespace LolHandbook.ViewModels
         private readonly IDataDragonClient dataDragonClient;
 
         public ItemsViewModel(IDataDragonClient dataDragonClient, ILocalizationService localizationService)
-            : base(localizationService, nameof(Items))
+            : base(localizationService, nameof(ItemGroups))
         {
             this.dataDragonClient = dataDragonClient;
             LoadData(false);
         }
 
-        public IList<Item> Items => FilteredCollection;
+        public IEnumerable<IGrouping<string, Item>> ItemGroups => FilteredGroups;
 
         protected override async Task<IList<Item>> LoadList()
         {

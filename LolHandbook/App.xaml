@@ -10,6 +10,10 @@
             <conv:StringConverter x:Key="StringConverter" />
             <conv:ImageUriConverter x:Key="ImageUriConverter" />
             <conv:VisibilityConverter x:Key="VisibilityConverter" />
+
+            <DataTemplate x:Key="GroupHeaderTemplate">
+                <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding Key}" />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

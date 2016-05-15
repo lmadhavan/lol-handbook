@@ -6,6 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ChampionsViewModel, Source={StaticResource ViewModelLocator}}">
 
+    <Page.Resources>
+        <CollectionViewSource x:Key="ChampionGroups" IsSourceGrouped="True" Source="{Binding ChampionGroups}" />
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -27,7 +31,11 @@
 
         <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
 
-        <GridView SelectionMode="None" ItemsSource="{Binding Champions}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" Grid.Row="2">
+        <GridView SelectionMode="None" ItemsSource="{Binding Source={StaticResource ChampionGroups}}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" Grid.Row="2">
+            <GridView.GroupStyle>
+                <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
+            </GridView.GroupStyle>
+            
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="dd:ChampionSummary">
                     <StackPanel Orientation="Vertical" Margin="8" Width="70" ToolTipService.ToolTip="{x:Bind Name}">

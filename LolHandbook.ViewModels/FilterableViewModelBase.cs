@@ -22,7 +22,9 @@ namespace LolHandbook.ViewModels
             this.collectionName = collectionName;
         }
 
-        protected IList<T> FilteredCollection
+        protected IEnumerable<IGrouping<string, T>> FilteredGroups => FilteredCollection?.GroupBy(e => ExtractGroupKey(e));
+
+        private IList<T> FilteredCollection
         {
             get
             {
@@ -66,7 +68,7 @@ namespace LolHandbook.ViewModels
 
             if (list != null)
             {
-                this.collection = list.OrderBy(e => e.Name).ToList();
+                this.collection = list.Where(e => e.Name.Length > 0).OrderBy(e => e.Name).ToList();
 
                 List<string> tags = list.SelectMany(e => e.Tags).Distinct().ToList();
                 tags.Sort();
@@ -82,6 +84,11 @@ namespace LolHandbook.ViewModels
         private Tag CreateTag(string id)
         {
             return new Tag(id, localizationService.Lookup(id));
+        }
+
+        private string ExtractGroupKey(T value)
+        {
+            return value.Name.Substring(0, 1).ToUpper();
         }
 
         protected abstract Task<IList<T>> LoadList();
