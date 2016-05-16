@@ -44,7 +44,7 @@ namespace LolHandbook.ViewModels
             {
                 if (summary != value)
                 {
-                    Set(value.Id, value);
+                    Set(value?.Id, value);
                 }
             }
         }
@@ -61,7 +61,10 @@ namespace LolHandbook.ViewModels
             this.Spells = null;
 
             RaiseAllPropertiesChanged();
-            LoadData(false);
+            if (id != null)
+            {
+                LoadData(false);
+            }
         }
 
         private ChampionDetail Detail { get; set; }
