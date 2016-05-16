@@ -1,9 +1,9 @@
 ﻿<Page
-    x:Class="LolHandbook.Pages.ItemsPage"
+    x:Class="LolHandbook.Views.ItemsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:LolHandbook.Controls"
-    xmlns:local="using:LolHandbook.Pages"
+    xmlns:local="using:LolHandbook.Views"
     xmlns:resources="using:LolHandbook.Resources"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ItemsViewModel, Source={StaticResource ViewModelLocator}}">

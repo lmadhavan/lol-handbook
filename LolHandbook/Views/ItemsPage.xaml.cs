@@ -1,19 +1,18 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
-using System;
 using Windows.UI.Xaml.Controls;
 
-namespace LolHandbook.Pages
+namespace LolHandbook.Views
 {
-    public sealed partial class ChampionsPage : Page, ISupportResuming
+    public sealed partial class ItemsPage : Page, ISupportResuming
     {
-        public ChampionsPage()
+        public ItemsPage()
         {
             this.InitializeComponent();
             UpdateSelectionMode();
         }
 
-        private ChampionsViewModel ViewModel => DataContext as ChampionsViewModel;
+        private ItemsViewModel ViewModel => DataContext as ItemsViewModel;
 
         public void OnResuming()
         {
@@ -29,19 +28,19 @@ namespace LolHandbook.Pages
         {
             if (!MasterDetailsControl.IsDetailsPaneVisible)
             {
-                ChampionSummary summary = (ChampionSummary)e.ClickedItem;
-                App.Navigate(typeof(ChampionDetailPage), summary);
+                Item item = (Item)e.ClickedItem;
+                App.Navigate(typeof(ItemDetailPage), item);
             }
         }
 
-        private void OnDetailsPaneVisibilityChanged(object sender, EventArgs e)
+        private void OnDetailsPaneVisibilityChanged(object sender, System.EventArgs e)
         {
             UpdateSelectionMode();
         }
 
         private void UpdateSelectionMode()
         {
-            ChampionsGrid.SelectionMode = MasterDetailsControl.IsDetailsPaneVisible ? ListViewSelectionMode.Single : ListViewSelectionMode.None;
+            ItemsList.SelectionMode = MasterDetailsControl.IsDetailsPaneVisible ? ListViewSelectionMode.Single : ListViewSelectionMode.None;
         }
     }
 }

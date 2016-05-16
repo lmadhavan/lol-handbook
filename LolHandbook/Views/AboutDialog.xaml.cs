@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace LolHandbook.Pages
+namespace LolHandbook.Views
 {
     public sealed partial class AboutDialog : ContentDialog
     {

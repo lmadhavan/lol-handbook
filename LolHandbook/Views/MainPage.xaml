@@ -1,8 +1,8 @@
 ﻿<Page
-    x:Class="LolHandbook.Pages.MainPage"
+    x:Class="LolHandbook.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:LolHandbook.Pages"
+    xmlns:local="using:LolHandbook.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     NavigationCacheMode="Required">
 

@@ -8,7 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace LolHandbook.Pages
+namespace LolHandbook.Views
 {
     public sealed partial class ChampionSkinsPage : Page, ISupportSharing
     {

@@ -112,25 +112,25 @@
     <Compile Include="Converters\ImageUriConverter.cs" />
     <Compile Include="ISupportResuming.cs" />
     <Compile Include="ISupportSharing.cs" />
-    <Compile Include="Pages\AboutDialog.xaml.cs">
+    <Compile Include="Views\AboutDialog.xaml.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ChampionSkinsPage.xaml.cs">
+    <Compile Include="Views\ChampionSkinsPage.xaml.cs">
       <DependentUpon>ChampionSkinsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ItemDetailPage.xaml.cs">
+    <Compile Include="Views\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ChampionDetailPage.xaml.cs">
+    <Compile Include="Views\ChampionDetailPage.xaml.cs">
       <DependentUpon>ChampionDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ItemsPage.xaml.cs">
+    <Compile Include="Views\ItemsPage.xaml.cs">
       <DependentUpon>ItemsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ChampionsPage.xaml.cs">
+    <Compile Include="Views\ChampionsPage.xaml.cs">
       <DependentUpon>ChampionsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MainPage.xaml.cs">
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,31 +172,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AboutDialog.xaml">
+    <Page Include="Views\AboutDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ChampionSkinsPage.xaml">
+    <Page Include="Views\ChampionSkinsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ItemDetailPage.xaml">
+    <Page Include="Views\ItemDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\ChampionDetailPage.xaml">
+    <Page Include="Views\ChampionDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ItemsPage.xaml">
+    <Page Include="Views\ItemsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\ChampionsPage.xaml">
+    <Page Include="Views\ChampionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MainPage.xaml">
+    <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

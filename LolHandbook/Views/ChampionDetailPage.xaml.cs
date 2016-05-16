@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-namespace LolHandbook.Pages
+namespace LolHandbook.Views
 {
     public sealed partial class ChampionDetailPage : Page, ISupportResuming
     {

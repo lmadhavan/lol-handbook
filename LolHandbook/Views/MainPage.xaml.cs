@@ -3,7 +3,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace LolHandbook.Pages
+namespace LolHandbook.Views
 {
     public sealed partial class MainPage : Page, ISupportResuming
     {

@@ -1,4 +1,4 @@
-﻿using LolHandbook.Pages;
+﻿using LolHandbook.Views;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
