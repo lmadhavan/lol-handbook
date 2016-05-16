@@ -8,7 +8,7 @@ namespace LolHandbook.ViewModels
 {
     public abstract class FilterableViewModelBase<T> : ViewModelBase where T : ISupportTags
     {
-        public const string TagAll = "All";
+        public static readonly Tag TagAll = new Tag("All");
 
         private readonly ILocalizationService localizationService;
         private readonly string collectionName;
@@ -28,7 +28,7 @@ namespace LolHandbook.ViewModels
         {
             get
             {
-                if (collection == null || tagFilter.Id == TagAll)
+                if (collection == null || tagFilter == TagAll)
                 {
                     return collection;
                 }
@@ -48,9 +48,12 @@ namespace LolHandbook.ViewModels
 
             set
             {
-                this.tagFilter = value;
-                RaisePropertyChanged(nameof(TagFilter));
-                RaisePropertyChanged(collectionName);
+                if (tagFilter != value)
+                {
+                    this.tagFilter = value;
+                    RaisePropertyChanged(nameof(TagFilter));
+                    RaisePropertyChanged(collectionName);
+                }
             }
         }
 
@@ -73,12 +76,14 @@ namespace LolHandbook.ViewModels
                 List<string> tagIds = list.SelectMany(e => e.Tags).Distinct().ToList();
 
                 List<Tag> tags = tagIds.Select(t => CreateTag(t)).OrderBy(t => t.Name).ToList();
-                tags.Insert(0, new Tag(TagAll));
+                tags.Insert(0, TagAll);
 
                 this.Tags = tags;
                 RaisePropertyChanged(nameof(Tags));
 
-                this.TagFilter = CreateTag(TagAll);
+                this.tagFilter = TagAll;
+                RaisePropertyChanged(nameof(TagFilter));
+                RaisePropertyChanged(collectionName);
             }
         }
 
@@ -109,5 +114,20 @@ namespace LolHandbook.ViewModels
 
         public string Id { get; }
         public string Name { get; }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Tag && ((Tag)obj).Id == this.Id;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

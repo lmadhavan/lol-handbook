@@ -21,17 +21,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal" Margin="14,4,12,8" Grid.Row="0">
-                    <TextBlock Text="Role:" VerticalAlignment="Center" />
-
-                    <Button Style="{StaticResource TextBlockButtonStyle}" Content="{Binding TagFilter.Name}">
-                        <Button.Flyout>
-                            <Flyout x:Name="TagFlyout">
-                                <ListBox x:Name="TagList" ItemsSource="{Binding Tags}" DisplayMemberPath="Name" SelectionChanged="TagList_SelectionChanged" />
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
-                </StackPanel>
+                <controls:FlyoutPickerControl Margin="14,4,12,8" Label="Role:" ItemsSource="{Binding Tags}" SelectedItem="{Binding TagFilter, Mode=TwoWay}" Grid.Row="0" />
 
                 <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
 

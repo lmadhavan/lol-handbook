@@ -22,7 +22,7 @@ namespace LolHandbook.ViewModels
         public void ExtractsTagsFromCollection()
         {
             IList<string> tags = viewModel.Tags.Select(t => t.Id).ToList();
-            Assert.That(tags, Is.EqualTo(new List<string> { StubViewModel.TagAll, "tag1", "tag2" }).AsCollection);
+            Assert.That(tags, Is.EqualTo(new List<string> { StubViewModel.TagAll.Id, "tag1", "tag2" }).AsCollection);
         }
 
         [Test]

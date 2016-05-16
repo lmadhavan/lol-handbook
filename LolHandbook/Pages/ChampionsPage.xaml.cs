@@ -23,12 +23,6 @@ namespace LolHandbook.Pages
             ViewModel.LoadData(true);
         }
 
-        private void TagList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            TagFlyout.Hide();
-            ViewModel.TagFilter = TagList.SelectedItem as Tag;
-        }
-
         private void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (!MasterDetailsControl.IsDetailsPaneVisible)
