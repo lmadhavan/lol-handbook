@@ -107,7 +107,6 @@
     <Compile Include="Controls\FlyoutPicker.xaml.cs">
       <DependentUpon>FlyoutPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\SelectionModeConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\ImageUriConverter.cs" />

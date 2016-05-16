@@ -9,6 +9,7 @@ namespace LolHandbook.Pages
         public ItemsPage()
         {
             this.InitializeComponent();
+            UpdateSelectionMode();
         }
 
         private ItemsViewModel ViewModel => DataContext as ItemsViewModel;
@@ -23,13 +24,23 @@ namespace LolHandbook.Pages
             ViewModel.LoadData(true);
         }
 
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        private void OnItemClicked(object sender, ItemClickEventArgs e)
         {
             if (!MasterDetailsControl.IsDetailsPaneVisible)
             {
                 Item item = (Item)e.ClickedItem;
                 App.Navigate(typeof(ItemDetailPage), item);
             }
+        }
+
+        private void OnDetailsPaneVisibilityChanged(object sender, System.EventArgs e)
+        {
+            UpdateSelectionMode();
+        }
+
+        private void UpdateSelectionMode()
+        {
+            ItemsList.SelectionMode = MasterDetailsControl.IsDetailsPaneVisible ? ListViewSelectionMode.Single : ListViewSelectionMode.None;
         }
     }
 }

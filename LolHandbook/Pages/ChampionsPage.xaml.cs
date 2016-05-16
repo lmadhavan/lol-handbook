@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using System;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Pages
@@ -9,6 +10,7 @@ namespace LolHandbook.Pages
         public ChampionsPage()
         {
             this.InitializeComponent();
+            UpdateSelectionMode();
         }
 
         private ChampionsViewModel ViewModel => DataContext as ChampionsViewModel;
@@ -23,13 +25,23 @@ namespace LolHandbook.Pages
             ViewModel.LoadData(true);
         }
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void OnItemClicked(object sender, ItemClickEventArgs e)
         {
             if (!MasterDetailsControl.IsDetailsPaneVisible)
             {
                 ChampionSummary summary = (ChampionSummary)e.ClickedItem;
                 App.Navigate(typeof(ChampionDetailPage), summary);
             }
+        }
+
+        private void OnDetailsPaneVisibilityChanged(object sender, EventArgs e)
+        {
+            UpdateSelectionMode();
+        }
+
+        private void UpdateSelectionMode()
+        {
+            ChampionsGrid.SelectionMode = MasterDetailsControl.IsDetailsPaneVisible ? ListViewSelectionMode.Single : ListViewSelectionMode.None;
         }
     }
 }

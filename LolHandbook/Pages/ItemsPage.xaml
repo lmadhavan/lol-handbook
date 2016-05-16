@@ -12,7 +12,7 @@
         <CollectionViewSource x:Key="ItemGroups" IsSourceGrouped="True" Source="{Binding ItemGroups}" />
     </Page.Resources>
 
-    <controls:MasterDetailsControl x:Name="MasterDetailsControl" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <controls:MasterDetailsControl x:Name="MasterDetailsControl" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" DetailsPaneVisibilityChanged="OnDetailsPaneVisibilityChanged">
         <controls:MasterDetailsControl.MasterPane>
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <Grid.Resources>
@@ -33,11 +33,10 @@
 
                 <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
 
-                <ListView Grid.Row="2"
-                  SelectionMode="{Binding ElementName=MasterDetailsControl, Path=IsDetailsPaneVisible, Converter={StaticResource SelectionModeConverter}}"
+                <ListView x:Name="ItemsList" Grid.Row="2"
                   SelectedItem="{Binding ElementName=ItemDetailPage, Path=ViewModel.Item, Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource ItemGroups}}" ItemTemplate="{StaticResource ItemDataTemplateAutoWidth}"
-                  IsItemClickEnabled="True" ItemClick="ListView_ItemClick">
+                  IsItemClickEnabled="True" ItemClick="OnItemClicked">
                     <ListView.GroupStyle>
                         <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
                     </ListView.GroupStyle>

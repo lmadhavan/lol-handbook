@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Controls
@@ -8,59 +9,30 @@ namespace LolHandbook.Controls
         public MasterDetailsControl()
         {
             this.InitializeComponent();
-
-            UpdateDetailsPaneVisible();
             DetailsPanePresenter.RegisterPropertyChangedCallback(VisibilityProperty, OnDetailsPaneVisibilityChanged);
         }
 
-        public static DependencyProperty MasterPaneProperty = DependencyProperty.Register(nameof(MasterPane), typeof(UIElement), typeof(MasterDetailsControl), new PropertyMetadata(null));
-        public static DependencyProperty DetailsPaneProperty = DependencyProperty.Register(nameof(DetailsPane), typeof(UIElement), typeof(MasterDetailsControl), new PropertyMetadata(null));
-        public static DependencyProperty IsDetailsPaneVisibleProperty = DependencyProperty.Register(nameof(IsDetailsPaneVisible), typeof(bool), typeof(MasterDetailsControl), new PropertyMetadata(false));
+        public static readonly DependencyProperty MasterPaneProperty = DependencyProperty.Register(nameof(MasterPane), typeof(UIElement), typeof(MasterDetailsControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty DetailsPaneProperty = DependencyProperty.Register(nameof(DetailsPane), typeof(UIElement), typeof(MasterDetailsControl), new PropertyMetadata(null));
 
         public UIElement MasterPane
         {
-            get
-            {
-                return (UIElement)GetValue(MasterPaneProperty);
-            }
-
-            set
-            {
-                SetValue(MasterPaneProperty, value);
-                MasterPanePresenter.Content = value;
-            }
+            get { return (UIElement)GetValue(MasterPaneProperty); }
+            set { SetValue(MasterPaneProperty, value); }
         }
 
         public UIElement DetailsPane
         {
-            get
-            {
-                return (UIElement)GetValue(DetailsPaneProperty);
-            }
-
-            set
-            {
-                SetValue(DetailsPaneProperty, value);
-                DetailsPanePresenter.Content = value;
-            }
+            get { return (UIElement)GetValue(DetailsPaneProperty); }
+            set { SetValue(DetailsPaneProperty, value); }
         }
 
-        public bool IsDetailsPaneVisible
-        {
-            get
-            {
-                return (bool)GetValue(IsDetailsPaneVisibleProperty);
-            }
-        }
+        public bool IsDetailsPaneVisible => DetailsPanePresenter.Visibility == Visibility.Visible;
+        public event EventHandler DetailsPaneVisibilityChanged;
 
         private void OnDetailsPaneVisibilityChanged(DependencyObject sender, DependencyProperty dp)
         {
-            UpdateDetailsPaneVisible();
-        }
-
-        private void UpdateDetailsPaneVisible()
-        {
-            SetValue(IsDetailsPaneVisibleProperty, DetailsPanePresenter.Visibility == Visibility.Visible);
+            DetailsPaneVisibilityChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
