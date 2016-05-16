@@ -14,8 +14,8 @@ namespace LolHandbook.Views
 
         public void OnResuming()
         {
-            ChampionsPage.OnResuming();
-            ItemsPage.OnResuming();
+            ChampionsView.OnResuming();
+            ItemsView.OnResuming();
         }
 
         private async void About_Click(object sender, RoutedEventArgs e)
@@ -27,8 +27,8 @@ namespace LolHandbook.Views
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             DataDragonService.InvalidateCache();
-            ChampionsPage.Refresh();
-            ItemsPage.Refresh();
+            ChampionsView.Refresh();
+            ItemsView.Refresh();
         }
     }
 }

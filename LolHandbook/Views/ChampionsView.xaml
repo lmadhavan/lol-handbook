@@ -1,5 +1,5 @@
-﻿<Page
-    x:Class="LolHandbook.Views.ChampionsPage"
+﻿<UserControl
+    x:Class="LolHandbook.Views.ChampionsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LolHandbook.Views"
@@ -8,9 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ChampionsViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <Page.Resources>
+    <UserControl.Resources>
         <CollectionViewSource x:Key="ChampionGroups" IsSourceGrouped="True" Source="{Binding ChampionGroups}" />
-    </Page.Resources>
+    </UserControl.Resources>
 
     <controls:MasterDetailsControl x:Name="MasterDetailsControl" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" DetailsPaneVisibilityChanged="OnDetailsPaneVisibilityChanged">
         <controls:MasterDetailsControl.MasterPane>
@@ -52,4 +52,4 @@
         </controls:MasterDetailsControl.DetailsPane>
     </controls:MasterDetailsControl>
 
-</Page>
+</UserControl>

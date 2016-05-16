@@ -21,11 +21,11 @@
 
     <Pivot Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <PivotItem Margin="0" Header="Champions">
-            <local:ChampionsPage x:Name="ChampionsPage" />
+            <local:ChampionsView x:Name="ChampionsView" />
         </PivotItem>
 
         <PivotItem Margin="0" Header="Items">
-            <local:ItemsPage x:Name="ItemsPage" />
+            <local:ItemsView x:Name="ItemsView" />
         </PivotItem>
     </Pivot>
 

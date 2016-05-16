@@ -124,11 +124,11 @@
     <Compile Include="Views\ChampionDetailPage.xaml.cs">
       <DependentUpon>ChampionDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ItemsPage.xaml.cs">
-      <DependentUpon>ItemsPage.xaml</DependentUpon>
+    <Compile Include="Views\ItemsView.xaml.cs">
+      <DependentUpon>ItemsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChampionsPage.xaml.cs">
-      <DependentUpon>ChampionsPage.xaml</DependentUpon>
+    <Compile Include="Views\ChampionsView.xaml.cs">
+      <DependentUpon>ChampionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -188,11 +188,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ItemsPage.xaml">
+    <Page Include="Views\ItemsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ChampionsPage.xaml">
+    <Page Include="Views\ChampionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
