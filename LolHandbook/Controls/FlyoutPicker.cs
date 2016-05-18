@@ -3,22 +3,19 @@ using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Controls
 {
-    public sealed partial class FlyoutPickerControl : UserControl
+    public sealed class FlyoutPicker : Control
     {
+        private Flyout flyout;
         private bool flyoutOpen;
 
-        public FlyoutPickerControl()
+        public FlyoutPicker()
         {
-            this.InitializeComponent();
-            (Content as FrameworkElement).DataContext = this;
-
-            Flyout.Opened += (s, e) => flyoutOpen = true;
-            Flyout.Closed += (s, e) => flyoutOpen = false;
+            this.DefaultStyleKey = typeof(FlyoutPicker);
         }
 
-        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register(nameof(Label), typeof(string), typeof(FlyoutPickerControl), new PropertyMetadata(null));
-        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(nameof(ItemsSource), typeof(object), typeof(FlyoutPickerControl), new PropertyMetadata(null));
-        public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(FlyoutPickerControl), new PropertyMetadata(null));
+        public static readonly DependencyProperty LabelProperty = DependencyProperty.Register(nameof(Label), typeof(string), typeof(FlyoutPicker), new PropertyMetadata(null));
+        public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(nameof(ItemsSource), typeof(object), typeof(FlyoutPicker), new PropertyMetadata(null));
+        public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(FlyoutPicker), new PropertyMetadata(null));
 
         public event SelectionChangedEventHandler SelectionChanged;
 
@@ -40,6 +37,18 @@ namespace LolHandbook.Controls
             set { SetValue(SelectedItemProperty, value); }
         }
 
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            this.flyout = (Flyout)GetTemplateChild("Flyout");
+            flyout.Opened += (s, e) => flyoutOpen = true;
+            flyout.Closed += (s, e) => flyoutOpen = false;
+
+            ListBox listBox = (ListBox)GetTemplateChild("ListBox");
+            listBox.SelectionChanged += OnSelectionChanged;
+        }
+
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             /*
@@ -49,7 +58,7 @@ namespace LolHandbook.Controls
              */
             if (flyoutOpen)
             {
-                Flyout.Hide();
+                flyout.Hide();
             }
 
             SelectionChanged?.Invoke(this, e);

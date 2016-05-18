@@ -21,7 +21,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <controls:FlyoutPickerControl Margin="14,4,12,8" Label="Role:" ItemsSource="{Binding Tags}" SelectedItem="{Binding TagFilter, Mode=TwoWay}" Grid.Row="0" />
+                <controls:FlyoutPicker Margin="14,4,12,8" Label="Role:" ItemsSource="{Binding Tags}" SelectedItem="{Binding TagFilter, Mode=TwoWay}" Grid.Row="0" />
 
                 <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
 

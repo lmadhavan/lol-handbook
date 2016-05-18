@@ -101,11 +101,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FlyoutPicker.cs" />
     <Compile Include="Controls\MasterDetailsControl.xaml.cs">
       <DependentUpon>MasterDetailsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\FlyoutPicker.xaml.cs">
-      <DependentUpon>FlyoutPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Converters\StringConverter.cs" />
@@ -168,9 +166,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\FlyoutPicker.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AboutDialog.xaml">
       <SubType>Designer</SubType>
