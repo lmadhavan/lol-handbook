@@ -71,7 +71,13 @@
                     Margin="12" HorizontalAlignment="Center"
                     SelectionMode="None"
                     ItemsSource="{Binding ElementName=_FilterableView, Path=ListView.ItemsSource.CollectionGroups}"
-                    ItemTemplate="{StaticResource ZoomedOutTemplate}" />
+                    ItemTemplate="{StaticResource ZoomedOutTemplate}">
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="6" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
