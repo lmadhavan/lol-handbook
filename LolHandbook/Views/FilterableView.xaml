@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LolHandbook.Views"
     xmlns:controls="using:LolHandbook.Controls"
+    xmlns:wuxdata="using:Windows.UI.Xaml.Data"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -38,6 +39,17 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
+        <Grid.Resources>
+            <ResourceDictionary>
+                <DataTemplate x:Key="ZoomedOutTemplate" x:DataType="wuxdata:ICollectionViewGroup">
+                    <TextBlock Padding="12" Width="60" Height="60"
+                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Text="{Binding Group.Key}"
+                               Style="{ThemeResource SubheaderTextBlockStyle}" />
+                </DataTemplate>
+            </ResourceDictionary>
+        </Grid.Resources>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="MasterColumn" Width="*" />
             <ColumnDefinition x:Name="DetailsColumn" Width="*" />
@@ -49,11 +61,19 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:FlyoutPicker Margin="14,4,12,8" Label="{Binding ElementName=_FilterableView, Path=FilterLabel}" ItemsSource="{Binding Tags}" SelectedItem="{Binding TagFilter, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" />
+        <controls:FlyoutPicker Margin="12,4,12,8" Label="{Binding ElementName=_FilterableView, Path=FilterLabel}" ItemsSource="{Binding Tags}" SelectedItem="{Binding TagFilter, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" />
 
         <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" Grid.Column="0" />
 
-        <ContentPresenter x:Name="ListViewPresenter" Content="{Binding ElementName=_FilterableView, Path=ListView}" Grid.Row="2" Grid.Column="0" />
+        <SemanticZoom ZoomedInView="{Binding ElementName=_FilterableView, Path=ListView}" Grid.Row="2" Grid.Column="0">
+            <SemanticZoom.ZoomedOutView>
+                <GridView
+                    Margin="12" HorizontalAlignment="Center"
+                    SelectionMode="None"
+                    ItemsSource="{Binding ElementName=_FilterableView, Path=ListView.ItemsSource.CollectionGroups}"
+                    ItemTemplate="{StaticResource ZoomedOutTemplate}" />
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
 
         <ContentPresenter x:Name="DetailsPanePresenter" Content="{Binding ElementName=_FilterableView, Path=DetailsPane}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" />
     </Grid>

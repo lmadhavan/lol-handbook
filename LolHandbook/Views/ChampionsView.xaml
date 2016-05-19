@@ -6,30 +6,31 @@
     xmlns:dd="using:DataDragon"
     DataContext="{Binding ChampionsViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <UserControl.Resources>
-        <CollectionViewSource x:Key="ChampionGroups" IsSourceGrouped="True" Source="{Binding ChampionGroups}" />
-    </UserControl.Resources>
-
     <local:FilterableView x:Name="View" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" FilterLabel="Role:">
+        <local:FilterableView.Resources>
+            <ResourceDictionary>
+                <CollectionViewSource x:Key="ChampionGroups" IsSourceGrouped="True" Source="{Binding ChampionGroups}" />
+
+                <DataTemplate x:Key="ChampionSummaryTemplate" x:DataType="dd:ChampionSummary">
+                    <StackPanel Orientation="Vertical" Margin="8" Width="70" ToolTipService.ToolTip="{x:Bind Name}">
+                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="64" Height="64">
+                            <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
+                        </Border>
+                        <TextBlock Text="{x:Bind Name}" TextAlignment="Center" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                </DataTemplate>
+            </ResourceDictionary>
+        </local:FilterableView.Resources>
+        
         <local:FilterableView.ListView>
             <GridView x:Name="ChampionsGrid" Grid.Row="2"
                           SelectedItem="{Binding ElementName=ChampionDetailPage, Path=ViewModel.Summary, Mode=TwoWay}"
-                          ItemsSource="{Binding Source={StaticResource ChampionGroups}}"
-                          IsItemClickEnabled="True" ItemClick="OnItemClicked">
+                          ItemsSource="{Binding Source={StaticResource ChampionGroups}}" ItemTemplate="{StaticResource ChampionSummaryTemplate}"
+                          IsItemClickEnabled="True" ItemClick="OnItemClicked"
+                          ScrollViewer.IsHorizontalScrollChainingEnabled="False">
                 <GridView.GroupStyle>
                     <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
                 </GridView.GroupStyle>
-
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="dd:ChampionSummary">
-                        <StackPanel Orientation="Vertical" Margin="8" Width="70" ToolTipService.ToolTip="{x:Bind Name}">
-                            <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="64" Height="64">
-                                <Image Source="{x:Bind ImageUri, Converter={StaticResource ImageUriConverter}}" Stretch="UniformToFill" x:Phase="1" />
-                            </Border>
-                            <TextBlock Text="{x:Bind Name}" TextAlignment="Center" TextTrimming="CharacterEllipsis" />
-                        </StackPanel>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
             </GridView>
         </local:FilterableView.ListView>
 
