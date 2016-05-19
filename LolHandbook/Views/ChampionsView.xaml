@@ -35,7 +35,7 @@
         </local:FilterableView.ListView>
 
         <local:FilterableView.DetailsPane>
-            <local:ChampionDetailPage x:Name="ChampionDetailPage" />
+            <local:ChampionDetailPage x:Name="ChampionDetailPage" Visibility="{Binding ElementName=ChampionDetailPage, Path=ViewModel.Summary, Converter={StaticResource VisibilityConverter}}" />
         </local:FilterableView.DetailsPane>
     </local:FilterableView>
 

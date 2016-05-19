@@ -32,7 +32,7 @@
         </local:FilterableView.ListView>
 
         <local:FilterableView.DetailsPane>
-            <local:ItemDetailPage x:Name="ItemDetailPage" />
+            <local:ItemDetailPage x:Name="ItemDetailPage" Visibility="{Binding ElementName=ItemDetailPage, Path=ViewModel.Item, Converter={StaticResource VisibilityConverter}}" />
         </local:FilterableView.DetailsPane>
     </local:FilterableView>
 
