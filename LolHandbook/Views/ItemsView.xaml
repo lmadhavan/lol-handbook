@@ -2,51 +2,37 @@
     x:Class="LolHandbook.Views.ItemsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:LolHandbook.Controls"
     xmlns:local="using:LolHandbook.Views"
     xmlns:resources="using:LolHandbook.Resources"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding ItemsViewModel, Source={StaticResource ViewModelLocator}}">
 
     <UserControl.Resources>
         <CollectionViewSource x:Key="ItemGroups" IsSourceGrouped="True" Source="{Binding ItemGroups}" />
     </UserControl.Resources>
 
-    <controls:MasterDetailsControl x:Name="MasterDetailsControl" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" DetailsPaneVisibilityChanged="OnDetailsPaneVisibilityChanged">
-        <controls:MasterDetailsControl.MasterPane>
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-                <Grid.Resources>
-                    <ResourceDictionary>
-                        <ResourceDictionary.MergedDictionaries>
-                            <resources:ItemDataTemplate />
-                        </ResourceDictionary.MergedDictionaries>
-                    </ResourceDictionary>
-                </Grid.Resources>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <controls:FlyoutPicker Margin="12,4,12,8" Label="Category:" ItemsSource="{Binding Tags}" SelectedItem="{Binding TagFilter, Mode=TwoWay}" Grid.Row="0" />
-
-                <ProgressBar IsIndeterminate="True" Visibility="{Binding Loading, Converter={StaticResource VisibilityConverter}}" Grid.Row="1" />
-
-                <ListView x:Name="ItemsList" Grid.Row="2"
+    <local:FilterableView x:Name="View" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" FilterLabel="Category:">
+        <local:FilterableView.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <resources:ItemDataTemplate />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </local:FilterableView.Resources>
+        
+        <local:FilterableView.ListView>
+            <ListView x:Name="ItemsList" Grid.Row="2"
                   SelectedItem="{Binding ElementName=ItemDetailPage, Path=ViewModel.Item, Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource ItemGroups}}" ItemTemplate="{StaticResource ItemDataTemplateAutoWidth}"
                   IsItemClickEnabled="True" ItemClick="OnItemClicked">
-                    <ListView.GroupStyle>
-                        <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
-                    </ListView.GroupStyle>
-                </ListView>
+                <ListView.GroupStyle>
+                    <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />
+                </ListView.GroupStyle>
+            </ListView>
+        </local:FilterableView.ListView>
 
-            </Grid>
-        </controls:MasterDetailsControl.MasterPane>
-
-        <controls:MasterDetailsControl.DetailsPane>
+        <local:FilterableView.DetailsPane>
             <local:ItemDetailPage x:Name="ItemDetailPage" />
-        </controls:MasterDetailsControl.DetailsPane>
-    </controls:MasterDetailsControl>
+        </local:FilterableView.DetailsPane>
+    </local:FilterableView>
+
 </UserControl>

@@ -9,7 +9,6 @@ namespace LolHandbook.Views
         public ItemsView()
         {
             this.InitializeComponent();
-            UpdateSelectionMode();
         }
 
         private ItemsViewModel ViewModel => DataContext as ItemsViewModel;
@@ -26,21 +25,11 @@ namespace LolHandbook.Views
 
         private void OnItemClicked(object sender, ItemClickEventArgs e)
         {
-            if (!MasterDetailsControl.IsDetailsPaneVisible)
+            if (!View.IsDetailsPaneVisible)
             {
                 Item item = (Item)e.ClickedItem;
                 App.Navigate(typeof(ItemDetailPage), item);
             }
-        }
-
-        private void OnDetailsPaneVisibilityChanged(object sender, System.EventArgs e)
-        {
-            UpdateSelectionMode();
-        }
-
-        private void UpdateSelectionMode()
-        {
-            ItemsList.SelectionMode = MasterDetailsControl.IsDetailsPaneVisible ? ListViewSelectionMode.Single : ListViewSelectionMode.None;
         }
     }
 }

@@ -102,9 +102,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\FlyoutPicker.cs" />
-    <Compile Include="Controls\MasterDetailsControl.xaml.cs">
-      <DependentUpon>MasterDetailsControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Converters\StringConverter.cs" />
     <Compile Include="Converters\ImageUriConverter.cs" />
@@ -115,6 +112,9 @@
     </Compile>
     <Compile Include="Views\ChampionSkinsPage.xaml.cs">
       <DependentUpon>ChampionSkinsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilterableView.xaml.cs">
+      <DependentUpon>FilterableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
@@ -162,10 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\MasterDetailsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -175,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ChampionSkinsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FilterableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
