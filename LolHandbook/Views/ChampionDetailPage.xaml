@@ -41,23 +41,8 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,12">
-                    <TextBlock Text="{Binding Blurb}" TextWrapping="Wrap" />
-
-                    <Button Style="{StaticResource TextBlockButtonStyle}" Padding="0" FontWeight="Medium" Content="More" Visibility="{Binding Lore, Converter={StaticResource VisibilityConverter}}">
-                        <Button.Flyout>
-                            <Flyout>
-                                <Flyout.FlyoutPresenterStyle>
-                                    <Style TargetType="FlyoutPresenter">
-                                        <Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
-                                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
-                                        <Setter Property="IsTabStop" Value="True" />
-                                        <Setter Property="TabNavigation" Value="Cycle" />
-                                    </Style>
-                                </Flyout.FlyoutPresenterStyle>
-                                <TextBlock Text="{Binding Lore}" TextWrapping="Wrap" />
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
+                    <TextBlock x:Name="LoreTextBlock" Text="{Binding Lore}" TextWrapping="Wrap" TextTrimming="WordEllipsis" />
+                    <Button x:Name="LoreCollapseButton" Style="{StaticResource TextBlockButtonStyle}" Padding="0" FontWeight="Medium" Content="More" Click="OnLoreCollapseClicked" />
                 </StackPanel>
             </Grid>
 
@@ -160,7 +145,7 @@
 
             <!-- Skins -->
 
-            <Button Padding="0" Style="{ThemeResource TextBlockButtonStyle}" Click="Skin_Click">
+            <Button Padding="0" Style="{ThemeResource TextBlockButtonStyle}" Click="OnSkinClicked">
                 <Grid>
                     <Image Source="{Binding DefaultSkinUri}" HorizontalAlignment="Stretch" />
                     <Border Margin="16" Padding="12,4" Background="#A6808080" HorizontalAlignment="Left" VerticalAlignment="Top">

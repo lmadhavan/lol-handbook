@@ -73,7 +73,7 @@ namespace LolHandbook.ViewModels
 
         public string Name => Resolve(c => c.Name);
         public string Title => Resolve(c => c.Title);
-        public string Blurb => HtmlSanitizer.Sanitize(Resolve(c => c.Blurb));
+        public string Lore => HtmlSanitizer.Sanitize(Detail?.Lore ?? Summary?.Blurb);
 
         public string Role
         {
@@ -84,7 +84,6 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public string Lore => HtmlSanitizer.Sanitize(Detail?.Lore);
 
         public IList<ISpellViewModel> Spells { get; private set; }
 
@@ -159,7 +158,6 @@ namespace LolHandbook.ViewModels
             RaisePropertyChanged(nameof(Name));
             RaisePropertyChanged(nameof(Title));
             RaisePropertyChanged(nameof(Role));
-            RaisePropertyChanged(nameof(Blurb));
             RaisePropertyChanged(nameof(Lore));
             RaisePropertyChanged(nameof(Spells));
             RaisePropertyChanged(nameof(Stats));

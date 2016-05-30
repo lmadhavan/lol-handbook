@@ -9,9 +9,15 @@ namespace LolHandbook.Views
 {
     public sealed partial class ChampionDetailPage : Page, ISupportResuming
     {
+        private const int LoreCollapsedMaxLines = 3;
+        private const int LoreExpandedMaxLines = 999;
+        private const string LoreCollapsedButtonText = "More";
+        private const string LoreExpandedButtonText = "Less";
+
         public ChampionDetailPage()
         {
             this.InitializeComponent();
+            CollapseLore();
         }
 
         public ChampionDetailViewModel ViewModel => DataContext as ChampionDetailViewModel;
@@ -31,7 +37,7 @@ namespace LolHandbook.Views
 
             if (e.NavigationMode == NavigationMode.New)
             {
-                ScrollViewer.ScrollToVerticalOffset(0);
+                CollapseLore();
             }
         }
 
@@ -40,9 +46,34 @@ namespace LolHandbook.Views
             ViewModel.LoadData(false);
         }
 
-        private void Skin_Click(object sender, RoutedEventArgs e)
+        private void OnSkinClicked(object sender, RoutedEventArgs e)
         {
             App.Navigate(typeof(ChampionSkinsPage), ViewModel.Skins, new SlideNavigationTransitionInfo());
+        }
+
+        private void OnLoreCollapseClicked(object sender, RoutedEventArgs e)
+        {
+            if (LoreTextBlock.MaxLines < LoreExpandedMaxLines)
+            {
+                ExpandLore();
+            }
+            else
+            {
+                CollapseLore();
+            }
+        }
+
+        private void CollapseLore()
+        {
+            LoreTextBlock.MaxLines = LoreCollapsedMaxLines;
+            LoreCollapseButton.Content = LoreCollapsedButtonText;
+            ScrollViewer.ScrollToVerticalOffset(0);
+        }
+
+        private void ExpandLore()
+        {
+            LoreTextBlock.MaxLines = LoreExpandedMaxLines;
+            LoreCollapseButton.Content = LoreExpandedButtonText;
         }
     }
 }
