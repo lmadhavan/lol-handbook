@@ -7,10 +7,21 @@
     DataContext="{Binding AboutViewModel, Source={StaticResource ViewModelLocator}}">
 
     <StackPanel Orientation="Vertical" Margin="0,12">
-        <TextBlock Text="{Binding AppVersion}" />
-        <TextBlock Text="{Binding Copyright}" />
+        <TextBlock>
+            <Run Text="{Binding AppName}"/>
+            <Run Text="{Binding AppVersion}" />
+        </TextBlock>
 
-        <TextBlock Margin="0,12" FontWeight="SemiBold">
+        <TextBlock Text="{Binding Copyright}" />
+        
+        <HyperlinkButton Click="OnRateAndReviewApp">
+            <TextBlock>
+                <Run Text="Rate and review" />
+                <Run Text="{Binding AppName}" />
+            </TextBlock>
+        </HyperlinkButton>
+
+        <TextBlock Margin="0,20" FontWeight="SemiBold">
             <Run Text="Game patch version: "/>
             <Run Text="{Binding PatchVersion}" />
         </TextBlock>
