@@ -14,23 +14,22 @@ namespace DataDragon
 
         /// <summary>
         /// Initializes a new instance of DataDragonClient with the specified realm.
-        /// The client will use the default language for the specified realm.
         /// </summary>
         /// <param name="realm">A Data Dragon realm code, for example, "na"</param>
+        /// <remarks>The client will use the default language and latest patch version for the specified realm.</remarks>
         public DataDragonClient(string realm)
-            : this(realm, null)
+            : this(new RealmConfiguration(realm))
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of DataDragonClient with the specified realm and language.
+        /// Initializes a new instance of DataDragonClient with the specified realm configuration.
         /// </summary>
-        /// <param name="realm">A Data Dragon realm code, for example, "na"</param>
-        /// <param name="language">A Data Dragon language code, for example, "en_US"</param>
-        public DataDragonClient(string realm, string language)
+        /// <param name="realmConfiguration">A <see cref="RealmConfiguration"/> object that specifies configuration parameters for the client.</param>
+        public DataDragonClient(RealmConfiguration realmConfiguration)
         {
             this.httpClient = new JsonHttpClient();
-            this.uriBuilderReference = new UriBuilderReference(realm, language);
+            this.uriBuilderReference = new UriBuilderReference(realmConfiguration);
         }
 
         public void Dispose()

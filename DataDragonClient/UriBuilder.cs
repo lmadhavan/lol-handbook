@@ -7,18 +7,16 @@ namespace DataDragon
     /// </summary>
     internal sealed class UriBuilder
     {
-        private readonly RealmInfo realmInfo;
-        private readonly string language;
+        private readonly RealmConfiguration realmConfiguration;
 
-        internal UriBuilder(RealmInfo realmInfo, string language)
+        internal UriBuilder(RealmConfiguration realmConfiguration)
         {
-            this.realmInfo = realmInfo;
-            this.language = language;
+            this.realmConfiguration = realmConfiguration;
         }
 
-        internal string Cdn => realmInfo.Cdn;
-        internal string PatchVersion => realmInfo.PatchVersion;
-        internal string Language => language ?? realmInfo.DefaultLanguage;
+        internal string Cdn => realmConfiguration.Cdn;
+        internal string PatchVersion => realmConfiguration.PatchVersion;
+        internal string Language => realmConfiguration.Language;
 
         internal Uri GetDataUri(string path)
         {

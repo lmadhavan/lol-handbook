@@ -9,16 +9,14 @@ namespace DataDragon
     /// </summary>
     internal sealed class UriBuilderReference : IDisposable
     {
-        private readonly string realm;
-        private readonly string language;
+        private readonly RealmConfiguration realmConfiguration;
 
         private readonly SemaphoreSlim fetchLock;
         private UriBuilder uriBuilder;
 
-        internal UriBuilderReference(string realm, string language)
+        internal UriBuilderReference(RealmConfiguration realmConfiguration)
         {
-            this.realm = realm;
-            this.language = language;
+            this.realmConfiguration = realmConfiguration;
             this.fetchLock = new SemaphoreSlim(1, 1);
         }
 
@@ -43,10 +41,11 @@ namespace DataDragon
 
                 if (instance == null)
                 {
-                    Uri realmFile = new Uri($"http://ddragon.leagueoflegends.com/realms/{realm}.json");
-                    RealmInfo realmInfo = await httpClient.GetAsync<RealmInfo>(realmFile);
+                    Uri realmFile = new Uri($"http://ddragon.leagueoflegends.com/realms/{realmConfiguration.Realm}.json");
+                    RealmConfiguration defaultRealmConfiguration = await httpClient.GetAsync<RealmConfiguration>(realmFile);
 
-                    instance = new UriBuilder(realmInfo, language);
+                    RealmConfiguration mergedRealmConfiguration = MergeRealmConfiguration(realmConfiguration, defaultRealmConfiguration);
+                    instance = new UriBuilder(mergedRealmConfiguration);
                     this.uriBuilder = instance;
                 }
 
@@ -56,6 +55,15 @@ namespace DataDragon
             {
                 fetchLock.Release();
             }
+        }
+
+        private RealmConfiguration MergeRealmConfiguration(RealmConfiguration overrideRealmConfiguration, RealmConfiguration defaultRealmConfiguration)
+        {
+            RealmConfiguration result = new RealmConfiguration(overrideRealmConfiguration.Realm);
+            result.Cdn = overrideRealmConfiguration.Cdn ?? defaultRealmConfiguration.Cdn;
+            result.PatchVersion = overrideRealmConfiguration.PatchVersion ?? defaultRealmConfiguration.PatchVersion;
+            result.Language = overrideRealmConfiguration.Language ?? defaultRealmConfiguration.Language;
+            return result;
         }
 
         internal void Reset()

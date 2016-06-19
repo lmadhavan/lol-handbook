@@ -21,22 +21,21 @@ namespace DataDragon
 
         /// <summary>
         /// Initializes a new instance of CachingDataDragonClient with the specified realm.
-        /// The client will use the default language for the specified realm.
         /// </summary>
         /// <param name="realm">A Data Dragon realm code, for example, "na"</param>
+        /// <remarks>The client will use the default language and latest patch version for the specified realm.</remarks>
         public CachingDataDragonClient(string realm)
         {
             this.client = new DataDragonClient(realm);
         }
 
         /// <summary>
-        /// Initializes a new instance of CachingDataDragonClient with the specified realm and language.
+        /// Initializes a new instance of CachingDataDragonClient with the specified realm configuration.
         /// </summary>
-        /// <param name="realm">A Data Dragon realm code, for example, "na"</param>
-        /// <param name="language">A Data Dragon language code, for example, "en_US"</param>
-        public CachingDataDragonClient(string realm, string language)
+        /// <param name="realmConfiguration">A <see cref="RealmConfiguration"/> object that specifies configuration parameters for the client.</param>
+        public CachingDataDragonClient(RealmConfiguration realmConfiguration)
         {
-            this.client = new DataDragonClient(realm, language);
+            this.client = new DataDragonClient(realmConfiguration);
         }
 
         public void Dispose()
