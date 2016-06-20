@@ -45,6 +45,7 @@
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AboutViewModel.cs" />
+    <Compile Include="MainPageViewModel.cs" />
     <Compile Include="Properties\AdditionalAssemblyInfo.cs" />
     <Compile Include="Services\DataDragonService.cs" />
     <Compile Include="ChampionDetailViewModel.cs" />

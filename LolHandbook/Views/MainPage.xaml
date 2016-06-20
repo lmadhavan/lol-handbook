@@ -4,29 +4,41 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LolHandbook.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    NavigationCacheMode="Required">
+    NavigationCacheMode="Required"
+    DataContext="{Binding MainPageViewModel, Source={StaticResource ViewModelLocator}}">
 
     <Page.Resources>
         <ResourceDictionary Source="/Resources/PivotStyles.xaml" />
     </Page.Resources>
 
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal">
+        <CommandBar ClosedDisplayMode="Compact">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="AllApps" Label="Patch notes" ToolTipService.ToolTip="Patch notes" Click="OnPatchNotesClicked" />
+            </CommandBar.PrimaryCommands>
+            
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="About" Click="About_Click" />
-                <AppBarButton Label="Refresh" Click="Refresh_Click" />
+                <AppBarButton Label="About" Click="OnAboutClicked" />
+                <AppBarButton Label="Refresh" Click="OnRefreshClicked" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Pivot Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <PivotItem Margin="0" Header="Champions">
-            <local:ChampionsView x:Name="ChampionsView" />
-        </PivotItem>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="12,21">
+            <Run Text="Patch" />
+            <Run Text="{Binding PatchVersion}" />
+        </TextBlock>
 
-        <PivotItem Margin="0" Header="Items">
-            <local:ItemsView x:Name="ItemsView" />
-        </PivotItem>
-    </Pivot>
+        <Pivot>
+            <PivotItem Margin="0" Header="Champions">
+                <local:ChampionsView x:Name="ChampionsView" />
+            </PivotItem>
+
+            <PivotItem Margin="0" Header="Items">
+                <local:ItemsView x:Name="ItemsView" />
+            </PivotItem>
+        </Pivot>
+    </Grid>
 
 </Page>

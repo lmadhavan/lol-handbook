@@ -28,11 +28,12 @@ namespace LolHandbook
             }
         }
 
+        public MainPageViewModel MainPageViewModel => new MainPageViewModel(dataDragonClient);
         public ChampionsViewModel ChampionsViewModel => new ChampionsViewModel(dataDragonClient, localizationService);
         public ItemsViewModel ItemsViewModel => new ItemsViewModel(dataDragonClient, localizationService);
         public ChampionDetailViewModel ChampionDetailViewModel => stub ? new StubChampionDetailViewModel(dataDragonClient) : new ChampionDetailViewModel(dataDragonClient);
         public ChampionSkinsViewModel ChampionSkinsViewModel => stub ? new StubChampionSkinsViewModel() : new ChampionSkinsViewModel();
         public ItemDetailViewModel ItemDetailViewModel => stub ? new StubItemDetailViewModel(dataDragonClient) : new ItemDetailViewModel(dataDragonClient);
-        public AboutViewModel AboutViewModel => new AboutViewModel(dataDragonClient);
+        public AboutViewModel AboutViewModel => new AboutViewModel();
     }
 }

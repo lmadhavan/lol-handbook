@@ -41,6 +41,7 @@
     <Compile Include="ChampionSpellExtensionsTest.cs" />
     <Compile Include="FilterableViewModelTest.cs" />
     <Compile Include="HtmlSanitizerTest.cs" />
+    <Compile Include="MainPageViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LanguageDictionaryTest.cs" />
   </ItemGroup>

@@ -78,22 +78,22 @@ namespace LolHandbook.ViewModels.Services
 
         public async Task<string> GetPatchVersionAsync()
         {
-            return await Task.Run(() => "1.2.3");
+            return await Task.FromResult("1.2.3");
         }
 
         public async Task<IDictionary<string, string>> GetLocalizedStringsAsync()
         {
-            return await Task.Run(() => new Dictionary<string, string>());
+            return await Task.FromResult(new Dictionary<string, string>());
         }
 
         public async Task<IDictionary<string, ChampionSummary>> GetChampionSummariesAsync()
         {
-            return await Task.Run(() => champions);
+            return await Task.FromResult(champions);
         }
 
         public async Task<ChampionDetail> GetChampionDetailAsync(string id)
         {
-            return await Task.Run(() => champion);
+            return await Task.FromResult(champion);
         }
 
         public Task<IDictionary<string, SummonerSpell>> GetSummonerSpellsAsync()
@@ -103,7 +103,7 @@ namespace LolHandbook.ViewModels.Services
 
         public async Task<IDictionary<string, Item>> GetItemsAsync()
         {
-            return await Task.Run(() => items);
+            return await Task.FromResult(items);
         }
     }
 }
