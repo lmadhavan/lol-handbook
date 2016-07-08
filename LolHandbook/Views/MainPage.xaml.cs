@@ -4,6 +4,7 @@ using System;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace LolHandbook.Views
 {
@@ -18,9 +19,15 @@ namespace LolHandbook.Views
 
         public void OnResuming()
         {
-            ViewModel.LoadData(false);
+            LoadData(false);
             ChampionsView.OnResuming();
             ItemsView.OnResuming();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            OnResuming();
         }
 
         private async void OnAboutClicked(object sender, RoutedEventArgs e)
@@ -32,9 +39,14 @@ namespace LolHandbook.Views
         private void OnRefreshClicked(object sender, RoutedEventArgs e)
         {
             DataDragonService.InvalidateCache();
-            ViewModel.LoadData(true);
+            LoadData(true);
             ChampionsView.Refresh();
             ItemsView.Refresh();
+        }
+
+        private async void LoadData(bool forceReload)
+        {
+            await ViewModel.LoadData(forceReload);
         }
 
         private async void OnPatchNotesClicked(object sender, RoutedEventArgs e)

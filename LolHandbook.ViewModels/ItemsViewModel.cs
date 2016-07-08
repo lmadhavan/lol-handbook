@@ -14,7 +14,6 @@ namespace LolHandbook.ViewModels
             : base(localizationService, nameof(ItemGroups))
         {
             this.dataDragonClient = dataDragonClient;
-            LoadData(false);
         }
 
         public IEnumerable<IGrouping<string, Item>> ItemGroups => FilteredGroups;

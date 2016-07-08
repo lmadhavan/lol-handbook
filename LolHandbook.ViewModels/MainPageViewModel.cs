@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using System;
+using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels
 {
@@ -12,7 +13,6 @@ namespace LolHandbook.ViewModels
         public MainPageViewModel(IDataDragonClient dataDragonClient)
         {
             this.dataDragonClient = dataDragonClient;
-            LoadData(false);
         }
 
         public string PatchVersion { get; private set; } = PatchVersionPlaceholder;
@@ -26,7 +26,7 @@ namespace LolHandbook.ViewModels
             }
         }
 
-        public async void LoadData(bool forceReload)
+        public async Task LoadData(bool forceReload)
         {
             if (PatchVersion != PatchVersionPlaceholder && !forceReload)
             {

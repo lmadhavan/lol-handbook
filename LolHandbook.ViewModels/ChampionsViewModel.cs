@@ -14,7 +14,6 @@ namespace LolHandbook.ViewModels
             : base(localizationService, nameof(ChampionGroups))
         {
             this.dataDragonClient = dataDragonClient;
-            LoadData(false);
         }
 
         public IEnumerable<IGrouping<string, ChampionSummary>> ChampionGroups => FilteredGroups;
