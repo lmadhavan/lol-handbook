@@ -13,6 +13,13 @@
 
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Compact">
+            <CommandBar.Content>
+                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Margin="12,16">
+                    <Run Text="Patch" />
+                    <Run Text="{Binding PatchVersion}" />
+                </TextBlock>
+            </CommandBar.Content>
+            
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="AllApps" Label="Patch notes" ToolTipService.ToolTip="Patch notes" Click="OnPatchNotesClicked" />
             </CommandBar.PrimaryCommands>
@@ -25,11 +32,6 @@
     </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="12,21">
-            <Run Text="Patch" />
-            <Run Text="{Binding PatchVersion}" />
-        </TextBlock>
-
         <Pivot>
             <PivotItem Margin="0" Header="Champions">
                 <local:ChampionsView x:Name="ChampionsView" />
