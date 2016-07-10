@@ -2,6 +2,6 @@
 {
     public interface ISupportResuming
     {
-        void OnResuming();
+        void Resume();
     }
 }

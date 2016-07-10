@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolHandbook.ViewModels", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolHandbook.ViewModels.Tests", "LolHandbook.ViewModels.Tests\LolHandbook.ViewModels.Tests.csproj", "{895E31F0-2264-45F0-BEC2-70E1DE599B9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolHandbook.BackgroundTasks", "LolHandbook.BackgroundTasks\LolHandbook.BackgroundTasks.csproj", "{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,22 @@ Global
 		{895E31F0-2264-45F0-BEC2-70E1DE599B9D}.Release|x64.Build.0 = Release|Any CPU
 		{895E31F0-2264-45F0-BEC2-70E1DE599B9D}.Release|x86.ActiveCfg = Release|Any CPU
 		{895E31F0-2264-45F0-BEC2-70E1DE599B9D}.Release|x86.Build.0 = Release|Any CPU
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|ARM.Build.0 = Debug|ARM
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|x64.ActiveCfg = Debug|x64
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|x64.Build.0 = Debug|x64
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|x86.ActiveCfg = Debug|x86
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Debug|x86.Build.0 = Debug|x86
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|ARM.ActiveCfg = Release|ARM
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|ARM.Build.0 = Release|ARM
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|x64.ActiveCfg = Release|x64
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|x64.Build.0 = Release|x64
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|x86.ActiveCfg = Release|x86
+		{7152FFBB-5FF9-485E-B23B-7C060A4B6E9B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

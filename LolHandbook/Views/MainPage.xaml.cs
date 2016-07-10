@@ -1,4 +1,5 @@
-﻿using LolHandbook.ViewModels;
+﻿using LolHandbook.BackgroundTasks;
+using LolHandbook.ViewModels;
 using LolHandbook.ViewModels.Services;
 using System;
 using Windows.System;
@@ -17,17 +18,25 @@ namespace LolHandbook.Views
 
         private MainPageViewModel ViewModel => DataContext as MainPageViewModel;
 
-        public void OnResuming()
+        public void Resume()
         {
             LoadData(false);
-            ChampionsView.OnResuming();
-            ItemsView.OnResuming();
+            ChampionsView.Resume();
+            ItemsView.Resume();
+        }
+
+        public void Refresh()
+        {
+            DataDragonService.InvalidateCache();
+            LoadData(true);
+            ChampionsView.Refresh();
+            ItemsView.Refresh();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            OnResuming();
+            Resume();
         }
 
         private async void OnAboutClicked(object sender, RoutedEventArgs e)
@@ -38,15 +47,13 @@ namespace LolHandbook.Views
 
         private void OnRefreshClicked(object sender, RoutedEventArgs e)
         {
-            DataDragonService.InvalidateCache();
-            LoadData(true);
-            ChampionsView.Refresh();
-            ItemsView.Refresh();
+            Refresh();
         }
 
         private async void LoadData(bool forceReload)
         {
             await ViewModel.LoadData(forceReload);
+            Settings.LastPatchVersion = ViewModel.PatchVersion;
         }
 
         private async void OnPatchNotesClicked(object sender, RoutedEventArgs e)

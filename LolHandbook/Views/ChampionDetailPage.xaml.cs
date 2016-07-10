@@ -41,7 +41,7 @@ namespace LolHandbook.Views
             }
         }
 
-        public void OnResuming()
+        public void Resume()
         {
             ViewModel.LoadData(false);
         }

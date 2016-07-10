@@ -13,7 +13,7 @@ namespace LolHandbook.Views
 
         private ItemsViewModel ViewModel => DataContext as ItemsViewModel;
 
-        public void OnResuming()
+        public void Resume()
         {
             ViewModel.LoadData(false);
         }

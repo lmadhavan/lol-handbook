@@ -13,7 +13,7 @@ namespace LolHandbook.Views
 
         private ChampionsViewModel ViewModel => DataContext as ChampionsViewModel;
 
-        public void OnResuming()
+        public void Resume()
         {
             ViewModel.LoadData(false);
         }

@@ -1,4 +1,5 @@
-﻿using LolHandbook.Views;
+﻿using LolHandbook.BackgroundTasks;
+using LolHandbook.Views;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -58,12 +59,51 @@ namespace LolHandbook
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
+            EnsureLaunched();
+
+            if (!e.PrelaunchActivated)
+            {
+                if (Frame.Content == null)
+                {
+                    Frame.Navigate(typeof(MainPage));
+                }
+
+                Window.Current.Activate();
+            }
+
+            CheckPatchVersionTask.Register();
+        }
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            if (args.Kind == ActivationKind.ToastNotification)
+            {
+                OnToastNotificationActivated();
+            }
+        }
+
+        private void OnToastNotificationActivated()
+        {
+            EnsureLaunched();
+
+            if (Frame.CurrentSourcePageType != typeof(MainPage))
+            {
+                Frame.Navigate(typeof(MainPage));
+            }
+
+            MainPage mainPage = (MainPage)Frame.Content;
+            mainPage.Refresh();
+
+            Window.Current.Activate();
+        }
+
+        private void EnsureLaunched()
+        {
             if (Frame == null)
             {
-                // Create a Frame to act as the navigation context and navigate to the first page
-                Frame = new Frame();
+                this.Frame = new Frame();
 
                 Frame.Navigated += OnNavigated;
                 Frame.NavigationFailed += OnNavigationFailed;
@@ -74,21 +114,6 @@ namespace LolHandbook
                 SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
                 Window.Current.CoreWindow.PointerPressed += OnPointerPressed;
                 DataTransferManager.GetForCurrentView().DataRequested += OnDataRequested;
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
-            }
-
-            if (e.PrelaunchActivated == false)
-            {
-                if (Frame.Content == null)
-                {
-                    Frame.Navigate(typeof(MainPage));
-                }
-
-                Window.Current.Activate();
             }
         }
 
@@ -150,7 +175,7 @@ namespace LolHandbook
             ISupportResuming page = Frame.Content as ISupportResuming;
             if (page != null)
             {
-                page.OnResuming();
+                page.Resume();
             }
         }
     }
