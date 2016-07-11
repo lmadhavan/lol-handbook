@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Views
@@ -13,14 +14,14 @@ namespace LolHandbook.Views
 
         private ItemsViewModel ViewModel => DataContext as ItemsViewModel;
 
-        public void Resume()
+        public async Task Resume()
         {
-            ViewModel.LoadData(false);
+            await ViewModel.LoadData(false);
         }
 
-        public void Refresh()
+        public async Task Refresh()
         {
-            ViewModel.LoadData(true);
+            await ViewModel.LoadData(true);
         }
 
         private void OnItemClicked(object sender, ItemClickEventArgs e)

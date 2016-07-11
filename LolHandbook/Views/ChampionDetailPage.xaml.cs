@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -41,9 +42,9 @@ namespace LolHandbook.Views
             }
         }
 
-        public void Resume()
+        public async Task Resume()
         {
-            ViewModel.LoadData(false);
+            await ViewModel.LoadData(false);
         }
 
         private void OnSkinClicked(object sender, RoutedEventArgs e)

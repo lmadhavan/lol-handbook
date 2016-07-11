@@ -1,7 +1,9 @@
-﻿namespace LolHandbook
+﻿using System.Threading.Tasks;
+
+namespace LolHandbook
 {
     public interface ISupportResuming
     {
-        void Resume();
+        Task Resume();
     }
 }

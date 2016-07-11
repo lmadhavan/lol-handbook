@@ -2,6 +2,7 @@
 using LolHandbook.ViewModels;
 using LolHandbook.ViewModels.Services;
 using System;
+using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,25 +19,25 @@ namespace LolHandbook.Views
 
         private MainPageViewModel ViewModel => DataContext as MainPageViewModel;
 
-        public void Resume()
+        public async Task Resume()
         {
-            LoadData(false);
-            ChampionsView.Resume();
-            ItemsView.Resume();
+            await LoadData(false);
+            await ChampionsView.Resume();
+            await ItemsView.Resume();
         }
 
-        public void Refresh()
+        public async Task Refresh()
         {
             DataDragonService.InvalidateCache();
-            LoadData(true);
-            ChampionsView.Refresh();
-            ItemsView.Refresh();
+            await LoadData(true);
+            await ChampionsView.Refresh();
+            await ItemsView.Refresh();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Resume();
+            await Resume();
         }
 
         private async void OnAboutClicked(object sender, RoutedEventArgs e)
@@ -45,12 +46,12 @@ namespace LolHandbook.Views
             await dialog.ShowAsync();
         }
 
-        private void OnRefreshClicked(object sender, RoutedEventArgs e)
+        private async void OnRefreshClicked(object sender, RoutedEventArgs e)
         {
-            Refresh();
+            await Refresh();
         }
 
-        private async void LoadData(bool forceReload)
+        private async Task LoadData(bool forceReload)
         {
             await ViewModel.LoadData(forceReload);
             Settings.LastPatchVersion = ViewModel.PatchVersion;

@@ -63,7 +63,7 @@ namespace LolHandbook.ViewModels
             RaiseAllPropertiesChanged();
             if (id != null)
             {
-                LoadData(false);
+                LoadData(false).ConfigureAwait(false);
             }
         }
 
@@ -119,7 +119,7 @@ namespace LolHandbook.ViewModels
             return HtmlSanitizer.Sanitize(string.Join("\n", list.Select(str => "\u2022 " + str)));
         }
 
-        public async void LoadData(bool forceReload)
+        public async Task LoadData(bool forceReload)
         {
             if (Detail != null && !forceReload)
             {

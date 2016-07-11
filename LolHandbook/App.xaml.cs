@@ -94,7 +94,7 @@ namespace LolHandbook
             }
 
             MainPage mainPage = (MainPage)Frame.Content;
-            mainPage.Refresh();
+            mainPage.Refresh().ConfigureAwait(false);
 
             Window.Current.Activate();
         }
@@ -175,7 +175,7 @@ namespace LolHandbook
             ISupportResuming page = Frame.Content as ISupportResuming;
             if (page != null)
             {
-                page.Resume();
+                page.Resume().ConfigureAwait(false);
             }
         }
     }
