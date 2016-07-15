@@ -6,8 +6,6 @@ namespace LolHandbook.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private const string PatchVersionPlaceholder = "???";
-
         private readonly IDataDragonClient dataDragonClient;
 
         public MainPageViewModel(IDataDragonClient dataDragonClient)
@@ -15,7 +13,7 @@ namespace LolHandbook.ViewModels
             this.dataDragonClient = dataDragonClient;
         }
 
-        public string PatchVersion { get; private set; } = PatchVersionPlaceholder;
+        public string PatchVersion { get; set; }
 
         public Uri PatchNotesUri
         {
@@ -28,7 +26,7 @@ namespace LolHandbook.ViewModels
 
         public async Task LoadData(bool forceReload)
         {
-            if (PatchVersion != PatchVersionPlaceholder && !forceReload)
+            if (PatchVersion != null && !forceReload)
             {
                 return;
             }
@@ -43,6 +41,11 @@ namespace LolHandbook.ViewModels
 
         internal static string FormatPatchNotesVersion(string patchVersion)
         {
+            if (patchVersion == null)
+            {
+                return null;
+            }
+
             string[] parts = patchVersion.Split('.');
             
             switch (parts.Length)

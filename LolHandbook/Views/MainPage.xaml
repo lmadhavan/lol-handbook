@@ -16,7 +16,7 @@
             <CommandBar.Content>
                 <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Margin="12,16">
                     <Run Text="Patch" />
-                    <Run Text="{Binding PatchVersion}" />
+                    <Run Text="{Binding PatchVersion, Converter={StaticResource DefaultingConverter}, ConverterParameter=???}" />
                 </TextBlock>
             </CommandBar.Content>
             

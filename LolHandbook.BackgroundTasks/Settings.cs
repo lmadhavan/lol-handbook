@@ -13,7 +13,10 @@ namespace LolHandbook.BackgroundTasks
 
             set
             {
-                ApplicationData.Current.RoamingSettings.Values["lastPatchVersion"] = value;
+                if (value != null)
+                {
+                    ApplicationData.Current.RoamingSettings.Values["lastPatchVersion"] = value;
+                }
             }
         }
     }

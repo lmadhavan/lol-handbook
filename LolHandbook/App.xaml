@@ -7,6 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <local:ViewModelLocator x:Key="ViewModelLocator" />
+            <conv:DefaultingConverter x:Key="DefaultingConverter" />
             <conv:StringConverter x:Key="StringConverter" />
             <conv:ImageUriConverter x:Key="ImageUriConverter" />
             <conv:VisibilityConverter x:Key="VisibilityConverter" />
