@@ -4,6 +4,8 @@
     xmlns:controls="using:LolHandbook.Controls">
 
     <Style TargetType="controls:FlyoutPicker">
+        <Setter Property="IsTabStop" Value="False" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:FlyoutPicker">
@@ -17,9 +19,11 @@
                             <Button Style="{ThemeResource TextBlockButtonStyle}" Content="{TemplateBinding SelectedItem}">
                                 <Button.Flyout>
                                     <Flyout x:Name="Flyout">
-                                        <ListBox x:Name="ListBox"
-                                                 ItemsSource="{TemplateBinding ItemsSource}"
-                                                 SelectedValue="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem, Mode=TwoWay}" />
+                                        <ListView x:Name="ListView"
+                                                  ItemsSource="{TemplateBinding ItemsSource}"
+                                                  IsItemClickEnabled="True"
+                                                  SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem}"
+                                        />
                                     </Flyout>
                                 </Button.Flyout>
                             </Button>

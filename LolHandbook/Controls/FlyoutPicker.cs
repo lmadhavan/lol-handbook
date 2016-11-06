@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace LolHandbook.Controls
@@ -6,7 +7,7 @@ namespace LolHandbook.Controls
     public sealed class FlyoutPicker : Control
     {
         private Flyout flyout;
-        private bool flyoutOpen;
+        private ListView listView;
 
         public FlyoutPicker()
         {
@@ -16,8 +17,6 @@ namespace LolHandbook.Controls
         public static readonly DependencyProperty LabelProperty = DependencyProperty.Register(nameof(Label), typeof(string), typeof(FlyoutPicker), new PropertyMetadata(null));
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register(nameof(ItemsSource), typeof(object), typeof(FlyoutPicker), new PropertyMetadata(null));
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register(nameof(SelectedItem), typeof(object), typeof(FlyoutPicker), new PropertyMetadata(null));
-
-        public event SelectionChangedEventHandler SelectionChanged;
 
         public string Label
         {
@@ -42,26 +41,22 @@ namespace LolHandbook.Controls
             base.OnApplyTemplate();
 
             this.flyout = (Flyout)GetTemplateChild("Flyout");
-            flyout.Opened += (s, e) => flyoutOpen = true;
-            flyout.Closed += (s, e) => flyoutOpen = false;
+            flyout.Opened += OnFlyoutOpened;
 
-            ListBox listBox = (ListBox)GetTemplateChild("ListBox");
-            listBox.SelectionChanged += OnSelectionChanged;
+            this.listView = (ListView)GetTemplateChild("ListView");
+            listView.ItemClick += OnItemClick;
         }
 
-        private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnFlyoutOpened(object sender, object e)
         {
-            /*
-             * The flyoutOpen check is a workaround for the COMException that is generated
-             * when Hide() is called before the flyout has opened. This occurs because
-             * SelectionChanged is fired when the list is initially bound.
-             */
-            if (flyoutOpen)
-            {
-                flyout.Hide();
-            }
+            ListViewItem item = (ListViewItem)listView.ContainerFromIndex(listView.SelectedIndex);
+            item.Focus(FocusState.Programmatic);
+        }
 
-            SelectionChanged?.Invoke(this, e);
+        private void OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            flyout.Hide();
+            SetValue(SelectedItemProperty, e.ClickedItem);
         }
     }
 }

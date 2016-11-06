@@ -8,11 +8,10 @@ namespace LolHandbook.Views
         public FilterableView()
         {
             this.InitializeComponent();
-            DetailsPanePresenter.RegisterPropertyChangedCallback(VisibilityProperty, OnDetailsPaneVisibilityChanged);
         }
 
         public static readonly DependencyProperty FilterLabelProperty = DependencyProperty.Register(nameof(FilterLabel), typeof(string), typeof(FilterableView), new PropertyMetadata(null));
-        public static readonly DependencyProperty ListViewProperty = DependencyProperty.Register(nameof(ListView), typeof(ListViewBase), typeof(FilterableView), new PropertyMetadata(null, OnListViewChanged));
+        public static readonly DependencyProperty ListViewProperty = DependencyProperty.Register(nameof(ListView), typeof(ListViewBase), typeof(FilterableView), new PropertyMetadata(null));
         public static readonly DependencyProperty DetailsPaneProperty = DependencyProperty.Register(nameof(DetailsPane), typeof(FrameworkElement), typeof(FilterableView), new PropertyMetadata(null));
 
         public string FilterLabel
@@ -34,23 +33,5 @@ namespace LolHandbook.Views
         }
 
         public bool IsDetailsPaneVisible => DetailsPanePresenter.Visibility == Visibility.Visible;
-
-        private static void OnListViewChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((FilterableView)d).UpdateSelectionMode();
-        }
-
-        private void OnDetailsPaneVisibilityChanged(DependencyObject sender, DependencyProperty dp)
-        {
-            UpdateSelectionMode();
-        }
-
-        private void UpdateSelectionMode()
-        {
-            if (ListView != null)
-            {
-                ListView.SelectionMode = IsDetailsPaneVisible ? ListViewSelectionMode.Single : ListViewSelectionMode.None;
-            }
-        }
     }
 }

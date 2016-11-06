@@ -20,10 +20,9 @@
         </local:FilterableView.Resources>
         
         <local:FilterableView.ListView>
-            <ListView x:Name="ItemsList" Grid.Row="2"
-                  SelectedItem="{Binding ElementName=ItemDetailPage, Path=ViewModel.Item, Mode=TwoWay}"
+            <ListView x:Name="ItemsList"
                   ItemsSource="{Binding Source={StaticResource ItemGroups}}" ItemTemplate="{StaticResource ItemDataTemplateAutoWidth}"
-                  IsItemClickEnabled="True" ItemClick="OnItemClicked"
+                  SelectionMode="None" IsItemClickEnabled="True" ItemClick="OnItemClicked"
                   ScrollViewer.IsVerticalScrollChainingEnabled="False">
                 <ListView.GroupStyle>
                     <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />

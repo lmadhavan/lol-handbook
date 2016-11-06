@@ -26,9 +26,14 @@ namespace LolHandbook.Views
 
         private void OnItemClicked(object sender, ItemClickEventArgs e)
         {
-            if (!View.IsDetailsPaneVisible)
+            Item item = (Item)e.ClickedItem;
+
+            if (View.IsDetailsPaneVisible)
             {
-                Item item = (Item)e.ClickedItem;
+                ItemDetailPage.ViewModel.Item = item;
+            }
+            else
+            {
                 App.Navigate(typeof(ItemDetailPage), item);
             }
         }

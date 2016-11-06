@@ -53,14 +53,14 @@
             
             <StackPanel Orientation="Vertical" Padding="20,8,20,0" Visibility="{Binding Requires, Converter={StaticResource VisibilityConverter}}">
                 <TextBlock FontSize="20" Text="Requires" />
-                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding Requires}" ItemTemplate="{StaticResource ItemDataTemplateFixedWidth}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
+                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding Requires}" ItemTemplate="{StaticResource ItemDataTemplateFixedWidth}" IsItemClickEnabled="True" ItemClick="OnItemClick" />
             </StackPanel>
 
             <!-- Builds Into -->
 
             <StackPanel Orientation="Vertical" Padding="20,8,20,0" Visibility="{Binding BuildsInto, Converter={StaticResource VisibilityConverter}}">
                 <TextBlock FontSize="20" Text="Builds Into" />
-                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding BuildsInto}" ItemTemplate="{StaticResource ItemDataTemplateFixedWidth}" IsItemClickEnabled="True" ItemClick="GridView_ItemClick" />
+                <GridView Margin="0,4" SelectionMode="None" ItemsSource="{Binding BuildsInto}" ItemTemplate="{StaticResource ItemDataTemplateFixedWidth}" IsItemClickEnabled="True" ItemClick="OnItemClick" />
             </StackPanel>
 
         </StackPanel>

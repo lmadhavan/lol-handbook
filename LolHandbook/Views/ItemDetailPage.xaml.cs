@@ -27,17 +27,14 @@ namespace LolHandbook.Views
                 ViewModel.Id = (string)e.Parameter;
             }
 
-            ScrollViewer.ScrollToVerticalOffset(0);
+            ScrollViewer.ChangeView(0, 0, null);
         }
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void OnItemClick(object sender, ItemClickEventArgs e)
         {
             Item item = (Item)e.ClickedItem;
-            if (item != null)
-            {
-                ViewModel.Item = item;
-                ScrollViewer.ScrollToVerticalOffset(0);
-            }
+            ViewModel.Item = item;
+            ScrollViewer.ChangeView(0, 0, null);
         }
     }
 }

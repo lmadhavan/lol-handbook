@@ -68,7 +68,7 @@ namespace LolHandbook.Views
         {
             LoreTextBlock.MaxLines = LoreCollapsedMaxLines;
             LoreCollapseButton.Content = LoreCollapsedButtonText;
-            ScrollViewer.ScrollToVerticalOffset(0);
+            ScrollViewer.ChangeView(0, 0, null);
         }
 
         private void ExpandLore()

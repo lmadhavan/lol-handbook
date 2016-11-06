@@ -23,10 +23,9 @@
         </local:FilterableView.Resources>
         
         <local:FilterableView.ListView>
-            <GridView x:Name="ChampionsGrid" Grid.Row="2"
-                          SelectedItem="{Binding ElementName=ChampionDetailPage, Path=ViewModel.Summary, Mode=TwoWay}"
+            <GridView x:Name="ChampionsGrid"
                           ItemsSource="{Binding Source={StaticResource ChampionGroups}}" ItemTemplate="{StaticResource ChampionSummaryTemplate}"
-                          IsItemClickEnabled="True" ItemClick="OnItemClicked"
+                          SelectionMode="None" IsItemClickEnabled="True" ItemClick="OnItemClicked"
                           ScrollViewer.IsHorizontalScrollChainingEnabled="False">
                 <GridView.GroupStyle>
                     <GroupStyle HidesIfEmpty="True" HeaderTemplate="{StaticResource GroupHeaderTemplate}" />

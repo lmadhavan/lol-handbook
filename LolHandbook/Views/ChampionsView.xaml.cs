@@ -26,9 +26,14 @@ namespace LolHandbook.Views
 
         private void OnItemClicked(object sender, ItemClickEventArgs e)
         {
-            if (!View.IsDetailsPaneVisible)
+            ChampionSummary summary = (ChampionSummary)e.ClickedItem;
+
+            if (View.IsDetailsPaneVisible)
             {
-                ChampionSummary summary = (ChampionSummary)e.ClickedItem;
+                ChampionDetailPage.ViewModel.Summary = summary;
+            }
+            else
+            {
                 App.Navigate(typeof(ChampionDetailPage), summary);
             }
         }
