@@ -8,6 +8,7 @@ namespace LolHandbook.Views
         public FilterableView()
         {
             this.InitializeComponent();
+            this.Loaded += OnLoaded;
         }
 
         public static readonly DependencyProperty FilterLabelProperty = DependencyProperty.Register(nameof(FilterLabel), typeof(string), typeof(FilterableView), new PropertyMetadata(null));
@@ -33,5 +34,10 @@ namespace LolHandbook.Views
         }
 
         public bool IsDetailsPaneVisible => DetailsPanePresenter.Visibility == Visibility.Visible;
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ListView?.Focus(FocusState.Programmatic);
+        }
     }
 }

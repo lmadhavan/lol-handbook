@@ -28,7 +28,7 @@
 
                 <VisualState x:Name="Wide">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800" />
+                        <AdaptiveTrigger MinWindowWidth="980" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MasterColumn.Width" Value="280" />

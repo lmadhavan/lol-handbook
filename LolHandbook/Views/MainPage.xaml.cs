@@ -7,6 +7,7 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Input;
 
 namespace LolHandbook.Views
 {
@@ -38,6 +39,17 @@ namespace LolHandbook.Views
         {
             base.OnNavigatedTo(e);
             await Resume();
+        }
+
+        protected override void OnKeyDown(KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.GamepadLeftShoulder || e.Key == VirtualKey.GamepadRightShoulder)
+            {
+                Pivot.SelectedIndex = (Pivot.SelectedIndex + 1) % 2;
+                e.Handled = true;
+            }
+
+            base.OnKeyDown(e);
         }
 
         private async void OnAboutClicked(object sender, RoutedEventArgs e)

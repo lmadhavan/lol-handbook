@@ -32,7 +32,7 @@
     </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot>
+        <Pivot x:Name="Pivot">
             <PivotItem Margin="0" Header="Champions">
                 <local:ChampionsView x:Name="ChampionsView" />
             </PivotItem>
