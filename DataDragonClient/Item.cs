@@ -13,6 +13,10 @@ namespace DataDragon
 
         public IList<string> Tags { get; set; }
 
+        public ISet<string> EnabledMaps { get; set; }
+        [JsonProperty]
+        internal IDictionary<string, bool> Maps { get; set; }
+
         [JsonProperty(PropertyName = "gold")]
         public ItemCost Cost { get; set; }
         [JsonProperty(PropertyName = "from")]

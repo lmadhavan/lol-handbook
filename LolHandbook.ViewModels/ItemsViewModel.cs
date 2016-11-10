@@ -8,6 +8,8 @@ namespace LolHandbook.ViewModels
 {
     public class ItemsViewModel : FilterableViewModelBase<Item>
     {
+        private const string SummonersRiftMapId = "11";
+
         private readonly IDataDragonClient dataDragonClient;
 
         public ItemsViewModel(IDataDragonClient dataDragonClient, ILocalizationService localizationService)
@@ -21,7 +23,7 @@ namespace LolHandbook.ViewModels
         protected override async Task<IList<Item>> LoadList()
         {
             IDictionary<string, Item> result = await Task.Run(() => dataDragonClient.GetItemsAsync());
-            return result.Values.ToList();
+            return result.Values.Where(item => item.EnabledMaps.Contains(SummonersRiftMapId)).ToList();
         }
     }
 }

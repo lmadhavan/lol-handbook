@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DataDragon
@@ -124,6 +125,7 @@ namespace DataDragon
             foreach (Item item in items.Values)
             {
                 item.ImageUri = uriBuilder.GetImageUri(item.Image);
+                item.EnabledMaps = new HashSet<string>(item.Maps.Keys.Where(mapId => item.Maps[mapId] == true));
             }
 
             return items;
