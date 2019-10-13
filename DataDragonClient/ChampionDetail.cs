@@ -13,6 +13,9 @@ namespace DataDragon
         [JsonProperty(PropertyName = "enemytips")]
         public IList<string> EnemyTips { get; set; }
 
+        [JsonProperty(PropertyName = "partype")]
+        public string ResourceType { get; set; }
+
         public IList<ChampionSpell> Spells { get; set; }
         public ChampionPassive Passive { get; set; }
     }

@@ -7,7 +7,7 @@ namespace LolHandbook.ViewModels
     {
         private static readonly Regex ResourcePattern = new Regex(@"\{\{ (\w+) \}\}");
 
-        internal static string ResolveResourceBurn(this ChampionSpell championSpell)
+        internal static string ResolveResourceBurn(this ChampionSpell championSpell, string abilityResourceName)
         {
             string resource = championSpell.Resource;
 
@@ -16,7 +16,23 @@ namespace LolHandbook.ViewModels
             {
                 string expression = match.Groups[0].Value;
                 string variable = match.Groups[1].Value;
-                string variableValue = championSpell.ResolveVariable(variable);
+
+                string variableValue;
+
+                switch (variable)
+                {
+                    case "cost":
+                        variableValue = championSpell.CostBurn;
+                        break;
+
+                    case "abilityresourcename":
+                        variableValue = abilityResourceName;
+                        break;
+
+                    default:
+                        variableValue = championSpell.ResolveEffectValue(variable);
+                        break;
+                }
 
                 resource = resource.Replace(expression, variableValue);
                 match = match.NextMatch();
@@ -25,13 +41,8 @@ namespace LolHandbook.ViewModels
             return resource;
         }
 
-        private static string ResolveVariable(this ChampionSpell championSpell, string variable)
+        private static string ResolveEffectValue(this ChampionSpell championSpell, string variable)
         {
-            if (variable == "cost")
-            {
-                return championSpell.CostBurn;
-            }
-
             if (variable.StartsWith("e"))
             {
                 int i;

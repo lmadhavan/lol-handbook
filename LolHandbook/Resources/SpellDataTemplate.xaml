@@ -40,7 +40,7 @@
 
             <StackPanel Orientation="Vertical" Margin="12,0" Grid.Column="1">
                 <TextBlock Style="{StaticResource SpellTitleTextBlockStyle}" Text="{x:Bind Name}" />
-                <TextBlock Style="{StaticResource SpellDataTextBlockStyle}" Text="{x:Bind AdditionalInfo}" TextTrimming="CharacterEllipsis" />
+                <TextBlock Style="{StaticResource SpellDataTextBlockStyle}" Text="{x:Bind Cost}" TextTrimming="CharacterEllipsis" />
                 <TextBlock Style="{StaticResource SpellDataTextBlockStyle}" Text="{x:Bind Cooldown}" TextTrimming="CharacterEllipsis" />
             </StackPanel>
 

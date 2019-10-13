@@ -139,7 +139,7 @@ namespace LolHandbook.ViewModels
             Spells.Add(new ChampionPassiveViewModel(Detail.Passive));
             foreach (ChampionSpell championSpell in Detail.Spells)
             {
-                Spells.Add(new ChampionSpellViewModel(championSpell));
+                Spells.Add(new ChampionSpellViewModel(championSpell, Detail.ResourceType));
             }
 
             if (Skins.Count > 0)
