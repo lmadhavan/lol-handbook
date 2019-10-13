@@ -10,7 +10,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid>
+    <Grid BorderBrush="{ThemeResource AppBarBackgroundThemeBrush}" BorderThickness="0,2,0,0">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Narrow">
@@ -59,7 +59,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Margin="12,4,12,8" Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+        <StackPanel Margin="12,8" Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
             <TextBlock VerticalAlignment="Center" Text="{Binding ElementName=_FilterableView, Path=FilterLabel}" />
 
             <ComboBox BorderThickness="1" Margin="8,0,0,0" Padding="8,0"
@@ -85,6 +85,6 @@
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
 
-        <ContentPresenter x:Name="DetailsPanePresenter" BorderBrush="{ThemeResource AppBarBackgroundThemeBrush}" BorderThickness="4,1,0,0" Content="{Binding ElementName=_FilterableView, Path=DetailsPane}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" />
+        <ContentPresenter x:Name="DetailsPanePresenter" BorderBrush="{ThemeResource AppBarBackgroundThemeBrush}" BorderThickness="2,0,0,0" Content="{Binding ElementName=_FilterableView, Path=DetailsPane}" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" />
     </Grid>
 </UserControl>

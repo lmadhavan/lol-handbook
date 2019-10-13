@@ -12,16 +12,16 @@
     </Page.Resources>
 
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Compact">
+        <CommandBar ClosedDisplayMode="Compact" DefaultLabelPosition="Right">
             <CommandBar.Content>
-                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Margin="12,16">
+                <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Margin="12">
                     <Run Text="Patch" />
                     <Run Text="{Binding PatchVersion, Converter={StaticResource DefaultingConverter}, ConverterParameter=???}" />
                 </TextBlock>
             </CommandBar.Content>
             
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="AllApps" Label="Patch notes" ToolTipService.ToolTip="Patch notes" Click="OnPatchNotesClicked" />
+                <AppBarButton Icon="AllApps" Label="Patch notes" Click="OnPatchNotesClicked" />
             </CommandBar.PrimaryCommands>
             
             <CommandBar.SecondaryCommands>
