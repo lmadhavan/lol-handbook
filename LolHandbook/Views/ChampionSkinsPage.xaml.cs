@@ -2,6 +2,7 @@
 using LolHandbook.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -60,7 +61,7 @@ namespace LolHandbook.Views
 
         private async void SetWallpaper_Click(object sender, RoutedEventArgs e)
         {
-            string filename = ViewModel.CurrentSkinName + ".jpg";
+            string filename = ViewModel.CurrentSkinUri.Segments.Last();
             StorageFile streamedFile = await StorageFile.CreateStreamedFileFromUriAsync(filename, ViewModel.CurrentSkinUri, null);
             StorageFile localFile = await streamedFile.CopyAsync(ApplicationData.Current.LocalFolder, filename, NameCollisionOption.ReplaceExisting);
 
