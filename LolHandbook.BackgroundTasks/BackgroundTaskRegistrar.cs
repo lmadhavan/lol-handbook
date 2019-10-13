@@ -12,7 +12,7 @@ namespace LolHandbook.BackgroundTasks
 
             BackgroundAccessStatus status = await BackgroundExecutionManager.RequestAccessAsync();
 
-            if (status == BackgroundAccessStatus.Denied)
+            if (status == BackgroundAccessStatus.DeniedBySystemPolicy || status == BackgroundAccessStatus.DeniedByUser)
             {
                 Debug.WriteLine($"Background access denied, not registering task {taskName}");
                 return;
