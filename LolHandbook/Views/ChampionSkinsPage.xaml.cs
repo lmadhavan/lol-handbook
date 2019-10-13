@@ -3,7 +3,10 @@ using LolHandbook.ViewModels;
 using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.System.UserProfile;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -18,6 +21,7 @@ namespace LolHandbook.Views
         }
 
         private ChampionSkinsViewModel ViewModel => DataContext as ChampionSkinsViewModel;
+        private bool IsWallpaperSupported => UserProfilePersonalizationSettings.IsSupported();
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -38,10 +42,7 @@ namespace LolHandbook.Views
 
             try
             {
-                string filename = ViewModel.CurrentSkinName + ".jpg";
-                Uri uri = ViewModel.CurrentSkinUri;
-
-                RandomAccessStreamReference streamReference = RandomAccessStreamReference.CreateFromUri(uri);
+                RandomAccessStreamReference streamReference = RandomAccessStreamReference.CreateFromUri(ViewModel.CurrentSkinUri);
 
                 request.Data.Properties.Thumbnail = streamReference;
                 request.Data.SetBitmap(streamReference);
@@ -55,6 +56,18 @@ namespace LolHandbook.Views
         private void Share_Click(object sender, RoutedEventArgs e)
         {
             DataTransferManager.ShowShareUI();
+        }
+
+        private async void SetWallpaper_Click(object sender, RoutedEventArgs e)
+        {
+            string filename = ViewModel.CurrentSkinName + ".jpg";
+            StorageFile streamedFile = await StorageFile.CreateStreamedFileFromUriAsync(filename, ViewModel.CurrentSkinUri, null);
+            StorageFile localFile = await streamedFile.CopyAsync(ApplicationData.Current.LocalFolder, filename, NameCollisionOption.ReplaceExisting);
+
+            bool succeeded = await UserProfilePersonalizationSettings.Current.TrySetWallpaperImageAsync(localFile);
+
+            MessageDialog dialog = new MessageDialog(succeeded ? "Desktop background set successfully." : "Unable to set desktop background.");
+            await dialog.ShowAsync();
         }
     }
 }
