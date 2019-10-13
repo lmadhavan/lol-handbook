@@ -10,7 +10,7 @@ namespace LolHandbook.Views
 {
     public sealed partial class ChampionDetailPage : Page, ISupportResuming
     {
-        private const int LoreCollapsedMaxLines = 3;
+        private const int LoreCollapsedMaxLines = 1;
         private const int LoreExpandedMaxLines = 999;
         private const string LoreCollapsedButtonText = "More";
         private const string LoreExpandedButtonText = "Less";
