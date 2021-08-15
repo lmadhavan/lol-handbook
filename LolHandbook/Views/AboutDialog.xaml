@@ -2,9 +2,14 @@
     x:Class="LolHandbook.Views.AboutDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LolHandbook.Views"
     Title="About this app"
     PrimaryButtonText="OK"
     DataContext="{Binding AboutViewModel, Source={StaticResource ViewModelLocator}}">
+
+    <ContentDialog.Resources>
+        <Style TargetType="local:AboutDialog" BasedOn="{StaticResource DefaultContentDialogStyle}"/>
+    </ContentDialog.Resources>
 
     <StackPanel Orientation="Vertical" Margin="0,12">
         <TextBlock>
@@ -14,8 +19,8 @@
 
         <TextBlock Text="{Binding Copyright}" />
         
-        <HyperlinkButton Margin="0,12,0,0" Click="OnRateAndReviewApp">
-            <TextBlock>
+        <HyperlinkButton Margin="-12,12,0,0" Click="OnRateAndReviewApp">
+            <TextBlock TextDecorations="Underline">
                 <Run Text="Rate and review" />
                 <Run Text="{Binding AppName}" />
             </TextBlock>

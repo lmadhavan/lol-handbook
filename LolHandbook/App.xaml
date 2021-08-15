@@ -6,6 +6,10 @@
     xmlns:conv="using:LolHandbook.Converters">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>
+            
             <local:ViewModelLocator x:Key="ViewModelLocator" />
             <conv:DefaultingConverter x:Key="DefaultingConverter" />
             <conv:StringConverter x:Key="StringConverter" />

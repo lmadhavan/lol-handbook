@@ -7,9 +7,9 @@
     RequestedTheme="Dark">
 
     <Page.TopAppBar>
-        <CommandBar DefaultLabelPosition="Right">
+        <CommandBar Background="#404040"  DefaultLabelPosition="Right">
             <CommandBar.Content>
-                <TextBlock Margin="8,10">
+                <TextBlock Margin="8,14">
                     <Run Text="{Binding CurrentSkinDisplayIndex}" /> of <Run Text="{Binding TotalSkins}" />: <Run Text="{Binding CurrentSkinName}" />
                 </TextBlock>
             </CommandBar.Content>
