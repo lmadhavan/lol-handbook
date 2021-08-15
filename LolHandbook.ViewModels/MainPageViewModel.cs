@@ -19,8 +19,7 @@ namespace LolHandbook.ViewModels
         {
             get
             {
-                string patchNotesVersion = FormatPatchNotesVersion(PatchVersion);
-                return new Uri($"http://na.leagueoflegends.com/en/news/game-updates/patch/patch-{patchNotesVersion}-notes");
+                return new Uri(PatchNotesUrlFor(PatchVersion));
             }
         }
 
@@ -39,7 +38,7 @@ namespace LolHandbook.ViewModels
             RaisePropertyChanged(nameof(PatchNotesUri));
         }
 
-        internal static string FormatPatchNotesVersion(string patchVersion)
+        internal static string PatchNotesUrlFor(string patchVersion)
         {
             if (patchVersion == null)
             {
@@ -47,18 +46,13 @@ namespace LolHandbook.ViewModels
             }
 
             string[] parts = patchVersion.Split('.');
-            
-            switch (parts.Length)
+
+            if (parts.Length < 2)
             {
-                case 0:
-                    return "";
-
-                case 1:
-                    return parts[0];
-
-                default:
-                    return parts[0] + parts[1];
+                return null;
             }
+
+            return $"https://na.leagueoflegends.com/en-us/news/game-updates/patch-{parts[0]}-{parts[1]}-notes/";
         }
     }
 }

@@ -6,11 +6,9 @@ namespace LolHandbook.ViewModels
     public class MainPageViewModelTest
     {
         [Test]
-        public void FormatsPatchNotesVersion()
+        public void GeneratesPatchNotesUrl()
         {
-            Assert.That(MainPageViewModel.FormatPatchNotesVersion("1.2"), Is.EqualTo("12"));
-            Assert.That(MainPageViewModel.FormatPatchNotesVersion("1.23"), Is.EqualTo("123"));
-            Assert.That(MainPageViewModel.FormatPatchNotesVersion("1.23.4"), Is.EqualTo("123"));
+            Assert.That(MainPageViewModel.PatchNotesUrlFor("11.16"), Is.EqualTo("https://na.leagueoflegends.com/en-us/news/game-updates/patch-11-16-notes/"));
         }
     }
 }
