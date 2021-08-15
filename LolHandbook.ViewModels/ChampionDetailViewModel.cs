@@ -86,15 +86,7 @@ namespace LolHandbook.ViewModels
 
 
         public IList<ISpellViewModel> Spells { get; private set; }
-
-        public ChampionStatsViewModel Stats
-        {
-            get
-            {
-                ChampionStats stats = Resolve(c => c.Stats);
-                return stats == null ? null : new ChampionStatsViewModel(stats);
-            }
-        }
+        public ChampionStatsViewModel Stats { get; private set; }
 
         public bool HasTips => HasAllyTips || HasEnemyTips;
         public bool HasAllyTips => NonEmpty(Detail?.AllyTips);
@@ -149,6 +141,8 @@ namespace LolHandbook.ViewModels
             {
                 Spells.Add(new ChampionSpellViewModel(championSpell, Detail.ResourceType));
             }
+
+            this.Stats = new ChampionStatsViewModel(Detail.Stats, Detail.ResourceType);
 
             if (Skins.Count > 0)
             {
