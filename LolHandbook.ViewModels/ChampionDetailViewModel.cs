@@ -96,7 +96,10 @@ namespace LolHandbook.ViewModels
             }
         }
 
+        public bool HasTips => HasAllyTips || HasEnemyTips;
+        public bool HasAllyTips => NonEmpty(Detail?.AllyTips);
         public string AllyTips => Format(Detail?.AllyTips);
+        public bool HasEnemyTips => NonEmpty(Detail?.EnemyTips);
         public string EnemyTips => Format(Detail?.EnemyTips);
 
         public Uri DefaultSkinUri => Detail?.Skins[0].ImageUri;
@@ -107,6 +110,11 @@ namespace LolHandbook.ViewModels
             if (Detail != null) return accessor(Detail);
             if (Summary != null) return accessor(Summary);
             return default(T);
+        }
+
+        private bool NonEmpty(IList<string> tips)
+        {
+            return tips != null && tips.Count > 0;
         }
 
         private string Format(IList<string> list)
@@ -161,7 +169,10 @@ namespace LolHandbook.ViewModels
             RaisePropertyChanged(nameof(Lore));
             RaisePropertyChanged(nameof(Spells));
             RaisePropertyChanged(nameof(Stats));
+            RaisePropertyChanged(nameof(HasTips));
+            RaisePropertyChanged(nameof(HasAllyTips));
             RaisePropertyChanged(nameof(AllyTips));
+            RaisePropertyChanged(nameof(HasEnemyTips));
             RaisePropertyChanged(nameof(EnemyTips));
         }
     }

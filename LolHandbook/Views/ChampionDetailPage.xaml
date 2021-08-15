@@ -132,14 +132,18 @@
 
             <!-- Tips -->
 
-            <StackPanel Orientation="Vertical" Padding="20,10,20,20">
+            <StackPanel Visibility="{Binding HasTips, Converter={StaticResource VisibilityConverter}}" Padding="20,10,20,20">
                 <TextBlock Style="{ThemeResource TitleTextBlockStyle}" Text="Tips" />
 
-                <TextBlock FontWeight="SemiBold" Margin="0,10,0,0" Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ as\ \{0\}:}" />
-                <TextBlock FontSize="13" Text="{Binding AllyTips}" TextWrapping="WrapWholeWords" />
+                <StackPanel Visibility="{Binding HasAllyTips, Converter={StaticResource VisibilityConverter}}">
+                    <TextBlock FontWeight="SemiBold" Margin="0,10,0,0" Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ as\ \{0\}:}" />
+                    <TextBlock FontSize="13" Text="{Binding AllyTips}" TextWrapping="WrapWholeWords" />
+                </StackPanel>
 
-                <TextBlock FontWeight="SemiBold" Margin="0,10,0,0"  Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ against\ \{0\}:}" />
-                <TextBlock FontSize="13" Text="{Binding EnemyTips}" TextWrapping="WrapWholeWords" />
+                <StackPanel Visibility="{Binding HasEnemyTips, Converter={StaticResource VisibilityConverter}}">
+                    <TextBlock FontWeight="SemiBold" Margin="0,10,0,0"  Text="{Binding Name, Converter={StaticResource StringConverter}, ConverterParameter=Playing\ against\ \{0\}:}" />
+                    <TextBlock FontSize="13" Text="{Binding EnemyTips}" TextWrapping="WrapWholeWords" />
+                </StackPanel>
             </StackPanel>
 
             <!-- Skins -->
