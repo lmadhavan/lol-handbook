@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="31450MadhavanLakshminaray.LeagueHandbook" Publisher="CN=C0FE2E95-E705-436F-993F-60ED0CDBE08C" Version="1.5.0.0" />
+  <Identity Name="31450MadhavanLakshminaray.LeagueHandbook" Publisher="CN=C0FE2E95-E705-436F-993F-60ED0CDBE08C" Version="1.6.0.0" />
   <mp:PhoneIdentity PhoneProductId="89b29f1c-db2c-485e-bab7-fd8fa0516e3b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>League Handbook</DisplayName>
