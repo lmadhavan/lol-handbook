@@ -57,6 +57,25 @@ namespace LolHandbook.ViewModels
             }
         }
 
+        public List<T> Search(string text)
+        {
+            List<T> results = new List<T>();
+            text = text.ToLower();
+
+            if (collection != null)
+            {
+                foreach (T item in collection)
+                {
+                    if (item.Name.ToLower().Contains(text))
+                    {
+                        results.Add(item);
+                    }
+                }
+            }
+
+            return results;
+        }
+
         public async Task LoadData(bool forceReload)
         {
             if (collection != null && !forceReload)

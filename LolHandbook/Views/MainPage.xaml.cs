@@ -8,11 +8,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
+using System.Collections.Generic;
+using DataDragon;
 
 namespace LolHandbook.Views
 {
     public sealed partial class MainPage : Page, ISupportResuming
     {
+        private static readonly Entity PlaceholderSearchResult = new Entity { Name = "No results found" };
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -74,6 +78,49 @@ namespace LolHandbook.Views
             if (!ViewModel.Loading)
             {
                 await Launcher.LaunchUriAsync(ViewModel.PatchNotesUri);
+            }
+        }
+
+        private void OnSearchTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                var text = sender.Text.Trim();
+                var results = new List<Entity>();
+
+                if (text.Length > 0)
+                {
+                    results.AddRange(ChampionsView.Search(text));
+                    results.AddRange(ItemsView.Search(text));
+                    results.Sort((a, b) => a.Name.CompareTo(b.Name));
+
+                    if (results.Count == 0)
+                    {
+                        results.Add(PlaceholderSearchResult);
+                    }
+                }
+
+                sender.ItemsSource = results;
+            }
+        }
+
+        private void OnSearchSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            var entity = args.SelectedItem as Entity;
+            sender.Text = (entity == PlaceholderSearchResult) ? "" : entity.Name;
+        }
+
+        private void OnSearchQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion is ChampionSummary champion)
+            {
+                Pivot.SelectedIndex = 0;
+                ChampionsView.Select(champion);
+            }
+            else if (args.ChosenSuggestion is Item item)
+            {
+                Pivot.SelectedIndex = 1;
+                ItemsView.Select(item);
             }
         }
     }

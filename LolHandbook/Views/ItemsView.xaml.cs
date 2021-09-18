@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
@@ -26,8 +27,11 @@ namespace LolHandbook.Views
 
         private void OnItemClicked(object sender, ItemClickEventArgs e)
         {
-            Item item = (Item)e.ClickedItem;
+            Select((Item)e.ClickedItem);
+        }
 
+        internal void Select(Item item)
+        {
             if (View.IsDetailsPaneVisible)
             {
                 ItemDetailPage.ViewModel.Item = item;
@@ -36,6 +40,11 @@ namespace LolHandbook.Views
             {
                 App.Navigate(typeof(ItemDetailPage), item);
             }
+        }
+
+        internal IEnumerable<Entity> Search(string text)
+        {
+            return ViewModel.Search(text);
         }
     }
 }

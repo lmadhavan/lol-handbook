@@ -45,6 +45,7 @@
     <Compile Include="ChampionStats.cs" />
     <Compile Include="ChampionSummary.cs" />
     <Compile Include="DataDragonClient.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="IDataDragonClient.cs" />
     <Compile Include="ImageId.cs" />
     <Compile Include="ISupportTags.cs" />

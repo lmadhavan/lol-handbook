@@ -1,5 +1,6 @@
 ﻿using DataDragon;
 using LolHandbook.ViewModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
@@ -26,8 +27,11 @@ namespace LolHandbook.Views
 
         private void OnItemClicked(object sender, ItemClickEventArgs e)
         {
-            ChampionSummary summary = (ChampionSummary)e.ClickedItem;
+            Select((ChampionSummary)e.ClickedItem);
+        }
 
+        internal void Select(ChampionSummary summary)
+        {
             if (View.IsDetailsPaneVisible)
             {
                 ChampionDetailPage.ViewModel.Summary = summary;
@@ -36,6 +40,11 @@ namespace LolHandbook.Views
             {
                 App.Navigate(typeof(ChampionDetailPage), summary);
             }
+        }
+
+        internal IEnumerable<Entity> Search(string text)
+        {
+            return ViewModel.Search(text);
         }
     }
 }

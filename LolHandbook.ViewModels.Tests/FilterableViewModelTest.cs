@@ -43,6 +43,14 @@ namespace LolHandbook.ViewModels
             Assert.That(viewModel.Groups.Select(g => g.Key), Is.EqualTo(new List<string> { "A", "B" }).AsCollection);
         }
 
+        [Test]
+        public void SearchMatchesElementName()
+        {
+            var results = viewModel.Search("b");
+            Assert.That(results, Has.Count.EqualTo(1));
+            Assert.That(results[0].Name, Is.EqualTo("B1"));
+        }
+
         private class StubElement : ISupportTags
         {
             public string Name { get; set; }
@@ -64,7 +72,7 @@ namespace LolHandbook.ViewModels
                 {
                     new StubElement { Name = "A1", Tags = new List<string> { "tag1" } },
                     new StubElement { Name = "A2", Tags = new List<string> { "tag1" } },
-                    new StubElement { Name = "B", Tags = new List<string> { "tag2" } }
+                    new StubElement { Name = "B1", Tags = new List<string> { "tag2" } }
                 });
             }
         }
