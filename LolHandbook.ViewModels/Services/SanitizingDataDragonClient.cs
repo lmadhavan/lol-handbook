@@ -28,6 +28,7 @@ namespace LolHandbook.ViewModels.Services
             foreach (var spell in result.Spells)
             {
                 spell.Description = HtmlSanitizer.Sanitize(spell.Description);
+                spell.ToolTip = HtmlSanitizer.Sanitize(spell.ToolTip);
             }
 
             return result;

@@ -28,7 +28,7 @@ namespace LolHandbook.ViewModels
                 Resource = "{{ basemanacost }} Mana + {{ percentmanacost*100 }}% Max Mana"
             };
 
-            Assert.That(spell.ResolveResourceBurn(""), Is.EqualTo("? Mana + ?% Max Mana"));
+            Assert.That(spell.ResolveResourceBurn(""), Is.EqualTo("⯑ Mana + ⯑% Max Mana"));
         }
     }
 }

@@ -4,6 +4,7 @@ namespace LolHandbook.ViewModels
 {
     public static class HtmlSanitizer
     {
+        private static readonly Regex LineBreakPattern = new Regex(@"<br ?/?>");
         private static readonly Regex TagPattern = new Regex(@"<.*?>");
 
         public static string Sanitize(string html)
@@ -13,8 +14,7 @@ namespace LolHandbook.ViewModels
                 return null;
             }
 
-            html = html.Replace("<br>", "\n");
-            return TagPattern.Replace(html, "");
+            return TagPattern.Replace(LineBreakPattern.Replace(html, "\n"), "");
         }
     }
 }

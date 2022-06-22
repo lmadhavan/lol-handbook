@@ -7,6 +7,11 @@ namespace LolHandbook.ViewModels
     {
         private static readonly Regex ResourcePattern = new Regex(@"\{\{ ([^ ]+) \}\}");
 
+        internal static string ResolveToolTip(this ChampionSpell championSpell)
+        {
+            return ResourcePattern.Replace(championSpell.ToolTip, "⯑");
+        }
+
         internal static string ResolveResourceBurn(this ChampionSpell championSpell, string abilityResourceName)
         {
             string resource = championSpell.Resource;
@@ -56,7 +61,7 @@ namespace LolHandbook.ViewModels
                 }
             }
 
-            return "?";
+            return "⯑";
         }
     }
 }

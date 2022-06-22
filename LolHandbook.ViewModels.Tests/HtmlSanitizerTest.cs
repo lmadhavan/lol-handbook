@@ -8,8 +8,8 @@ namespace LolHandbook.ViewModels
         [Test]
         public void SanitizesHtmlTags()
         {
-            string html = "<b>foo</b><br><i>bar</i>";
-            Assert.That(HtmlSanitizer.Sanitize(html), Is.EqualTo("foo\nbar"));
+            string html = "<b>foo</b><br><i>bar</i><br />baz";
+            Assert.That(HtmlSanitizer.Sanitize(html), Is.EqualTo("foo\nbar\nbaz"));
         }
     }
 }
