@@ -16,7 +16,7 @@ namespace LolHandbook.ViewModels
 
         public Uri ImageUri => championSpell.ImageUri;
         public string Name => championSpell.Name;
-        public string Description => HtmlSanitizer.Sanitize(championSpell.Description);
+        public string Description => championSpell.Description;
         public string Cost => $"Cost: {resourceBurn}";
         public string Cooldown => $"Cooldown: {championSpell.CooldownBurn} seconds";
     }

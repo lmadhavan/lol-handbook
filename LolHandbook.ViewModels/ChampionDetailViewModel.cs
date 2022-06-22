@@ -73,7 +73,7 @@ namespace LolHandbook.ViewModels
 
         public string Name => Resolve(c => c.Name);
         public string Title => Resolve(c => c.Title);
-        public string Lore => HtmlSanitizer.Sanitize(Detail?.Lore ?? Summary?.Blurb);
+        public string Lore => Detail?.Lore ?? Summary?.Blurb;
 
         public string Role
         {

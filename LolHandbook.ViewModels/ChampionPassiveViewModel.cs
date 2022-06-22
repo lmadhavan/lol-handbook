@@ -14,7 +14,7 @@ namespace LolHandbook.ViewModels
 
         public Uri ImageUri => championPassive.ImageUri;
         public string Name => championPassive.Name;
-        public string Description => HtmlSanitizer.Sanitize(championPassive.Description);
+        public string Description => championPassive.Description;
         public string Cost => "Passive";
         public string Cooldown => null;
     }

@@ -2,11 +2,11 @@
 
 namespace LolHandbook.ViewModels
 {
-    internal static class HtmlSanitizer
+    public static class HtmlSanitizer
     {
         private static readonly Regex TagPattern = new Regex(@"<.*?>");
 
-        internal static string Sanitize(string html)
+        public static string Sanitize(string html)
         {
             if (html == null)
             {

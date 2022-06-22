@@ -4,15 +4,17 @@ namespace LolHandbook.ViewModels.Services
 {
     public static class DataDragonService
     {
-        private static FailsafeDataDragonClient instance;
+        private static CachingDataDragonClient cache;
+        private static IDataDragonClient instance;
 
         public static IDataDragonClient Instance
         {
             get
             {
-                if (instance == null)
+                if (cache == null)
                 {
-                    instance = new FailsafeDataDragonClient();
+                    cache = new CachingDataDragonClient("na");
+                    instance = new SanitizingDataDragonClient(new FailsafeDataDragonClient(cache));
                 }
 
                 return instance;
@@ -21,10 +23,7 @@ namespace LolHandbook.ViewModels.Services
 
         public static void InvalidateCache()
         {
-            if (instance != null)
-            {
-                instance.InvalidateCache();
-            }
+            cache?.InvalidateCache();
         }
     }
 }

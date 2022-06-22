@@ -4,8 +4,9 @@ namespace LolHandbook.ViewModels.Services
 {
     public sealed class StubLocalizationService : ILocalizationService
     {
-        public async Task LoadData()
+        public Task LoadData()
         {
+            return Task.CompletedTask;
         }
 
         public string Lookup(string key)

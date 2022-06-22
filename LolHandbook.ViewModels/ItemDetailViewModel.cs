@@ -62,8 +62,8 @@ namespace LolHandbook.ViewModels
         public string Name => item?.Name;
         public Uri ImageUri => item?.ImageUri;
         public string Cost => item?.Cost.Total.ToString();
-        public string Description => HtmlSanitizer.Sanitize(item?.Description);
-        public string Plaintext => HtmlSanitizer.Sanitize(item?.Plaintext);
+        public string Description => item?.Description;
+        public string Plaintext => item?.Plaintext;
 
         public IList<Item> Requires { get; private set; }
         public IList<Item> BuildsInto { get; private set; }

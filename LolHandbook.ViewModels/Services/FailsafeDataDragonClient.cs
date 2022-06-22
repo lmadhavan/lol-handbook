@@ -8,21 +8,16 @@ namespace LolHandbook.ViewModels.Services
 {
     internal sealed class FailsafeDataDragonClient : IDataDragonClient
     {
-        private readonly CachingDataDragonClient client;
+        private readonly IDataDragonClient client;
 
-        internal FailsafeDataDragonClient()
+        internal FailsafeDataDragonClient(IDataDragonClient client)
         {
-            this.client = new CachingDataDragonClient("na");
+            this.client = client;
         }
 
         public void Dispose()
         {
             client.Dispose();
-        }
-
-        public void InvalidateCache()
-        {
-            client.InvalidateCache();
         }
 
         public async Task<string> GetPatchVersionAsync()
