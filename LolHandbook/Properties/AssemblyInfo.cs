@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Madhavan Lakshminarayanan")]
 [assembly: AssemblyProduct("League Handbook")]
-[assembly: AssemblyCopyright("©  2021 Madhavan Lakshminarayanan")]
+[assembly: AssemblyCopyright("Copyright © 2022 Madhavan Lakshminarayanan")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,82 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{08595497-5793-409E-9BDC-E0A1251A92CA}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LolHandbook.ViewModels</RootNamespace>
-    <AssemblyName>LolHandbook.ViewModels</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Product>League Handbook</Product>
+    <Company />
+    <Authors>Madhavan Lakshminarayanan</Authors>
+    <Copyright>Copyright © 2022 Madhavan Lakshminarayanan</Copyright>
+    <AssemblyVersion>1.7.0.0</AssemblyVersion>
+    <FileVersion>1.7.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\DataDragonClient\DataDragonClient.csproj">
-      <Project>{95b3f26a-59e7-4971-8a7b-5fbe38a95ae2}</Project>
-      <Name>DataDragonClient</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\DataDragonClient\DataDragonClient.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\LolHandbook\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="AboutViewModel.cs" />
-    <Compile Include="MainPageViewModel.cs" />
-    <Compile Include="Properties\AdditionalAssemblyInfo.cs" />
-    <Compile Include="Services\DataDragonService.cs" />
-    <Compile Include="ChampionDetailViewModel.cs" />
-    <Compile Include="ChampionPassiveViewModel.cs" />
-    <Compile Include="ChampionSkinsViewModel.cs" />
-    <Compile Include="ChampionSpellViewModel.cs" />
-    <Compile Include="ChampionStatsViewModel.cs" />
-    <Compile Include="ChampionsViewModel.cs" />
-    <Compile Include="FilterableViewModelBase.cs" />
-    <Compile Include="HtmlSanitizer.cs" />
-    <Compile Include="ISpellViewModel.cs" />
-    <Compile Include="ItemDetailViewModel.cs" />
-    <Compile Include="ItemsViewModel.cs" />
-    <Compile Include="ChampionSpellExtensions.cs" />
-    <Compile Include="Services\FailsafeDataDragonClient.cs" />
-    <Compile Include="Services\ILocalizationService.cs" />
-    <Compile Include="Services\LanguageDictionary.cs" />
-    <Compile Include="Services\LocalizationService.cs" />
-    <Compile Include="Services\StubDataDragonClient.cs" />
-    <Compile Include="Services\StubLocalizationService.cs" />
-    <Compile Include="Stubs\StubChampionDetailViewModel.cs" />
-    <Compile Include="Stubs\StubChampionSkinsViewModel.cs" />
-    <Compile Include="Stubs\StubItemDetailViewModel.cs" />
-    <Compile Include="ViewModelBase.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
