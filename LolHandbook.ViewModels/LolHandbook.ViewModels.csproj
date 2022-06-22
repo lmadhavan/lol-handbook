@@ -5,8 +5,8 @@
     <Company />
     <Authors>Madhavan Lakshminarayanan</Authors>
     <Copyright>Copyright © 2022 Madhavan Lakshminarayanan</Copyright>
-    <AssemblyVersion>1.7.0.0</AssemblyVersion>
-    <FileVersion>1.7.0.0</FileVersion>
+    <AssemblyVersion>1.8.0.0</AssemblyVersion>
+    <FileVersion>1.8.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataDragonClient\DataDragonClient.csproj" />
