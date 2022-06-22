@@ -5,7 +5,7 @@ namespace LolHandbook.ViewModels
 {
     internal static class ChampionSpellExtensions
     {
-        private static readonly Regex ResourcePattern = new Regex(@"\{\{ (\w+) \}\}");
+        private static readonly Regex ResourcePattern = new Regex(@"\{\{ ([^ ]+) \}\}");
 
         internal static string ResolveResourceBurn(this ChampionSpell championSpell, string abilityResourceName)
         {
@@ -56,7 +56,7 @@ namespace LolHandbook.ViewModels
                 }
             }
 
-            return variable;
+            return "?";
         }
     }
 }

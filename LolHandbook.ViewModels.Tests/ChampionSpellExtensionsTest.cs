@@ -19,5 +19,16 @@ namespace LolHandbook.ViewModels
 
             Assert.That(spell.ResolveResourceBurn("Mana"), Is.EqualTo("10 Mana + 20 Mana per second + 30 Health"));
         }
+
+        [Test]
+        public void RemovesUnknownPlaceholders()
+        {
+            ChampionSpell spell = new ChampionSpell
+            {
+                Resource = "{{ basemanacost }} Mana + {{ percentmanacost*100 }}% Max Mana"
+            };
+
+            Assert.That(spell.ResolveResourceBurn(""), Is.EqualTo("? Mana + ?% Max Mana"));
+        }
     }
 }
