@@ -14,7 +14,7 @@ namespace LolHandbook.ViewModels
 
         internal static string ResolveResourceBurn(this ChampionSpell championSpell, string abilityResourceName)
         {
-            string resource = championSpell.Resource;
+            string resource = championSpell.Resource ?? "";
 
             Match match = ResourcePattern.Match(resource);
             while (match.Success)

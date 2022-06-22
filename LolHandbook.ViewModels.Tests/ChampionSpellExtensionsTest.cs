@@ -30,5 +30,13 @@ namespace LolHandbook.ViewModels
 
             Assert.That(spell.ResolveResourceBurn(""), Is.EqualTo("⯑ Mana + ⯑% Max Mana"));
         }
+
+        [Test]
+        public void HandlesMissingResource()
+        {
+            ChampionSpell spell = new ChampionSpell();
+
+            Assert.That(spell.ResolveResourceBurn(""), Is.EqualTo(""));
+        }
     }
 }
