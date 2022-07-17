@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     /// <summary>
     /// Builds Data Dragon request URIs.

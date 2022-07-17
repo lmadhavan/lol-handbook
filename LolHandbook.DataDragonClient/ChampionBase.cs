@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     public abstract class ChampionBase : Entity
     {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     public sealed class ChampionStats
     {

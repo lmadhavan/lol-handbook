@@ -1,4 +1,4 @@
-﻿using DataDragon;
+﻿using LolHandbook.DataDragon;
 using NUnit.Framework;
 using System.Collections.Generic;
 

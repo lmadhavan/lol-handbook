@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Input;
 using System.Collections.Generic;
-using DataDragon;
+using LolHandbook.DataDragon;
 
 namespace LolHandbook.Views
 {

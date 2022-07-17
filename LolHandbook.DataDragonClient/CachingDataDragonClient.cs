@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     /// <summary>
     /// Provides a caching implementation of <see cref="IDataDragonClient"/>.

@@ -1,4 +1,4 @@
-﻿using DataDragon;
+﻿using LolHandbook.DataDragon;
 using LolHandbook.ViewModels;
 using LolHandbook.ViewModels.Services;
 using LolHandbook.ViewModels.Stubs;

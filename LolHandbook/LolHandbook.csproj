@@ -202,13 +202,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataDragonClient\DataDragonClient.csproj">
-      <Project>{95b3f26a-59e7-4971-8a7b-5fbe38a95ae2}</Project>
-      <Name>DataDragonClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LolHandbook.BackgroundTasks\LolHandbook.BackgroundTasks.csproj">
       <Project>{7152ffbb-5ff9-485e-b23b-7c060a4b6e9b}</Project>
       <Name>LolHandbook.BackgroundTasks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LolHandbook.DataDragonClient\LolHandbook.DataDragonClient.csproj">
+      <Project>{95b3f26a-59e7-4971-8a7b-5fbe38a95ae2}</Project>
+      <Name>LolHandbook.DataDragonClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\LolHandbook.ViewModels\LolHandbook.ViewModels.csproj">
       <Project>{08595497-5793-409e-9bdc-e0a1251a92ca}</Project>

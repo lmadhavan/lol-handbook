@@ -1,4 +1,4 @@
-﻿using DataDragon;
+﻿using LolHandbook.DataDragon;
 using System.Threading.Tasks;
 
 namespace LolHandbook.ViewModels.Services

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     /// <summary>
     /// Provides a client for accessing the League of Legends Data Dragon service.

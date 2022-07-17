@@ -1,4 +1,4 @@
-﻿using DataDragon;
+﻿using LolHandbook.DataDragon;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

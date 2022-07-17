@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     /// <summary>
     /// Provides a default implementation of <see cref="IDataDragonClient"/>.

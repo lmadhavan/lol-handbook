@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     public sealed class ChampionDetail : ChampionBase
     {

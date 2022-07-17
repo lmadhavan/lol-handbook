@@ -1,4 +1,4 @@
-﻿using DataDragon;
+﻿using LolHandbook.DataDragon;
 using LolHandbook.ViewModels.Services;
 using System.Collections.Generic;
 using System.Linq;

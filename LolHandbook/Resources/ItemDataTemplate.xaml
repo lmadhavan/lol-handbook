@@ -2,7 +2,7 @@
     x:Class="LolHandbook.Resources.ItemDataTemplate"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:dd="using:DataDragon">
+    xmlns:dd="using:LolHandbook.DataDragon">
     
     <DataTemplate x:Key="ItemDataTemplateAutoWidth" x:DataType="dd:Item">
         <Grid Margin="0,8" ToolTipService.ToolTip="{x:Bind Name}">

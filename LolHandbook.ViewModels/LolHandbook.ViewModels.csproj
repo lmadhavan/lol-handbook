@@ -9,6 +9,6 @@
     <FileVersion>1.8.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataDragonClient\DataDragonClient.csproj" />
+    <ProjectReference Include="..\LolHandbook.DataDragonClient\LolHandbook.DataDragonClient.csproj" />
   </ItemGroup>
 </Project>

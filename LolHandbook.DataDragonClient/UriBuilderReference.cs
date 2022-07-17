@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     /// <summary>
     /// Holds a reference to a lazy-initialized <see cref="UriBuilder"/> instance.

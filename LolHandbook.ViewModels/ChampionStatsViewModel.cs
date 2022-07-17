@@ -1,4 +1,4 @@
-﻿using DataDragon;
+﻿using LolHandbook.DataDragon;
 
 namespace LolHandbook.ViewModels
 {

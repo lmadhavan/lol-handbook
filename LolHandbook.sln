@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolHandbook", "LolHandbook\LolHandbook.csproj", "{94394069-889C-45E8-A3D4-F5F73C179CD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataDragonClient", "DataDragonClient\DataDragonClient.csproj", "{95B3F26A-59E7-4971-8A7B-5FBE38A95AE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolHandbook.DataDragonClient", "LolHandbook.DataDragonClient\LolHandbook.DataDragonClient.csproj", "{95B3F26A-59E7-4971-8A7B-5FBE38A95AE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolHandbook.ViewModels", "LolHandbook.ViewModels\LolHandbook.ViewModels.csproj", "{08595497-5793-409E-9BDC-E0A1251A92CA}"
 EndProject

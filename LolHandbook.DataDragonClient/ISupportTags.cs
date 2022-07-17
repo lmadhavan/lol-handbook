@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     public interface ISupportTags
     {

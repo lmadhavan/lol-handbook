@@ -1,21 +1,16 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
-    public abstract class SpellBase
+    public sealed class ChampionSkin
     {
-        internal SpellBase()
-        {
-        }
-
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
 
         [JsonIgnore]
         public Uri ImageUri { get; set; }
         [JsonProperty]
-        internal ImageId Image { get; set; }
+        internal int Num { get; set; }
     }
 }

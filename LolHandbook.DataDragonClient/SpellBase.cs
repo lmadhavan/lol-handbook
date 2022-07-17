@@ -1,13 +1,17 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
-    public class Entity : ISupportTags
+    public abstract class SpellBase
     {
+        internal SpellBase()
+        {
+        }
+
+        public string Id { get; set; }
         public string Name { get; set; }
-        public IList<string> Tags { get; set; }
+        public string Description { get; set; }
 
         [JsonIgnore]
         public Uri ImageUri { get; set; }

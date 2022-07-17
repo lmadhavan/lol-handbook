@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DataDragon
+namespace LolHandbook.DataDragon
 {
     /// <summary>
     /// Specifies configuration parameters for a Data Dragon realm.

@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LolHandbook.Views"
-    xmlns:dd="using:DataDragon"
+    xmlns:dd="using:LolHandbook.DataDragon"
     NavigationCacheMode="Required"
     DataContext="{Binding MainPageViewModel, Source={StaticResource ViewModelLocator}}">
 
